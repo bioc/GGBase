@@ -1,0 +1,13 @@
+
+import(Biobase, AnnotationDbi)
+
+exportClasses("smlSet", "gwSnpScreenResult", "multiGwSnpScreenResult",
+  "chrnum", "rsNum", "cnumOrMissing", "genesym",
+  "cwSnpScreenResult", "snpLocNCref", "snpMeta",
+  "snpMetaWhole", "snpID", "exFeatID",
+  "genesym", "snpScreenResult", "twSnpScreenResult",
+  "racExSet", "GGfitter", "oGtypeExSet")
+
+exportMethods( "chrnum", "rsNum", "genesym", "show", 
+    "show", "initialize", "snps", "smList", "smlEnv")
+
