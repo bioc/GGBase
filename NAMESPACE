@@ -9,5 +9,6 @@ exportClasses("smlSet", "gwSnpScreenResult", "multiGwSnpScreenResult",
   "racExSet", "GGfitter", "oGtypeExSet")
 
 exportMethods( "chrnum", "rsNum", "genesym", "show", 
-    "show", "initialize", "snps", "smList", "smlEnv")
+    "show", "initialize", "smList", "smlEnv")
 
+export("snpID")
