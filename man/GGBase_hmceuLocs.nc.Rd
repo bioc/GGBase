@@ -7,7 +7,7 @@ for hapmap phase 2 SNP genotypes, build 36}
 for hapmap phase 2 SNP genotypes, build 36}
 \usage{GGBase_hmceuLocs.nc}
 \format{
-  The format is that of an \code{\link[ncdf]}{open.ncdf} output.
+  The format is that of an \code{\link[ncdf]{open.ncdf}} output.
 }
 \details{
 This is a dynamically exported symbol that refers to an
