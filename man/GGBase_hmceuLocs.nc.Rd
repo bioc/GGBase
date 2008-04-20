@@ -5,10 +5,9 @@
 for hapmap phase 2 SNP genotypes, build 36}
 \title{ netCDF store (ncdf package) for SNP location data
 for hapmap phase 2 SNP genotypes, build 36}
-\usage{data(GGBase_hmceuLocs.nc)}
+\usage{GGBase_hmceuLocs.nc}
 \format{
-  The format is:
- chr "GGBase_hmceuLocs.nc"
+  The format is that of an \code{\link[ncdf]}{open.ncdf} output.
 }
 \details{
 This is a dynamically exported symbol that refers to an
