@@ -3,7 +3,7 @@
 \docType{data}
 \title{ netCDF store (ncdf package) for SNP location data
 for hapmap phase 2 SNP genotypes, build 36}
-\title{ netCDF store (ncdf package) for SNP location data
+\description{ netCDF store (ncdf package) for SNP location data
 for hapmap phase 2 SNP genotypes, build 36}
 \usage{GGBase_hmceuLocs.nc}
 \format{
