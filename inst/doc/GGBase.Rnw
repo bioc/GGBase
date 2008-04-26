@@ -1,0 +1,93 @@
+%\VignetteIndexEntry{GGBase overview}
+%\VignetteDepends{GGtools}
+%\VignetteKeywords{Genetical genomics,SNP,expression}
+%\VignettePackage{GGBase}
+
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+
+\title{GGBase: infrastructure for genetics of gene expression}
+\author{VJ Carey}
+\maketitle
+
+\section{Introduction}
+
+Data representations for
+genetics of gene expression in humans must be
+as efficient as possible.  Up to Bioconductor 2.1,
+integrative genomics experiments could be represented
+by racExSet instances as defined in package GGtools.
+Genotypes were represented as integers.
+
+For Bioconductor 2.2, we have access to the snpMatrix
+package of D. Clayton, and we have introduced the
+smlSet class to represent genetics of gene expression
+studies with lists of snp.matrix instances, along with
+ordinary representations of expression data.
+
+\section{Primary class structure, and associated methods}
+
+<<lkc>>=
+library(GGBase)
+getClass("smlSet")
+library(GGtools)
+showMethods(class="smlSet")
+@
+
+\section{Example data structure}
+
+<<lkd>>=
+data(hmceuB36.2021)
+hmceuB36.2021
+@
+
+\section{SNP location infrastructure}
+
+We have decided to use a dynamically exported SQLite connection
+to provide access to SNP location information.
+
+<<kjs>>=
+dbListTables(hmceuAmbB36_dbconn())
+@
+
+\section{Conclusion}
+
+The concepts discussed above define the bulk of the tools
+supporting the gwSnpScreen method of GGtools.  Consult the
+vignette of GGtools for more information.
+
+\end{document}
