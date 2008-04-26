@@ -35,8 +35,8 @@ feature identifier of the associated microarray }
 of relevant annotation package identifier names }
     \item{\code{snpLocPackage}:}{Object of class \code{"character"} name
 of package holding the netCDF store of SNP locations }
-    \item{\code{snpLocNCDFref}:}{Object of class \code{"character"} name
-of object in snpLocPackage pointing to the netCDF store }
+    \item{\code{snpLocExtRef}:}{Object of class \code{"character"} name
+of object in snpLocPackage pointing to the external store (SQLite) }
     \item{\code{activeSnpInds}:}{Object of class \code{"numeric"} vector
 telling which SNPs (relative to the referenced netCDF locations store)
 were used}

@@ -35,7 +35,7 @@ setClass("smlSet", contains="eSet",
 	   annotation=character(0),
 	   smlEnv = {e = new.env(); assign("smList", list(), e); e},
  	   snpLocPathMaker=snpLocPathClo(), snpLocRef=character(0),
-   	   snpLocPackage=character(0), activeSnpInds=numeric(0),
+   	   snpLocPackage=character(0), activeSnpInds=numeric(0), 
            chromInds = numeric(0)))
 
 setGeneric("smlEnv", function(x) standardGeneric("smlEnv"))
@@ -45,7 +45,7 @@ setMethod("smList", "smlSet", function(x) x@smlEnv$smList)
 	   
 setClass("gwSnpScreenResult", contains="list",
    representation(gene="character", psid="character", annotation="character",
-      snpLocPackage="character", snpLocNCDFref="character",
+      snpLocPackage="character", snpLocExtRef="character", 
       activeSnpInds="numeric"))
 
 setClass("multiGwSnpScreenResult", representation(geneset="GeneSet"),
