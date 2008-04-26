@@ -7,7 +7,7 @@ hmceuAmbB36_dbfile <- function() dbfile(datacache)
 {
     require("methods", quietly=TRUE)
     ## Connect to the SQLite DB
-    dbfile <- system.file("extdata", "hmceuAmbB36.sql", 
+    dbfile <- system.file("extdata", "hmceuAmbB36.sqlite", 
        package=pkgname, lib.loc=libname)
     assign("dbfile", dbfile, envir=datacache)
     dbconn <- dbFileConnect(dbfile)
