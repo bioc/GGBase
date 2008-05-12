@@ -2,13 +2,13 @@
 import(Biobase, AnnotationDbi)
 
 exportClasses("smlSet", "gwSnpScreenResult", "multiGwSnpScreenResult",
-  "chrnum", "rsNum", "cnumOrMissing", "genesym",
+  "chrnum", "rsNum", "cnumOrMissing", "genesym", "probeId",
   "cwSnpScreenResult", "snpLocNCref", "snpMeta",
   "snpMetaWhole", "snpID", "exFeatID",
   "genesym", "snpScreenResult", "twSnpScreenResult",
   "racExSet", "GGfitter", "oGtypeExSet")
 
 exportMethods( "chrnum", "rsNum", "genesym", "show", 
-    "show", "initialize", "smList", "smlEnv")
+    "show", "initialize", "smList", "smlEnv", "probeId")
 
 export("snpID")

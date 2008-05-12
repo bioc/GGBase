@@ -65,6 +65,10 @@ setClass("genesym", contains="character")
 setGeneric("genesym", function(x) standardGeneric("genesym"))
 setMethod("genesym", "character",  function(x) new("genesym", x))
 
+setClass("probeId", contains="character")
+setGeneric("probeId", function(x) standardGeneric("probeId"))
+setMethod("probeId", "character",  function(x) new("probeId", x))
+
 setClass("cwSnpScreenResult", contains="gwSnpScreenResult",
    representation(chrnum="chrnum"))
 

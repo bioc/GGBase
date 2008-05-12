@@ -10,7 +10,9 @@
 \alias{snpLocNCref-class}
 \alias{show,snpLocNCref-method}
 \alias{cnumOrMissing-class}
+\alias{probeId-class}
 \alias{genesym}
+\alias{probeId}
 \alias{chrnum}
 \alias{exFeatID}
 \alias{rsNum}
