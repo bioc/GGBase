@@ -1,11 +1,11 @@
 \name{hmceuAmbB36_dbconn}
-\alias{hmceuAmbB36_dbconn}
-\alias{hmceuAmbB36_dbfile}
+\alias{hmceuAmbB36_23a_dbconn}
+\alias{hmceuAmbB36_23a_dbfile}
 \title{SQLite infrastructure for SNP locations}
 \description{SQLite infrastructure for SNP locations}
 \usage{
-hmceuAmbB36_dbconn()
-hmceuAmbB36_dbfile()
+hmceuAmbB36_23a_dbconn()
+hmceuAmbB36_23a_dbfile()
 }
 \details{
 hmceuAmbB36 refers to HapMap CEU Ambiguous IUPAC symbols
@@ -28,7 +28,7 @@ See details.
 %\seealso{  }
 
 \examples{
-hmceuAmbB36_dbfile()
-dbGetQuery(hmceuAmbB36_dbconn() , "select * from hmceuAmbB36 limit 5")
+hmceuAmbB36_23a_dbfile()
+dbGetQuery(hmceuAmbB36_23a_dbconn() , "select * from hmceuAmbB36 limit 5")
 }
 \keyword{ models }

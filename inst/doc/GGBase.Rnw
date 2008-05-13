@@ -81,7 +81,7 @@ We have decided to use a dynamically exported SQLite connection
 to provide access to SNP location information.
 
 <<kjs>>=
-dbListTables(hmceuAmbB36_dbconn())
+dbListTables(hmceuAmbB36_23a_dbconn())
 @
 
 \section{Conclusion}

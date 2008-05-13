@@ -6,6 +6,7 @@
 \alias{exFeatID-class}
 \alias{rsNum-class}
 \alias{rsNum,character-method}
+\alias{probeId,character-method}
 \alias{snpID-class}
 \alias{snpLocNCref-class}
 \alias{show,snpLocNCref-method}
