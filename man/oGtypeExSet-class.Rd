@@ -22,10 +22,10 @@ Objects can be created by calls of the form \code{new("oGtypeExSet", assayData, 
   }
 }
 \section{Extends}{
-Class \code{"\linkS4class{ExpressionSet}"}, directly, with explicit coerce.
-Class \code{"\linkS4class{eSet}"}, by class "ExpressionSet", distance 2, with explicit coerce.
-Class \code{"\linkS4class{VersionedBiobase}"}, by class "ExpressionSet", distance 3, with explicit coerce.
-Class \code{"\linkS4class{Versioned}"}, by class "ExpressionSet", distance 4, with explicit coerce.
+Class \code{"\link[Biobase:class.ExpressionSet]{ExpressionSet}"}, directly, with explicit coerce.
+Class \code{"\link[Biobase:class.eSet]{eSet}"}, by class "ExpressionSet", distance 2, with explicit coerce.
+Class \code{"\link[Biobase:class.VersionedBiobase]{VersionedBiobase}"}, by class "ExpressionSet", distance 3, with explicit coerce.
+Class \code{"\link[Biobase:class.Versioned]{Versioned}"}, by class "ExpressionSet", distance 4, with explicit coerce.
 }
 \section{Methods}{
 No methods defined with class "oGtypeExSet" in the signature.
