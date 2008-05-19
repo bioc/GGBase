@@ -29,6 +29,8 @@ See details.
 
 \examples{
 hmceuAmbB36_23a_dbfile()
-dbGetQuery(hmceuAmbB36_23a_dbconn() , "select * from hmceuAmbB36 limit 5")
+con = hmceuAmbB36_23a_dbconn()
+ta = dbListTables(con)
+dbGetQuery(con , paste("select * from", ta, "  limit 5"))
 }
 \keyword{ models }
