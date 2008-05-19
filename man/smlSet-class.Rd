@@ -32,9 +32,8 @@ vector indicating what chromosomes are represented in the \code{smlEnv} }
     \item{\code{snpLocPackage}:}{Object of class \code{"character"} tells
 what package houses the netCDF store for SNP location metadata }
     \item{\code{snpLocRef}:}{Object of class \code{"character"} tells
-the symbol exported by the snpLocPackage with which the netCDF store connection
-can be retrieved.  That symbol refers to an instance of the S3 class
-'ncdf', in package 'ncdf'. }
+the symbol exported by the snpLocPackage with which the external store connection
+can be retrieved.  That symbol refers to a SQLite database connection.}
     \item{\code{activeSnpInds}:}{Object of class \code{"numeric"} redundant with
 chromInds slot }
     \item{\code{assayData}:}{Object of class \code{"AssayData"} intended
