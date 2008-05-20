@@ -81,7 +81,8 @@ We have decided to use a dynamically exported SQLite connection
 to provide access to SNP location information.
 
 <<kjs>>=
-dbListTables(hmceuAmbB36_dbconn())
+conn = grep("dbconn", objects("package:GGBase"), value=TRUE)
+dbListTables(get(conn)())
 @
 
 \section{Conclusion}
