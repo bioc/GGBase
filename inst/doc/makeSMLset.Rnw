@@ -1,0 +1,136 @@
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+
+\title{how to make an smlSet from hapmap data}
+\author{VJ Carey}
+\maketitle
+
+\begin{enumerate}
+\item \textbf{Raw data acquisition:} Obtain the hapmap files from the bulk data download.
+A typical filename is 
+\begin{verbatim}
+genotypes_chrY_YRI_r23_nr.b36_fwd.txt.gz
+\end{verbatim}
+
+\item use snpMatrix read.HapMap.data to obtain the associated snp.matrix
+and support data frame.  We do this for the 24 main chromosome files.
+%An example, after saving the reads to .rda files, is
+<<dol,eval=FALSE,echo=FALSE>>=
+load("C1.rda")
+names(C1)
+C1[[2]][1,]
+@
+%Note that the chromosome is 10, so there is no correspondence between
+%rda filename and chromosome.  We will have to check the contents of
+%the file to assign to a chromosome, but that is not too onerous.
+
+\item \textbf{Formatting of location data:} Pull the 'support' data together so that a SNP location resource can
+be made.
+
+The steps are
+\begin{enumerate}
+\item iterate over the saved reads and accumulate the location data frame.
+Assuming that the only .rda files in the current folder are
+read.HapMap.data results, the following will work, yielding a dataframe
+called supp.
+
+<<dor,keep.source=TRUE,eval=FALSE>>=
+supp = NULL; 
+for (i in 1:24) { 
+  cat(i)
+  load(ofi[i]); fn = gsub(".rda", "", ofi[i]); supp = rbind(supp, get(fn)$snp.supp) 
+  rm(fn)
+  gc()
+}
+@
+\item get the dataframe into order -- sort by chromosomes and position within
+chromosome:
+
+<<doo,eval=FALSE>>=
+cc = as.character(supp$Chrom)
+cc = gsub("chr", "", cc)
+cc[cc=="X"] = 23
+cc[cc=="Y"] = 24
+ncc = as.numeric(cc)
+oo = order(cc, supp$Posi)
+osupp = supp[oo,]
+save(osupp, file="osupp.rda")
+@
+
+\end{enumerate}
+
+\item serialize the location data to SQLite
+
+<<doarr,eval=FALSE>>=
+supp2SQLite(osupp, "hmyriAmbB36_23a" , "hmyriAmbB36_23a.sqlite")
+@
+
+Now, for example, we have
+\begin{verbatim}
+> myc = dbConnect(myd, "hmyriAmbB36_23a.sqlite")
+> dbGetQuery(myc, "select * from hmyriAmbB36_23a limit 5")
+      rsid alleles chrnum   loc
+1 10399749       Y      1 45162
+2  2949421       W      1 45413
+3  2691310       M      1 46844
+4  4030303       Y      1 72434
+5  4030300       K      1 72515
+\end{verbatim}
+
+\item \textbf{Create a list of snp.matrix of genotype data:}
+
+<<domo,eval=FALSE>>=
+ofi = dir(patt="C.*rda")
+allsm = list()
+cn = rep(NA,24)
+for (i in 1:24) { 
+  cat(i)
+  load(ofi[i]); fn = gsub(".rda", "", ofi[i]); allsm[[i]] =  get(fn)[[1]]
+  cn[i] = as.character(get(fn)[[2]][1,"Chromosome"])
+  print(fn)
+  rm(fn)
+  gc()
+}
+@
+
+Don't forget to give names 1:22, X, Y to the list elements.
+
+
+
+\end{enumerate}
+
+\end{document}
