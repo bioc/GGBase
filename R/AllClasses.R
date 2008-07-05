@@ -14,6 +14,8 @@ valsml = function(object) {
     return("annotation slot must be vector with names 'exprs' and 'snps'")
 # if (!(is(annotation(object)[2], "snpLocNCref")))
 #    return("second item in annotation slot must inherit from snpLocNCref")
+ if (is.null(names(smList(object))))
+     return("smList elements must bear names e.g., c(1:22,'X', 'Y')")
  return(TRUE)
 }
 

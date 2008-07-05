@@ -11,4 +11,4 @@ exportClasses("smlSet", "gwSnpScreenResult", "multiGwSnpScreenResult",
 exportMethods( "chrnum", "rsNum", "genesym", "show", 
     "show", "initialize", "smList", "smlEnv", "probeId")
 
-export("snpID")
+export("snpID", "exFeatID")
