@@ -1,3 +1,8 @@
+%\VignetteIndexEntry{smlSet construction overview}
+%\VignetteDepends{GGtools}
+%\VignetteKeywords{Genetical genomics,SNP,expression}
+%\VignettePackage{GGBase}
+
 
 %
 % NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is

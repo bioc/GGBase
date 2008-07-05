@@ -96,8 +96,8 @@ snpID = function(x) new("snpID", x)
 setClass("exFeatID", contains="character")
 exFeatID = function(x) new("exFeatID", x)
 
-setClass("genesym", contains="character")
-genesym = function(x) new("genesym", x)
+#setClass("genesym", contains="character")
+#genesym = function(x) new("genesym", x)
 
 #setGeneric("snps", function(x, chr) standardGeneric("snps"))
 
