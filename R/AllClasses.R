@@ -48,9 +48,9 @@ setMethod("smList", "smlSet", function(x) x@smlEnv$smList)
 setClass("gwSnpScreenResult", contains="list",
    representation(gene="character", psid="character", annotation="character",
       snpLocPackage="character", snpLocExtRef="character", 
-      activeSnpInds="numeric"))
+      activeSnpInds="numeric", call="call"))
 
-setClass("multiGwSnpScreenResult", representation(geneset="GeneSet"),
+setClass("multiGwSnpScreenResult", representation(geneset="GeneSet", call="call"),
    contains="list")
 
 
