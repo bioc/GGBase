@@ -44,6 +44,7 @@ setGeneric("smlEnv", function(x) standardGeneric("smlEnv"))
 setMethod("smlEnv", "smlSet", function(x) x@smlEnv)
 setGeneric("smList", function(x) standardGeneric("smList"))
 setMethod("smList", "smlSet", function(x) x@smlEnv$smList)
+
 	   
 setClass("gwSnpScreenResult", contains="list",
    representation(gene="character", psid="character", annotation="character",
@@ -170,3 +171,7 @@ setAs("oGtypeExSet", "ExpressionSet", function(from) {
       experimentData=experimentData(from), annotation=anno)
 })
 
+setGeneric("snpNames", function(x, c) standardGeneric("snpNames"))
+setMethod("snpNames", c("smlSet", "chrnum"), function(x, c) {
+ colnames(smList(x)[[which(x@chromInds == c)]])
+})
