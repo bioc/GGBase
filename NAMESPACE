@@ -8,10 +8,10 @@ exportClasses("smlSet", "gwSnpScreenResult", "multiGwSnpScreenResult",
   "genesym", "snpScreenResult", "twSnpScreenResult",
   "racExSet", "GGfitter", "oGtypeExSet",
    "filteredGwSnpScreenResult",
-   "filteredMultiGwSnpScreenResult")
+   "filteredMultiGwSnpScreenResult", "snpdepth")
 
 exportMethods( "chrnum", "rsNum", "genesym", 
     "show", "initialize", "smList", "smlEnv", "probeId",
     "snpNames")
 
-export("snpID", "exFeatID")
+export("snpID", "exFeatID", "snpdepth")

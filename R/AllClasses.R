@@ -178,3 +178,6 @@ setMethod("snpNames", c("smlSet", "chrnum"), function(x, c) {
 
 setClass("filteredGwSnpScreenResult", contains="gwSnpScreenResult")
 setClass("filteredMultiGwSnpScreenResult", contains="multiGwSnpScreenResult")
+
+setClass("snpdepth", contains="numeric")
+snpdepth = function(x) new("snpdepth", x)
