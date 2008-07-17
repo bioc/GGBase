@@ -7,7 +7,8 @@ exportClasses("smlSet", "gwSnpScreenResult", "multiGwSnpScreenResult",
   "snpMetaWhole", "snpID", "exFeatID",
   "genesym", "snpScreenResult", "twSnpScreenResult",
   "racExSet", "GGfitter", "oGtypeExSet",
-   "filteredGwSnpScreenResult")
+   "filteredGwSnpScreenResult",
+   "filteredMultiGwSnpScreenResult")
 
 exportMethods( "chrnum", "rsNum", "genesym", 
     "show", "initialize", "smList", "smlEnv", "probeId",
