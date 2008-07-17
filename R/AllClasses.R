@@ -175,3 +175,5 @@ setGeneric("snpNames", function(x, c) standardGeneric("snpNames"))
 setMethod("snpNames", c("smlSet", "chrnum"), function(x, c) {
  colnames(smList(x)[[which(x@chromInds == c)]])
 })
+
+setClass("filteredGwSnpScreenResult", contains="gwSnpScreenResult")
