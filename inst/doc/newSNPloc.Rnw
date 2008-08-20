@@ -1,0 +1,123 @@
+%\VignetteIndexEntry{snp location metadata overview}
+%\VignetteDepends{GGtools}
+%\VignetteKeywords{Genetical genomics,SNP,expression}
+%\VignettePackage{GGBase}
+
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+
+\title{A new approach to SNP location metadata}
+\author{VJ Carey}
+\maketitle
+
+\section{Introduction}
+
+Versions of GGtools prior to 2.3.x have a complicated approach
+to SNP location metadata, involving a specially constructed
+SQLite database.  In the current version we will use a structure
+derived from the SNPlocs.Hsapiens.dbSNP.* package.
+
+One class and two methods are supported.
+
+<<lkcl>>=
+require(GGtools)
+getClass("snpLocs")
+data(hsSnpLocs)
+hsSnpLocs
+@
+
+The chromosome-specific locations are generated reasonably
+efficiently:
+<<lkc>>=
+snpLocs.Hs(chrnum(20), rsid("rs6060535"))
+@
+
+\section{Construction of serialized reference container}
+
+First, unify the name and location information from the
+SNPlocs package.
+
+<<doco,eval=FALSE>>=
+humanSNPlocs = list()
+library(SNPlocs.Hsapiens.dbSNP.20071016)
+if (file.exists("humanSNPlocs.rda")) 
+  load("humanSNPlocs.rda") else {
+  for (i in c(as.character(1:22), "X", "Y")) {
+   curc = getSNPlocs(paste("chr", i, sep=""))
+ rsid.int = as.integer(curc[,1])
+ loc.int = as.integer(curc[,3])
+ humanSNPlocs[[i]] = rbind(rsid=rsid.int, loc=loc.int)
+# cat(i)
+ }
+}
+@
+ 
+
+Now get offsets for computing the chromosome-wide location values.
+<<doco2,eval=FALSE>>=
+require(org.Hs.eg.db)
+chrl = org.Hs.egCHRLENGTHS
+offs = c(0, cumsum(as.double(chrl[1:22])))
+
+@
+<<junk, eval=FALSE, echo=FALSE>>=
+#setClass("snpLocs", representation(locEnv="environment",
+#  offsets="numeric", organism="character", versions="character"))
+#
+#setMethod("show", "snpLocs", function(object) {
+# cat("snpLocs instance, organism ", object@organism, "\n")
+# cat("based on:\n")
+# print(object@versions)
+#})
+@
+
+Now we create the environment-based container instance:
+<<docont,eval=FALSE>>=
+el = new.env()
+getv = function(x) installed.packages()[x, "Version"]
+for (i in names(humanSNPlocs))
+  assign(i, humanSNPlocs[[i]], el)
+hsSnpLocs = new("snpLocs", locEnv=el, offsets=offs,
+ organism="Hs", versions=c(
+   org.Hs.eg.db=getv("org.Hs.eg.db"),
+   SNPlocs.Hsapiens.dbSNP.20071016 = getv("SNPlocs.Hsapiens.dbSNP.20071016")))
+@
+
+This object will be saved in GGBase. 
+
+
+\end{document}

@@ -3,8 +3,21 @@
 \alias{gwSnpScreenResult-class}
 \alias{cwSnpScreenResult-class}
 \alias{multiGwSnpScreenResult-class}
+\alias{filteredGwSnpScreenResult-class}
+\alias{filteredMultiGwSnpScreenResult-class}
+\alias{show,filteredMultiGwSnpScreenResult-method}
+\alias{show,filteredGwSnpScreenResult-method}
+\alias{show,cwSnpScreenResult-method}
+\alias{show,gwSnpScreenResult-method}
+\alias{show,multiGwSnpScreenResult-method}
+\alias{plot,cwSnpScreenResult,ANY-method}
+\alias{plot,gwSnpScreenResult,ANY-method}
+\alias{plot,multiGwSnpScreenResult,ANY-method}
+%\alias{plot,filteredGwSnpScreenResult,ANY-method}
+%\alias{plot,filteredMultiGwSnpScreenResult,ANY-method}
 
-\title{Class "gwSnpScreenResult" -- container for GGtools gwSnpScreen
+
+\title{Class "gwSnpScreenResult" -- containers for GGtools gwSnpScreen
 method outputs and allied objects}
 \description{Class "gwSnpScreenResult" -- container for GGtools gwSnpScreen
 method outputs and allied objects}
@@ -21,6 +34,12 @@ cwSnpScreenResult is intended for the restriction to a single
 chromosome.
 
 multiGwSnpScreenResult is intended for analyses with multiple genes.
+
+Because the vast majority of tests are uninformative, early
+filtering is important for managing object sizes.
+Instances of filteredGwSnpScreenResult and filteredMultiGwSnpScreenResult
+are created when a \texttt{snpdepth} parameter is used with
+gwSnpTests.
 }
 \section{Slots}{
 	 \describe{
@@ -33,15 +52,8 @@ the HUGO symbol of the gene analyzed }
 feature identifier of the associated microarray }
     \item{\code{annotation}:}{Object of class \code{"character"} vector
 of relevant annotation package identifier names }
-    \item{\code{snpLocPackage}:}{Object of class \code{"character"} name
-of package holding the netCDF store of SNP locations }
-    \item{\code{snpLocExtRef}:}{Object of class \code{"character"} name
-of object in snpLocPackage pointing to the external store (SQLite) }
-    \item{\code{activeSnpInds}:}{Object of class \code{"numeric"} vector
-telling which SNPs (relative to the referenced netCDF locations store)
 were used}
  
-  }
 }
 \section{Extends}{
 Class \code{"\linkS4class{list}"}, from data part.
@@ -49,8 +61,7 @@ Class \code{"\linkS4class{vector}"}, by class "list", distance 2.
 Class \code{"\linkS4class{AssayData}"}, by class "list", distance 2.
 }
 \section{Methods}{
-No methods defined with class "gwSnpScreenResult" in the signature in
-class GGBase.  See GGtools gwSnpScreen documentation.
+plot and show
 }
 %\references{ ~put references to the literature/web site here ~ }
 \author{ VJ Carey <stvjc@channing.harvard.edu> }

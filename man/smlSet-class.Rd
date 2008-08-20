@@ -3,6 +3,15 @@
 \alias{smlSet-class}
 \alias{smList,smlSet-method}
 \alias{smlEnv,smlSet-method}
+\alias{[,smlSet,ANY,ANY,ANY-method}
+\alias{exprs,smlSet-method}
+\alias{show,smlSet-method}
+\alias{snpNames}
+\alias{snpNames,smlSet,chrnum-method}
+\alias{snpNames,smlSet,missing-method}
+%Undocumented code objects:
+
+
 \alias{smList}
 \alias{smlEnv}
 
@@ -24,19 +33,12 @@ Objects can be created by calls of the form \code{new("smlSet", assayData, pheno
     \item{\code{smlEnv}:}{Object of class \code{"environment"} an environment
 with single key \code{smList} pointing to a list of
 package snpMatrix snp.matrix instances }
-    \item{\code{snpLocPathMaker}:}{Object of class \code{"function"} obsolete }
     \item{\code{chromInds}:}{Object of class \code{"numeric"} numeric
 vector indicating what chromosomes are represented in the \code{smlEnv} }
+    \item{\code{snpNames}:}{Object of class \code{"character"} list
+of character strings naming SNPs genotyped in smList element of smlEnv }
     \item{\code{organism}:}{Object of class \code{"character"} informal,
 "Hs" recommended for human }
-    \item{\code{snpLocPackage}:}{Object of class \code{"character"} tells
-what package houses the netCDF store for SNP location metadata }
-    \item{\code{snpLocRef}:}{Object of class \code{"character"} tells
-the symbol exported by the snpLocPackage with which the netCDF store connection
-can be retrieved.  That symbol refers to an instance of the S3 class
-'ncdf', in package 'ncdf'. }
-    \item{\code{activeSnpInds}:}{Object of class \code{"numeric"} redundant with
-chromInds slot }
     \item{\code{assayData}:}{Object of class \code{"AssayData"} intended
 to hold expression data coordinated with the smlEnv data }
     \item{\code{phenoData}:}{Object of class \code{"AnnotatedDataFrame"} 
@@ -47,7 +49,7 @@ the expresion data elements }
     \item{\code{experimentData}:}{Object of class \code{"MIAME"} standard
 metadata container from Biobase eSet design }
     \item{\code{annotation}:}{Object of class \code{"character"} vector
-of strings; element exprs gives the Bioconductor annotation package
+giving the Bioconductor annotation package
 (.db type) for decoding expression feature identifiers. }
     \item{\code{.__classVersion__}:}{Object of class \code{"Versions"} class
 version tracking metadata }
@@ -64,6 +66,8 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 actual list of snp.matrix entities }
     \item{smlEnv}{\code{signature(x = "smlSet")}: retrieves the
 environment holding snp.matrix entities }
+    \item{exprs}{\code{signature(x = "smlSet")}: retrieves the
+matrix of expression values }
 	 }
 }
 %\references{ ~put references to the literature/web site here ~ }

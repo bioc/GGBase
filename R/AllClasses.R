@@ -1,6 +1,44 @@
+#library(Biobase)
+#else library(GSEABase)
+
+# UPDATED AUGUST 2008 TO THIN OUT
+
+# snpLocs -- use resources in Herve's SNPlocs package (with
+# an interim step, see vignette newSnpLoc.Rnw
+
+setClass("snpLocs", representation(locEnv="environment",
+  offsets="numeric", organism="character", versions="character"))
+
+setMethod("show", "snpLocs", function(object) {
+ cat("snpLocs instance, organism ", object@organism, "\n")
+ cat("based on:\n")
+ print(object@versions)
+})
+
+# casting: chrnum
+
+setClass("chrnum", contains="character")
+setMethod("show", "chrnum", function(object) {
+ cat("GGtools chrnum instance:\n")
+ callNextMethod()
+})
+setGeneric("chrnum", function(x)standardGeneric("chrnum"))
+setMethod("chrnum", "character", function(x)new("chrnum", x))
+setMethod("chrnum", "numeric", function(x)new("chrnum", as.character(x)))
+
+# casting: rsid
+
+setClass("rsid", contains="character")
+setMethod("show", "rsid", function(object) {
+ cat("GGtools rsid instance:\n")
+ callNextMethod()
+})
+setGeneric("rsid", function(x)standardGeneric("rsid"))
+setMethod("rsid", "character", function(x)new("rsid", x))
+setMethod("rsid", "numeric", function(x)new("rsid", as.character(x)))
+
 # GGtools infrastructure from hm2ceu, Mar 31 2008 (c) VJ Carey
-
-
+# revised Aug 2008
 
 valsml = function(object) {
  allns = sapply(smList(object), nrow)
@@ -9,35 +47,27 @@ valsml = function(object) {
  if ((sl <- length(smList(object))) != (cl <- length(object@chromInds)))
     return(paste("length of chromInds vector [", cl, "] not identical to that of smList(object) [",
       sl, "]"))
- nna = names(annotation(object))
- if ((length(nna) != 2) || (!(all(nna == c("exprs", "snps")))))
-    return("annotation slot must be vector with names 'exprs' and 'snps'")
-# if (!(is(annotation(object)[2], "snpLocNCref")))
-#    return("second item in annotation slot must inherit from snpLocNCref")
+# nna = names(annotation(object))
+# if ((length(nna) != 2) || (!(all(nna == c("exprs", "snps")))))
+#    return("annotation slot must be vector with names 'exprs' and 'snps'")
  if (is.null(names(smList(object))))
      return("smList elements must bear names e.g., c(1:22,'X', 'Y')")
  return(TRUE)
 }
 
-snpLocPathClo = function(pkg="GGdata", subdir="extdata") function(x) {
-  dir(system.file(subdir, package=pkg), full=TRUE, patt=x)
-}
-
 setClass("smlSet", contains="eSet", 
-   representation(smlEnv="environment", snpLocPathMaker="function",
-     chromInds="numeric", organism="character", snpLocPackage="character",
-     snpLocRef="character", activeSnpInds="numeric"),
+   representation(smlEnv="environment", annotation="character",
+     chromInds="numeric", organism="character"),
    validity=valsml, prototype=prototype(
        new("VersionedBiobase",
-               versions=c(classVersion("eSet"), smlSet="1.0.0")),
+               versions=c(classVersion("eSet"), smlSet="1.1.0")),
            phenoData = new("AnnotatedDataFrame",
              data=data.frame(),
              varMetadata=data.frame(
                labelDescription=character(0))),
 	   annotation=character(0),
+	   organism=character(0),
 	   smlEnv = {e = new.env(); assign("smList", list(), e); e},
- 	   snpLocPathMaker=snpLocPathClo(), snpLocRef=character(0),
-   	   snpLocPackage=character(0), activeSnpInds=numeric(0), 
            chromInds = numeric(0)))
 
 setGeneric("smlEnv", function(x) standardGeneric("smlEnv"))
@@ -45,25 +75,8 @@ setMethod("smlEnv", "smlSet", function(x) x@smlEnv)
 setGeneric("smList", function(x) standardGeneric("smList"))
 setMethod("smList", "smlSet", function(x) x@smlEnv$smList)
 
-	   
-setClass("gwSnpScreenResult", contains="list",
-   representation(gene="character", psid="character", annotation="character",
-      snpLocPackage="character", snpLocExtRef="character", 
-      activeSnpInds="numeric", call="call"))
+# more casting
 
-setClass("multiGwSnpScreenResult", representation(geneset="GeneSet", call="call"),
-   contains="list")
-
-
-setClass("chrnum", contains="numeric")
-setClass("rsNum", contains="character")
-
-setClassUnion("cnumOrMissing", c("chrnum", "missing"))
-
-setGeneric("chrnum", function(x) standardGeneric("chrnum"))
-setMethod("chrnum", "numeric", function(x) new("chrnum", x))
-setGeneric("rsNum", function(x) standardGeneric("rsNum"))
-setMethod("rsNum", "character", function(x) new("rsNum", x))
 setClass("genesym", contains="character")
 setGeneric("genesym", function(x) standardGeneric("genesym"))
 setMethod("genesym", "character",  function(x) new("genesym", x))
@@ -71,113 +84,6 @@ setMethod("genesym", "character",  function(x) new("genesym", x))
 setClass("probeId", contains="character")
 setGeneric("probeId", function(x) standardGeneric("probeId"))
 setMethod("probeId", "character",  function(x) new("probeId", x))
-
-setClass("cwSnpScreenResult", contains="gwSnpScreenResult",
-   representation(chrnum="chrnum"))
-
-setClass("snpLocNCref", contains="character")
-setMethod("show", "snpLocNCref", function(object) {
- cat(gsub("..*/", "...", object), " [netCDF]\n")
-})
-
-
-# GGtools AllClasses.R (c) 2006 VJ Carey -- legacy below
-
-setClass("snpMeta", 
-  representation(meta="environment", chromosome="character"))
-
-setClass("snpMetaWhole",  contains="snpMeta",
-  representation(chrbounds="numeric", chrlabs="character"))
-
-# helper classes to figure out semantics of character strings
-
-setClass("snpID", contains="character")
-snpID = function(x) new("snpID", x)
-
-setClass("exFeatID", contains="character")
-exFeatID = function(x) new("exFeatID", x)
-
-#setClass("genesym", contains="character")
-#genesym = function(x) new("genesym", x)
-
-#setGeneric("snps", function(x, chr) standardGeneric("snps"))
-
-# helper class for snp screen output
-
-setClass("snpScreenResult", representation(call="call", gene="character", 
-    locs="numeric", chr="character", fitter="ANY",
-      annotation="character"), contains="list")
-
-setClass("twSnpScreenResult", representation(call="call", genes="character", 
-    locs="numeric", fitter="ANY"), contains="list")
-
-#setMethod("show", "twSnpScreenResult", function(object) {
-#   cat("twSnpScreenResult\n")
-#   cat("call: ")
-#   print(object@call)
-#   cat("Genes (selection):\n", selectSome(names(object)))
-#   cat("\nFirst fit object:\n")
-#   cat("---\n")
-#   show(object[[1]])
-#   cat("--- [there are", length(object)-1, "more]\n")
-#   })
-#
-#topSnpsOLD = function(x, n=10) {
-#  lapply(x, function(x) sort(extract_p(x))[1:n])
-#}
-
-# key class for genetical genomics Aug 2006 -- rare allele
-# count combined with expression (racExSet)
-
-setClass("racExSet", representation(
-    racAssays="AssayData",
-    rarebase="character", SNPalleles="character"), #, snpMeta="snpMeta"), 
-    contains="eSet",
-    prototype = prototype(racAssays=assayDataNew()))
-
-setMethod("initialize", "racExSet",
-          function(.Object,
-                   phenoData = new("AnnotatedDataFrame"),
-                   experimentData = new("MIAME"),
-                   annotation = character(),
-                   exprs = new("matrix"),
-		   racs = new("matrix"),
-		   rarebase = character(),
-                   SNPalleles = character()) {
-            .Object = callNextMethod(.Object,
-                           assayData = assayDataNew(
-                             exprs=exprs),
-                           phenoData = phenoData,
-                           experimentData = experimentData,
-                           annotation = annotation)
-	    .Object@racAssays = assayDataNew(racs =racs)
-            .Object@SNPalleles = SNPalleles
-	    .Object@rarebase = rarebase
-            .Object
-          })
-
-setClass("GGfitter", representation(name="character", func="function"))
-
-#fastAGMfitter = new("GGfitter", name="fastAGM", func=fastAGM)
-#fastHETfitter = new("GGfitter", name="fastHET", func=fastHET)
-
-setClass("oGtypeExSet",
-  representation(snpCalls="list", dbConns="list"), contains="ExpressionSet")
-
-setAs("oGtypeExSet", "ExpressionSet", function(from) {
- anno = as.character(annotation(from)["exprs"])
- new("ExpressionSet", assayData=assayData(from),
-      phenoData=phenoData(from), featureData=featureData(from),
-      experimentData=experimentData(from), annotation=anno)
-})
-
-setGeneric("snpNames", function(x, c) standardGeneric("snpNames"))
-setMethod("snpNames", c("smlSet", "chrnum"), function(x, c) {
- colnames(smList(x)[[which(x@chromInds == c)]])
-})
-
-setClass("filteredGwSnpScreenResult", contains="gwSnpScreenResult")
-setClass("filteredMultiGwSnpScreenResult", contains="multiGwSnpScreenResult")
 
 setClass("snpdepth", contains="numeric")
 snpdepth = function(x) new("snpdepth", x)

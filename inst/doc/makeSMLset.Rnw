@@ -10,7 +10,7 @@
 %
 \documentclass[12pt]{article}
 
-\usepackage{amsmath}
+\usepackage{amsmath,pstricks}
 \usepackage[authoryear,round]{natbib}
 \usepackage{hyperref}
 
@@ -53,6 +53,9 @@ genotypes_chrY_YRI_r23_nr.b36_fwd.txt.gz
 
 \item use snpMatrix read.HapMap.data to obtain the associated snp.matrix
 and support data frame.  We do this for the 24 main chromosome files.
+We save the snp.matrix for chromosome n to C[nn].rda.
+Be careful with the ordering of filenames -- should match desired ordering
+of chromosomes.
 %An example, after saving the reads to .rda files, is
 <<dol,eval=FALSE,echo=FALSE>>=
 load("C1.rda")
@@ -63,59 +66,59 @@ C1[[2]][1,]
 %rda filename and chromosome.  We will have to check the contents of
 %the file to assign to a chromosome, but that is not too onerous.
 
-\item \textbf{Formatting of location data:} Pull the 'support' data together so that a SNP location resource can
-be made.
-
-The steps are
-\begin{enumerate}
-\item iterate over the saved reads and accumulate the location data frame.
-Assuming that the only .rda files in the current folder are
-read.HapMap.data results, the following will work, yielding a dataframe
-called supp.
-
-<<dor,keep.source=TRUE,eval=FALSE>>=
-supp = NULL; 
-for (i in 1:24) { 
-  cat(i)
-  load(ofi[i]); fn = gsub(".rda", "", ofi[i]); supp = rbind(supp, get(fn)$snp.supp) 
-  rm(fn)
-  gc()
-}
-@
-\item get the dataframe into order -- sort by chromosomes and position within
-chromosome:
-
-<<doo,eval=FALSE>>=
-cc = as.character(supp$Chrom)
-cc = gsub("chr", "", cc)
-cc[cc=="X"] = 23
-cc[cc=="Y"] = 24
-ncc = as.numeric(cc)
-oo = order(cc, supp$Posi)
-osupp = supp[oo,]
-save(osupp, file="osupp.rda")
-@
-
-\end{enumerate}
-
-\item serialize the location data to SQLite
-
-<<doarr,eval=FALSE>>=
-supp2SQLite(osupp, "hmyriAmbB36_23a" , "hmyriAmbB36_23a.sqlite")
-@
-
-Now, for example, we have
-\begin{verbatim}
-> myc = dbConnect(myd, "hmyriAmbB36_23a.sqlite")
-> dbGetQuery(myc, "select * from hmyriAmbB36_23a limit 5")
-      rsid alleles chrnum   loc
-1 10399749       Y      1 45162
-2  2949421       W      1 45413
-3  2691310       M      1 46844
-4  4030303       Y      1 72434
-5  4030300       K      1 72515
-\end{verbatim}
-
+%\item \textbf{Formatting of location data:} Pull the 'support' data together so that a SNP location resource can
+%be made.
+%
+%The steps are
+%\begin{enumerate}
+%\item iterate over the saved reads and accumulate the location data frame.
+%Assuming that the only .rda files in the current folder are
+%read.HapMap.data results, the following will work, yielding a dataframe
+%called supp.
+%
+%<<dor,keep.source=TRUE,eval=FALSE>>=
+%supp = NULL; 
+%for (i in 1:24) { 
+%  cat(i)
+%  load(ofi[i]); fn = gsub(".rda", "", ofi[i]); supp = rbind(supp, get(fn)$snp.supp) 
+%  rm(fn)
+%  gc()
+%}
+%@
+%\item get the dataframe into order -- sort by chromosomes and position within
+%chromosome:
+%
+%<<doo,eval=FALSE>>=
+%cc = as.character(supp$Chrom)
+%cc = gsub("chr", "", cc)
+%cc[cc=="X"] = 23
+%cc[cc=="Y"] = 24
+%ncc = as.numeric(cc)
+%oo = order(cc, supp$Posi)
+%osupp = supp[oo,]
+%save(osupp, file="osupp.rda")
+%@
+%
+%\end{enumerate}
+%
+%\item serialize the location data to SQLite
+%
+%<<doarr,eval=FALSE>>=
+%supp2SQLite(osupp, "hmyriAmbB36_23a" , "hmyriAmbB36_23a.sqlite")
+%@
+%
+%Now, for example, we have
+%\begin{verbatim}
+%> myc = dbConnect(myd, "hmyriAmbB36_23a.sqlite")
+%> dbGetQuery(myc, "select * from hmyriAmbB36_23a limit 5")
+%      rsid alleles chrnum   loc
+%1 10399749       Y      1 45162
+%2  2949421       W      1 45413
+%3  2691310       M      1 46844
+%4  4030303       Y      1 72434
+%5  4030300       K      1 72515
+%\end{verbatim}
+%
 \item \textbf{Create a list of snp.matrix of genotype data:}
 
 <<domo,eval=FALSE>>=
@@ -134,6 +137,15 @@ for (i in 1:24) {
 
 Don't forget to give names 1:22, X, Y to the list elements.
 
+\item Create an environment and assign the list created above to symbol \texttt{smList}
+in that environment.  This environment is a valid value for the smlEnv slot of a
+smlSet instance.
+
+\item The chromInds slot gives numerical indices indicating which chromosomes are
+included; see hmceuB36.2021 in GGtools for an example.
+
+
+\item  remaining slots are as in ExpressionSet
 
 
 \end{enumerate}

@@ -4,22 +4,21 @@
 \alias{genesym,character-method}
 \alias{chrnum-class}
 \alias{chrnum,numeric-method}
-\alias{exFeatID-class}
-\alias{rsNum-class}
-\alias{rsNum,character-method}
+\alias{chrnum,character-method}
+\alias{rsid-class}
+\alias{rsid,character-method}
+\alias{rsid,numeric-method}
 \alias{probeId,character-method}
-\alias{snpID-class}
-\alias{snpLocNCref-class}
-\alias{show,snpLocNCref-method}
 \alias{cnumOrMissing-class}
 \alias{probeId-class}
 \alias{genesym}
 \alias{probeId}
 \alias{chrnum}
-\alias{exFeatID}
-\alias{rsNum}
-\alias{snpID}
-\alias{snpLocNCref}
+\alias{rsid}
+\alias{show,rsid-method}
+\alias{show,chrnum-method}
+\alias{snpdepth}
+\alias{snpdepth-class}
 \alias{cnumOrMissing}
 
 
@@ -28,8 +27,12 @@
 dispatching }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("genesym", ...)}.
-and generally just extend character so that vector operations
+and generally just extend character or numeric so that vector operations
 are straightforward
+
+\code{snpdepth} identifies a number that will be used as the number
+of chromosome-specific test results to be retained in any
+genome-wide screen
 }
 \section{Slots}{
 	 \describe{

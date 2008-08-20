@@ -1,17 +1,23 @@
 
 import(Biobase, AnnotationDbi)
 
-exportClasses("smlSet", "gwSnpScreenResult", "multiGwSnpScreenResult",
-  "chrnum", "rsNum", "cnumOrMissing", "genesym", "probeId",
-  "cwSnpScreenResult", "snpLocNCref", "snpMeta",
-  "snpMetaWhole", "snpID", "exFeatID",
-  "genesym", "snpScreenResult", "twSnpScreenResult",
-  "racExSet", "GGfitter", "oGtypeExSet",
-   "filteredGwSnpScreenResult",
+importFrom(graphics, plot)
+
+exportClasses(
+ # primary integrative container
+  "smlSet", 
+ # primary snp metadata container
+  "snpLocs",
+ # screening result holders
+  "gwSnpScreenResult", "multiGwSnpScreenResult",
+  "cwSnpScreenResult", "filteredGwSnpScreenResult",
+   "filteredMultiGwSnpScreenResult", 
+ # casting 
+  "chrnum", "rsid", "cnumOrMissing", "genesym", "probeId",
    "filteredMultiGwSnpScreenResult", "snpdepth")
 
-exportMethods( "chrnum", "rsNum", "genesym", 
+exportMethods( "chrnum", "rsid", "genesym", 
     "show", "initialize", "smList", "smlEnv", "probeId",
-    "snpNames")
+    "snpLocs.Hs", "exprs", "[", "plot_EvG", "snpNames", "getSnpLocs")
 
-export("snpID", "exFeatID", "snpdepth")
+export("rsid", "snpdepth", "chrnum", "probeId")

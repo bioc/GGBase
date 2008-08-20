@@ -10,7 +10,7 @@
 %
 \documentclass[12pt]{article}
 
-\usepackage{amsmath}
+\usepackage{amsmath,pstricks}
 \usepackage[authoryear,round]{natbib}
 \usepackage{hyperref}
 
@@ -65,7 +65,8 @@ ordinary representations of expression data.
 library(GGBase)
 getClass("smlSet")
 library(GGtools)
-showMethods(class="smlSet")
+showMethods(class="smlSet", where="package:GGBase")
+showMethods(class="smlSet",  where="package:GGtools")
 @
 
 \section{Example data structure}
@@ -77,12 +78,7 @@ hmceuB36.2021
 
 \section{SNP location infrastructure}
 
-We have decided to use a dynamically exported SQLite connection
-to provide access to SNP location information.
-
-<<kjs>>=
-dbListTables(hmceuAmbB36_23a_dbconn())
-@
+see the newSNPloc vignette
 
 \section{Conclusion}
 
