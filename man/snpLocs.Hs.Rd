@@ -6,6 +6,7 @@
 \alias{getSnpLocs,smlSet,chrnum-method}
 \alias{getSnpLocs,smlSet,missing-method}
 \alias{snpLocs.Hs,chrnum.rsid-method}
+\alias{snpLocs.Hs,chrnum.missing-method}
 \alias{snpLocs.Hs,missing,rsid-method}
 \alias{snpLocs.Hs,rsid-method}
 \alias{snpLocs.Hs,rsid,ANY-method}

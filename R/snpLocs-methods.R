@@ -47,6 +47,11 @@ setMethod("snpLocs.Hs", c("chrnum", "rsid"), function(cnum, rsid) {
  chromSpecLocs(hsSnpLocs, cnum, rsid)
 })
 
+setMethod("snpLocs.Hs", c("chrnum", "missing"), function(cnum, rsid) {
+ if (!exists("hsSnpLocs")) data(hsSnpLocs)
+ chromSpecLocs(hsSnpLocs, cnum)
+})
+
 setMethod("snpLocs.Hs", c("missing", "rsid"), function(cnum, rsid) {
  if (!exists("hsSnpLocs")) data(hsSnpLocs)
  genomeWideLocs(hsSnpLocs, rsid)

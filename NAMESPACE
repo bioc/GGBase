@@ -20,4 +20,4 @@ exportMethods( "chrnum", "rsid", "genesym",
     "show", "initialize", "smList", "smlEnv", "probeId",
     "snpLocs.Hs", "exprs", "[", "plot_EvG", "snpNames", "getSnpLocs")
 
-export("rsid", "snpdepth", "chrnum", "probeId")
+export("rsid", "snpdepth", "chrnum", "probeId", "snpsNear")
