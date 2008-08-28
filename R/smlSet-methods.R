@@ -37,7 +37,7 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
   if (!missing(i)) {
    if (is(i, "chrnum")) {
     L = smList(x)
-    LL = L[j]
+    LL = L[i]
     ee = new.env()
     assign("smList", LL, ee)
     x@smlEnv = ee
