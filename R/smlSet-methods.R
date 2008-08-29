@@ -42,7 +42,7 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
     assign("smList", LL, ee)
     x@smlEnv = ee
     }
-   if (is(i, "probeId")) {
+   else if (is(i, "probeId")) {
     e = exprs(x)
     e = e[i,,drop=FALSE]
     e = assayDataNew("lockedEnvironment", exprs=e)
