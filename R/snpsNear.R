@@ -18,3 +18,13 @@ snpsNear = function (sym, radius = 1e+05, chrnum) {
  else stop("need genesym or rsid instance")
 }
 
+setMethod("[", c("snp.matrix", "ANY", "rsid", "ANY"), 
+  function (x, i, j, ..., drop = FALSE) 
+  {
+    cn = colnames(x)
+    ii = intersect(cn, j)
+    if (missing(i)) 
+        x[, ii, drop = drop]
+    else x[i, ii, drop = drop]
+  })
+
