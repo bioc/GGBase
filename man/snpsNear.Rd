@@ -27,7 +27,7 @@ not been invoked previously  }
 %\seealso{  }
 
 \examples{
-nearc = snpsNear(genesym("CPNE1"), 10000)
+nearc = snpsNear(genesym("CPNE1"), 10000, chrnum(20))
 library(GGtools)
 data(hmceuB36.2021)
 ss = smList(hmceuB36.2021)[[1]]
