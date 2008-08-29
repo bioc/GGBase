@@ -48,6 +48,13 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
     e = assayDataNew("lockedEnvironment", exprs=e)
     x@assayData = e
     }
+   else if (is(i, "numeric")) {
+    e = exprs(x)
+    e = e[i,,drop=FALSE]
+    e = assayDataNew("lockedEnvironment", exprs=e)
+    x@assayData = e
+    }
+   else stop(paste("[ method not defined for instance of ", class(i)))
   }
   return(x)
 })
