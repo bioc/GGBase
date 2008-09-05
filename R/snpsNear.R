@@ -15,7 +15,13 @@ snpsNear = function (sym, radius = 1e+05, chrnum) {
    inds = which( allpos["loc",] >= targ - radius & allpos["loc",] <= targ + radius)
    return(paste("rs", allpos["rsid", inds], sep=""))
    }
- else stop("need genesym or rsid instance")
+ else if (is(sym, "numeric")) {
+   targ = sym
+   allpos = snpLocs.Hs( chrnum(chrnum) )
+   inds = which( allpos["loc",] >= targ - radius & allpos["loc",] <= targ + radius)
+   return(paste("rs", allpos["rsid", inds], sep=""))
+   }
+ else stop("need genesym or rsid or numeric instance")
 }
 
 setMethod("[", c("snp.matrix", "ANY", "rsid", "ANY"), 

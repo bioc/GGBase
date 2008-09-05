@@ -7,7 +7,8 @@
 snpsNear(gsym, radius=1e+05, cnum)
 }
 \arguments{
-  \item{gsym}{ instance of genesym class [e.g., use genesym(string) for gene 'string']}
+  \item{gsym}{ instance of genesym class [e.g., use genesym(string) for gene 'string'],
+or of rsid class, or of numeric class}
   \item{radius}{ number of base-pairs in each direction to look}
   \item{cnum}{ chrnum instance .. optional}
 }
@@ -16,7 +17,8 @@ simple arithmetic based on output of snpLocs.Hs
 }
 \value{
 character vector of rsxxxxxx, dbSNP id, according to locations from
-SNPlocs.Hsapiens.dbSNP.20071016 package
+SNPlocs.Hsapiens.dbSNP.20071016 package, as transferred to snpLocs.Hs
+resource in GGBase
 }
 %\references{  }
 \author{Vince Carey <stvjc@channing.harvard.edu>}
