@@ -62,7 +62,9 @@ setMethod("plot", c("cwSnpScreenResult", "missing"),  # y bound to df request
    loc = locstr["loc",]
    if (noSmooth) plotf=plot
      else plotf=smoothScatter
-   plotf(loc, -log10(allpv), main=x@gene, 
+   if (length(grep("resid", x@testType))>0) main = paste("resid", x@gene)
+   else main=x@gene
+   plotf(loc, -log10(allpv), main=main,
      xlab=paste("position on chr", x@chrnum),
      ylab=paste("-log10 p Gaussian LM [", y, "df]", sep=""), pch=19, cex=.8)
    axis(3, at=genePosition(x@gene, annlib=x@annotation), col="red", lwd=2, label=" ")

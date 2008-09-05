@@ -53,6 +53,9 @@ feature identifier of the associated microarray }
     \item{\code{annotation}:}{Object of class \code{"character"} vector
 of relevant annotation package identifier names }
 were used}
+    \item{\code{formula}:}{Object of class \code{"formula"} the
+formula used to fit the model relating expression to
+genotype }
  
 }
 \section{Extends}{
