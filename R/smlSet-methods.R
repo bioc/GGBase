@@ -75,6 +75,8 @@ setMethod("getAlleles", c("smlSet", "rsid"), function (x, rs)
 
 setGeneric("plot_EvG", function(gsym, rsid, sms, ...) {
  standardGeneric("plot_EvG")})
+setGeneric("plot_EvG2", function(gsym, rsid1, rsid2, sms, ...) {
+ standardGeneric("plot_EvG2")})
 
 setMethod("plot_EvG", c("genesym", "rsid", "smlSet"),
  function(gsym, rsid, sms, ...) {
@@ -90,6 +92,24 @@ setMethod("plot_EvG", c("genesym", "rsid", "smlSet"),
   gt = factor(getAlleles(sms, rsid))
   plot(ex~gt, ylab=gsym, xlab=rsid, ...)
   points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
+})
+
+setMethod("plot_EvG2", c("genesym", "rsid", "rsid", "smlSet"),
+ function(gsym, rsid1, rsid2, sms, ...) {
+  an = sms@annotation
+  require(an, character.only=TRUE, quietly=TRUE)
+  rmap = revmap(get(paste(gsub(".db$", "", an), "SYMBOL", sep="")))
+  pid = get(gsym, rmap)
+  if (length(pid) == 0) stop(paste("can't resolve", gsym, "in", 
+    an))
+  if (length(pid) > 1) warning(paste("multiple probes for", gsym, "using first"))
+  pid = pid[1]
+  ex = exprs(sms)[pid,]
+  gt1 = factor(getAlleles(sms, rsid1))
+  gt2 = factor(getAlleles(sms, rsid2))
+  gtt = factor(paste(as.character(gt1), as.character(gt2)))
+  plot(ex~gtt, ylab=gsym, xlab=paste(rsid1, rsid2), ...)
+  points(jitter(as.numeric(gtt),.4), ex, col="gray", pch=19)
 })
 
 setGeneric("snpNames", function(x,c) standardGeneric("snpNames"))
