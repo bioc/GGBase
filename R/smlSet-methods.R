@@ -93,6 +93,21 @@ setMethod("plot_EvG", c("genesym", "rsid", "smlSet"),
   plot(ex~gt, ylab=gsym, xlab=rsid, ...)
   points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
 })
+setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
+ function(gsym, rsid, sms, ...) {
+#  an = sms@annotation
+#  require(an, character.only=TRUE, quietly=TRUE)
+#  rmap = revmap(get(paste(gsub(".db$", "", an), "SYMBOL", sep="")))
+  pid = gsym # get(gsym, rmap)
+#  if (length(pid) == 0) stop(paste("can't resolve", gsym, "in", 
+#    an))
+#  if (length(pid) > 1) warning(paste("multiple probes for", gsym, "using first"))
+  pid = pid[1]
+  ex = exprs(sms)[pid,]
+  gt = factor(getAlleles(sms, rsid))
+  plot(ex~gt, ylab=gsym, xlab=rsid, ...)
+  points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
+})
 
 setMethod("plot_EvG2", c("genesym", "rsid", "rsid", "smlSet"),
  function(gsym, rsid1, rsid2, sms, ...) {

@@ -1,6 +1,6 @@
 Package: GGBase
 Title: infrastructure for genetics of gene expression (c) 2008 VJ Carey
-Version: 2.99.8
+Version: 2.99.9
 Author: Vince Carey <stvjc@channing.harvard.edu>
 Description: infrastructure for dealing with hapmap SNP reports, GWAS, etc.
 Depends: R (>= 2.7.0), methods, Biobase (>= 1.11.26), GSEABase,
