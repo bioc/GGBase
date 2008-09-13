@@ -40,3 +40,24 @@ setClassUnion("cnumOrMissing", c("chrnum", "missing"))
 setClass("filteredGwSnpScreenResult", contains="gwSnpScreenResult")
 setClass("filteredMultiGwSnpScreenResult", contains="multiGwSnpScreenResult")
 
+
+setMethod("[", "cwSnpScreenResult", function(x, i, j, ..., drop=FALSE) {
+ d = x@.Data[[1]]  # must be length 1
+ if (!missing(i)) {
+   if (is(i, "numeric")) {
+          d@chisq = d@chisq[i, , drop=FALSE]
+          d@snp.names = d@snp.names[i]
+          d@N = d@N[i]
+          }
+   else if (is(i, "character")) {
+          kp = match(i, d@snp.names)
+          kp = na.omit(kp)
+	  d@snp.names = d@snp.names[kp]
+          d@chisq = d@chisq[kp,,drop=FALSE]
+	  d@N = d@N[kp]
+          }
+   }
+ if (!missing(j)) stop("cannot select on 'column'")
+ x@.Data[[1]] = d
+ x
+})
