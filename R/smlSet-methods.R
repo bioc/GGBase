@@ -89,7 +89,7 @@ sym2pid = function(sms, sym) {
   an = sms@annotation
   require(an, character.only=TRUE, quietly=TRUE)
   rmap = revmap(get(paste(gsub(".db$", "", an), "SYMBOL", sep="")))
-  pid = get(gsym, rmap)
+  pid = get(sym, rmap)
   if (length(pid) > 1) {warning("multiple probes for this gene; taking first")}
   pid[1]
 }
