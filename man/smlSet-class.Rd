@@ -3,9 +3,11 @@
 \alias{smlSet-class}
 \alias{smList,smlSet-method}
 \alias{smlEnv,smlSet-method}
+\alias{[,snp.matrix,ANY,rsid,ANY-method}
 \alias{[,smlSet,ANY,ANY,ANY-method}
 \alias{exprs,smlSet-method}
 \alias{show,smlSet-method}
+\alias{combine,smlSet,smlSet-method}
 \alias{snpNames}
 \alias{snpNames,smlSet,chrnum-method}
 \alias{snpNames,smlSet,missing-method}
@@ -68,11 +70,14 @@ actual list of snp.matrix entities }
 environment holding snp.matrix entities }
     \item{exprs}{\code{signature(x = "smlSet")}: retrieves the
 matrix of expression values }
+    \item{\code{combine}:}{concatenates expression
+data and forms intersection of SNP sets}
 	 }
 }
 %\references{ ~put references to the literature/web site here ~ }
 \author{ VJ Carey <stvjc@channing.harvard.edu> }
-%\note{ ~~further notes~~ }
+\note{ We have included a \code{[} method for snp.matrix instances
+that accepts an rsid instance as a column selector. }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~
 %

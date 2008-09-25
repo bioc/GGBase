@@ -4,13 +4,13 @@
 \description{obtain list of rs numbers for snps near a gene
 }
 \usage{
-snpsNear(gsym, radius=1e+05, cnum)
+snpsNear(sym, radius=1e+05, chrnum)
 }
 \arguments{
-  \item{gsym}{ instance of genesym class [e.g., use genesym(string) for gene 'string'],
+  \item{sym}{ instance of genesym class [e.g., use genesym(string) for gene 'string'],
 or of rsid class, or of numeric class}
   \item{radius}{ number of base-pairs in each direction to look}
-  \item{cnum}{ chrnum instance .. optional}
+  \item{chrnum}{ chrnum instance .. optional}
 }
 \details{
 simple arithmetic based on output of snpLocs.Hs

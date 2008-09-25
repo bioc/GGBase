@@ -13,6 +13,7 @@
 \alias{plot,cwSnpScreenResult,ANY-method}
 \alias{plot,gwSnpScreenResult,ANY-method}
 \alias{plot,multiGwSnpScreenResult,ANY-method}
+\alias{[,cwSnpScreenResult,ANY,ANY,ANY-method}
 %\alias{plot,filteredGwSnpScreenResult,ANY-method}
 %\alias{plot,filteredMultiGwSnpScreenResult,ANY-method}
 

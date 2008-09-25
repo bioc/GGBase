@@ -13,6 +13,7 @@
 \alias{snpLocs-class}
 \alias{show,snpLocs-method}
 \alias{snpLocs.Hs,chrnum,rsid-method}
+\alias{snpLocs.Hs,chrnum,missing-method}
 \alias{snpLocs.Hs,missing,rsid-method}
 \alias{snpLocs.Hs,sid,ANY-method}
 
