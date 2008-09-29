@@ -30,6 +30,12 @@ Objects can be created by calls of the form \code{new("genesym", ...)}.
 and generally just extend character or numeric so that vector operations
 are straightforward
 
+Currently, \code{genesym} is used to allow HUGO symbols to be
+passed to \code{[}; \code{chrnum} identifies numerals or
+numeric constants as indices into the set of chromosomes (no chr
+prefix is allowed); \code{rsid} identifies dbSNP identifiers;
+\code{probeId} identifies a string as a microarray probe identifier.
+
 \code{snpdepth} identifies a number that will be used as the number
 of chromosome-specific test results to be retained in any
 genome-wide screen

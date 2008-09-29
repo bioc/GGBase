@@ -19,6 +19,6 @@ exportClasses(
 exportMethods( "chrnum", "rsid", "genesym", "[",
     "show", "initialize", "smList", "smlEnv", "probeId",
     "snpLocs.Hs", "exprs", "[", "plot_EvG", "snpNames", "getSnpLocs",
-    "plot_EvG2", "combine")
+    "plot_EvG2", "combine", "getAlleles")
 
 export("rsid", "snpdepth", "chrnum", "probeId", "snpsNear")
