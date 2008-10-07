@@ -2,6 +2,8 @@
 \docType{class}
 \alias{smlSet-class}
 \alias{smList,smlSet-method}
+\alias{getAlleles,smlSet,rsid-method}
+\alias{getAlleles}
 \alias{smlEnv,smlSet-method}
 \alias{[,snp.matrix,ANY,rsid,ANY-method}
 \alias{[,smlSet,ANY,ANY,ANY-method}
@@ -72,6 +74,8 @@ environment holding snp.matrix entities }
 matrix of expression values }
     \item{\code{combine}:}{concatenates expression
 data and forms intersection of SNP sets}
+    \item{\code{getAlleles(smlSet, rsid)}:}{returns A/B notations for SNP
+determined by rsid}
 	 }
 }
 %\references{ ~put references to the literature/web site here ~ }

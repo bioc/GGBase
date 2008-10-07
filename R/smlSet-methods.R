@@ -149,8 +149,8 @@ setMethod("plot_EvG2", c("probeId", "rsid", "rsid", "smlSet"),
 #  rmap = revmap(get(paste(gsub(".db$", "", an), "SYMBOL", sep="")))
 #  pid = get(gsym, rmap)
   pid = gsym
-  if (length(pid) == 0) stop(paste("can't resolve", gsym, "in", 
-    an))
+#  if (length(pid) == 0) stop(paste("can't resolve", gsym, "in", 
+#    an))
   if (length(pid) > 1) warning(paste("multiple probes for", gsym, "using first"))
   pid = pid[1]
   ex = exprs(sms)[pid,]
