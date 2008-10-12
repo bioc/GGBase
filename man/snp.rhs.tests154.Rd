@@ -12,7 +12,7 @@ association with phenotype. In order to protect against misspecification
 of the variance function,  "robust" tests may be selected.
 }
 \usage{
-snp.rhs.tests(formula, family = "binomial", link, weights, subset, data = parent.frame(),
+snp.rhs.tests154(formula, family = "binomial", link, weights, subset, data = parent.frame(),
    snp.data, tests=NULL, robust = FALSE,
    control=glm.test.control(maxit=20, epsilon=1.e-4, R2Max=0.98), allow.missing=0.01)
 }
@@ -33,14 +33,14 @@ snp.rhs.tests(formula, family = "binomial", link, weights, subset, data = parent
     to be tested, or a list of short vectors defining groups of SNPs to be
     tested (again by name or number). The default action is to carry out
     \emph{all} single SNP tests, but
-    \code{\link{single.snp.tests}} will often achieve the same
+    \code{\link[snpMatrix]{single.snp.tests}} will often achieve the same
     result much faster}
   \item{weights}{"Prior" weights in the generalized linear model}
   \item{subset}{Array defining the subset of rows of  \code{data} to use}
   \item{robust}{If \code{TRUE}, robust tests will be carried out}
   \item{control}{An object giving parameters for the IRLS algorithm
     fitting of the base model and for the acceptable aliasing amongst
-    new terms to be tested. See\ code{\link{glm.test.control}}}
+    new terms to be tested. See\ code{\link[snpMatrix]{glm.test.control}}}
   \item{allow.missing}{The maximum proportion of SNP genotype that can
     be missing before it becomes necessary to refit the base model}
 }
@@ -90,8 +90,8 @@ snp.rhs.tests(formula, family = "binomial", link, weights, subset, data = parent
   observations (e.g. for members of the same family); in this case, an
   appropriate robust estimate of the variance of the score test is used.
 }
-\seealso{\code{\link{single.snp.tests}}, \code{\link{snp.lhs.tests}},
-  \code{\link{snp.matrix-class}}, \code{\link{X.snp.matrix-class}}}
+\seealso{\code{\link[snpMatrix]{single.snp.tests}}, \code{\link[snpMatrix]{snp.lhs.tests}},
+  \code{\link[snpMatrix]{snp.matrix-class}}, \code{\link[snpMatrix]{X.snp.matrix-class}}}
 \examples{
 library(snpMatrix)
 data(testdata)
