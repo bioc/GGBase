@@ -5,7 +5,7 @@ Author: Vince Carey <stvjc@channing.harvard.edu>
 Description: infrastructure for dealing with hapmap SNP reports, GWAS, etc.
 Depends: R (>= 2.7.0), methods, Biobase (>= 1.11.26), GSEABase,
 	snpMatrix, RSQLite
-Suggests: GGtools
+Suggests: GGtools, illuminaHumanv1.db
 LazyLoad: yes
 biocViews: SNPsAndGeneticVariability, Genetics, Statistics
 Maintainer: Vince Carey <stvjc@channing.harvard.edu>
