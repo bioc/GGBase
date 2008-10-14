@@ -48,12 +48,8 @@ genome-wide screen
 \section{Extends}{
 Class \code{"\linkS4class{character}"}, from data part.
 Class \code{"\linkS4class{vector}"}, by class "character", distance 2.
-Class \code{"\linkS4class{characterORMIAME}"}, by class "character", distance 2.
+Class \code{\link[Biobase:class.characterORmiame]{characterORMIAME}}, by class "character", distance 2.
 }
-%\section{Methods}{
-%No methods defined with class "genesym" in the signature.
-%}
-%\references{ ~put references to the literature/web site here ~ }
 \author{ VJ Carey <stvjc@channing.harvard.edu> }
 \examples{
 showClass("genesym")

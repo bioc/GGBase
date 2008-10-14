@@ -62,21 +62,13 @@ genotype }
 \section{Extends}{
 Class \code{"\linkS4class{list}"}, from data part.
 Class \code{"\linkS4class{vector}"}, by class "list", distance 2.
-Class \code{"\linkS4class{AssayData}"}, by class "list", distance 2.
+Class \code{\link[Biobase:class.AssayData]{AssayData}}, by class "list", 
+ distance 2.
 }
 \section{Methods}{
 plot and show
 }
-%\references{ ~put references to the literature/web site here ~ }
 \author{ VJ Carey <stvjc@channing.harvard.edu> }
-%\note{ ~~further notes~~ }
-
-% ~Make other sections like Warning with \section{Warning }{....} ~
-%
-%\seealso{
-%	~~objects to See Also as \code{\link{~~fun~~}}, ~~~
-%	or \code{\linkS4class{CLASSNAME}} for links to other classes
-%}
 \examples{
 showClass("gwSnpScreenResult")
 showClass("cwSnpScreenResult")
