@@ -44,9 +44,9 @@ valsml = function(object) {
  allns = sapply(smList(object), nrow)
  if (!(all(allns==allns[1]))) 
     return("varying numbers of rows in elements of smList")
- if ((sl <- length(smList(object))) != (cl <- length(object@chromInds)))
-    return(paste("length of chromInds vector [", cl, "] not identical to that of smList(object) [",
-      sl, "]"))
+# if ((sl <- length(smList(object))) != (cl <- length(object@chromInds)))
+#    return(paste("length of chromInds vector [", cl, "] not identical to that of smList(object) [",
+#      sl, "]"))
 # nna = names(annotation(object))
 # if ((length(nna) != 2) || (!(all(nna == c("exprs", "snps")))))
 #    return("annotation slot must be vector with names 'exprs' and 'snps'")
@@ -57,10 +57,10 @@ valsml = function(object) {
 
 setClass("smlSet", contains="eSet", 
    representation(smlEnv="environment", annotation="character",
-     chromInds="numeric", organism="character"),
+     organism="character"),
    validity=valsml, prototype=prototype(
        new("VersionedBiobase",
-               versions=c(classVersion("eSet"), smlSet="1.1.0")),
+               versions=c(classVersion("eSet"), smlSet="1.1.1")),
            phenoData = new("AnnotatedDataFrame",
              data=data.frame(),
              varMetadata=data.frame(

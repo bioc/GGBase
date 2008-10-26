@@ -37,10 +37,6 @@ Objects can be created by calls of the form \code{new("smlSet", assayData, pheno
     \item{\code{smlEnv}:}{Object of class \code{"environment"} an environment
 with single key \code{smList} pointing to a list of
 package snpMatrix snp.matrix instances }
-    \item{\code{chromInds}:}{Object of class \code{"numeric"} numeric
-vector indicating what chromosomes are represented in the \code{smlEnv} }
-    \item{\code{snpNames}:}{Object of class \code{"character"} list
-of character strings naming SNPs genotyped in smList element of smlEnv }
     \item{\code{organism}:}{Object of class \code{"character"} informal,
 "Hs" recommended for human }
     \item{\code{assayData}:}{Object of class \code{"AssayData"} intended
