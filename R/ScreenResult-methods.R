@@ -52,7 +52,9 @@ setMethod("plot", c("cwSnpScreenResult", "missing"),  # y bound to df request
   function(x, y=1, noSmooth=FALSE, npts=500, ...) {
    if (missing(y)) y = 1
    else if (!(y %in% c(1,2))) stop("df arg must be either 1 or 2")
-   allpv = p.value(x@.Data[[1]], y)
+   if (is(x@.Data[[1]], "snp.tests.glm"))  # for new approach, snpMatrix > 1.7
+         allpv = p.value(x@.Data[[1]])
+   else allpv = p.value(x@.Data[[1]], y)
    kill = which(is.na(allpv))
    if (length(kill)>0) allpv = allpv[ -kill ]
    rsn = names(allpv)

@@ -65,8 +65,11 @@ setMethod("snpLocs.Hs", c("rsid"), function(cnum, rsid) {
 setGeneric("getSnpLocs", function(x,c) standardGeneric("getSnpLocs"))
 setMethod("getSnpLocs", c("smlSet", "missing"), function(x,c) {
  nn = snpNames(x)
- if (is(nn, "list"))
-   lapply(nn, snpLocs.Hs)
+ if (is(nn, "list")) {
+   ans = lapply(names(nn), function(x) snpLocs.Hs(chrnum(x)))
+   names(ans) = names(nn)
+   ans
+   }
  else snpLocs.Hs(rsid(nn))
 })
 

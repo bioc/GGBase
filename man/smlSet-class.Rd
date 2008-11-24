@@ -8,6 +8,8 @@
 \alias{[,snp.matrix,ANY,rsid,ANY-method}
 \alias{[,smlSet,ANY,ANY,ANY-method}
 \alias{exprs,smlSet-method}
+\alias{snps}
+\alias{snps,smlSet,chrnum-method}
 \alias{show,smlSet-method}
 \alias{combine,smlSet,smlSet-method}
 \alias{snpNames}
@@ -70,6 +72,9 @@ actual list of snp.matrix entities }
 environment holding snp.matrix entities }
     \item{exprs}{\code{signature(x = "smlSet")}: retrieves the
 matrix of expression values }
+    \item{snps}{\code{signature(x = "smlSet", chr = "chrnum")}: retrieves the
+raw matrix of genotype values (snp.matrix instance from
+snpMatrix package }
     \item{\code{combine}:}{concatenates expression
 data and forms intersection of SNP sets}
     \item{\code{getAlleles(smlSet, rsid)}:}{returns A/B notations for SNP

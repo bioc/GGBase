@@ -197,3 +197,10 @@ setMethod("combine", c("smlSet", "smlSet"), function(x, y, ...) {
  phenoData(cx) = pd
  cx
 })
+
+setGeneric("snps", function(x, chr, ...) standardGeneric("snps"))
+setMethod("snps", c("smlSet", "chrnum"), 
+  function(x, chr, ...) {
+     smList(x)[[chr]]
+})
+  
