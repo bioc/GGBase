@@ -26,6 +26,7 @@ setMethod("genomeWideLocs", c("snpLocs", "character"),
     off = sls@offsets
     locs = rep(NA,length(rsvec))
     rsid = rep(NA,length(rsvec))
+    chrn = rep(NA,length(rsvec))
     cur = 1
     for (i in 1:length(allc)) {
        tmp = get(allc[i], sls@locEnv)
@@ -34,10 +35,11 @@ setMethod("genomeWideLocs", c("snpLocs", "character"),
        if (nct > 0) {
            rsid[cur:(cur+nct-1)] = tmp2[1,]
            locs[cur:(cur+nct-1)] = tmp2[2,]+off[i]
+           chrn[cur:(cur+nct-1)] = i
            cur = cur+nct
            }
     }
-    rbind(rsid=rsid, loc=locs)
+    rbind(rsid=rsid, loc=locs, chrn=chrn)
 })
 
 setGeneric("snpLocs.Hs", function(cnum, rsid) standardGeneric("snpLocs.Hs"))

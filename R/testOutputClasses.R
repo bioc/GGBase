@@ -61,3 +61,24 @@ setMethod("[", "cwSnpScreenResult", function(x, i, j, ..., drop=FALSE) {
  x@.Data[[1]] = d
  x
 })
+
+setMethod("combine", c("multiGwSnpScreenResult",
+   "multiGwSnpScreenResult"), function(x, y, ...) {
+     d = c(x@.Data, y@.Data)
+     e = union(x@geneset, y@geneset)
+     m = match.call()
+     s = new("SessionInfo", sessionInfo())
+     new("multiGwSnpScreenResult", geneset=e, call=m,
+         sessionInfo=s, d)
+})
+
+setMethod("combine", c("filteredMultiGwSnpScreenResult",
+   "filteredMultiGwSnpScreenResult"), function(x, y, ...) {
+     d = c(x@.Data, y@.Data)
+     e = union(x@geneset, y@geneset)
+     m = match.call()
+     s = new("SessionInfo", sessionInfo())
+     new("filteredMultiGwSnpScreenResult", geneset=e, call=m,
+         sessionInfo=s, d)
+})
+
