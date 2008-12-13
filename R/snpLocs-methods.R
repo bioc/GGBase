@@ -39,7 +39,7 @@ setMethod("genomeWideLocs", c("snpLocs", "character"),
            cur = cur+nct
            }
     }
-    rbind(rsid=rsid, loc=locs, chrn=chrn)
+    rbind(rsid=rsid, gwloc=locs, chrn=chrn)
 })
 
 setGeneric("snpLocs.Hs", function(cnum, rsid) standardGeneric("snpLocs.Hs"))
