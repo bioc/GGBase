@@ -1,8 +1,19 @@
 # screening result containers
+
+setOldClass("sessionInfo")
+setClass("SessionInfo", contains="sessionInfo")
 	   
 setClass("gwSnpScreenResult", contains="list",
    representation(gene="character", psid="character", annotation="character", 
-      testType="character", call="call")) #, modFmla="formula"))
+      testType="character", call="call",
+        sessionInfo="SessionInfo")) #, modFmla="formula"))
+
+setMethod("[", "gwSnpScreenResult", function(x, i,j,...,drop=FALSE) {
+ if (!missing(j)) stop("no second subscript allowed")
+ x@.Data = x@.Data[i]
+ x@call = match.call()
+ x
+})
 
 #setMethod("initialize", "gwSnpScreenResult", function(.Object, 
 #     gene = character(0), psid = character(0), annotation=character(0),
@@ -28,7 +39,8 @@ setMethod("show", "gwSnpScreenResult", function(object) {
      object@psid, "]\n")
 })
 
-setClass("multiGwSnpScreenResult", representation(geneset="GeneSet", call="call"),
+setClass("multiGwSnpScreenResult", representation(geneset="GeneSet", call="call",
+   sessionInfo="SessionInfo"),
    contains="list")
 setMethod("show", "cwSnpScreenResult", function(object) {
  cat("cwSnpScreenResult [chr", object@chrnum, "] for gene ", object@gene, " [probe ",

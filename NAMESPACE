@@ -14,7 +14,9 @@ exportClasses(
    "filteredMultiGwSnpScreenResult", 
  # casting 
   "chrnum", "rsid", "cnumOrMissing", "genesym", "probeId",
-   "filteredMultiGwSnpScreenResult", "snpdepth")
+   "filteredMultiGwSnpScreenResult", "snpdepth",
+ # sessionInfo
+   "SessionInfo")
 
 exportMethods( "chrnum", "rsid", "genesym", "[",
     "show", "initialize", "smList", "smlEnv", "probeId",
