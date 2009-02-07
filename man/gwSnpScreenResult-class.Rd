@@ -16,7 +16,9 @@
 \alias{[,cwSnpScreenResult,ANY,ANY,ANY-method}
 %\alias{plot,filteredGwSnpScreenResult,ANY-method}
 %\alias{plot,filteredMultiGwSnpScreenResult,ANY-method}
-
+\alias{[,gwSnpScreenResult,ANY,ANY,ANY-method}
+\alias{combine,filteredMultiGwSnpScreenResult,filteredMultiGwSnpScreenResult-method}
+\alias{combine,multiGwSnpScreenResult,multiGwSnpScreenResult-method}
 
 \title{Class "gwSnpScreenResult" -- containers for GGtools gwSnpScreen
 method outputs and allied objects}
@@ -39,23 +41,25 @@ multiGwSnpScreenResult is intended for analyses with multiple genes.
 Because the vast majority of tests are uninformative, early
 filtering is important for managing object sizes.
 Instances of filteredGwSnpScreenResult and filteredMultiGwSnpScreenResult
-are created when a \code{snpdepth} parameter is used with
+are created when a snpdepth parameter is used with
 gwSnpTests.
 }
 \section{Slots}{
-  \describe{
+	 \describe{
     \item{\code{.Data}:}{Object of class \code{"list"} containing
-      inference tables (snps are rows, columns are statistics and	
-      p-values) }
+inference tables (snps are rows, columns are statistics and
+p-values) }
     \item{\code{gene}:}{Object of class \code{"character"} typically
-      the HUGO symbol of the gene analyzed }
+the HUGO symbol of the gene analyzed }
     \item{\code{psid}:}{Object of class \code{"character"} the
-      feature identifier of the associated microarray }
+feature identifier of the associated microarray }
     \item{\code{annotation}:}{Object of class \code{"character"} vector
-       of relevant annotation package identifier names were used}
+of relevant annotation package identifier names }
+were used}
     \item{\code{formula}:}{Object of class \code{"formula"} the
-       formula used to fit the model relating expression to genotype }
- }
+formula used to fit the model relating expression to
+genotype }
+ 
 }
 \section{Extends}{
 Class \code{"\linkS4class{list}"}, from data part.
