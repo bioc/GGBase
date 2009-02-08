@@ -54,8 +54,7 @@ the HUGO symbol of the gene analyzed }
     \item{\code{psid}:}{Object of class \code{"character"} the
 feature identifier of the associated microarray }
     \item{\code{annotation}:}{Object of class \code{"character"} vector
-of relevant annotation package identifier names }
-were used}
+of relevant annotation package identifier names 
     \item{\code{formula}:}{Object of class \code{"formula"} the
 formula used to fit the model relating expression to
 genotype }
