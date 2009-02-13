@@ -47,18 +47,18 @@ gwSnpTests.
 \section{Slots}{
 	 \describe{
     \item{\code{.Data}:}{Object of class \code{"list"} containing
-inference tables (snps are rows, columns are statistics and
-p-values) }
+    inference tables (snps are rows, columns are statistics and
+    p-values) }
     \item{\code{gene}:}{Object of class \code{"character"} typically
-the HUGO symbol of the gene analyzed }
+    the HUGO symbol of the gene analyzed }
     \item{\code{psid}:}{Object of class \code{"character"} the
-feature identifier of the associated microarray }
+    feature identifier of the associated microarray }
     \item{\code{annotation}:}{Object of class \code{"character"} vector
-of relevant annotation package identifier names 
+    of relevant annotation package identifier names }
     \item{\code{formula}:}{Object of class \code{"formula"} the
-formula used to fit the model relating expression to
-genotype }
- 
+    formula used to fit the model relating expression to
+    genotype }
+}
 }
 \section{Extends}{
 Class \code{"\linkS4class{list}"}, from data part.
