@@ -13,5 +13,5 @@ Imports: AnnotationDbi
 License: Artistic-2.0
 Collate: AllClasses.R testOutputClasses.R
 	ScreenResult-methods.R  snpLocs-methods.R smlSet-methods.R snpsNear.R
-	pedinf2df.R zzz.R
+	pedinf2df.R isCis.R zzz.R
 
