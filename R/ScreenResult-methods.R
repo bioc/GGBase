@@ -69,7 +69,8 @@ setMethod("plot", c("cwSnpScreenResult", "missing"),  # y bound to df request
    plotf(loc, -log10(allpv), main=main,
      xlab=paste("position on chr", x@chrnum),
      ylab=paste("-log10 p Gaussian LM [", y, "df]", sep=""), pch=19, cex=.8, ...)
-   axis(3, at=genePosition(x@gene, annlib=x@annotation), col="red", lwd=2, label=" ")
+   if (isCis(x)) 
+        axis(3, at=genePosition(x@gene, annlib=x@annotation), col="red", lwd=2, label=" ")
 })
 
 #setMethod("plot", c("cwSnpScreenResult", "missing"),
