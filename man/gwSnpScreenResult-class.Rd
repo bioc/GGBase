@@ -1,5 +1,6 @@
 \name{gwSnpScreenResult-class}
 \docType{class}
+\alias{gwSnpScreenResult}
 \alias{gwSnpScreenResult-class}
 \alias{cwSnpScreenResult-class}
 \alias{multiGwSnpScreenResult-class}

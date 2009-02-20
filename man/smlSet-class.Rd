@@ -1,5 +1,6 @@
 \name{smlSet-class}
 \docType{class}
+\alias{smlSet}
 \alias{smlSet-class}
 \alias{smList,smlSet-method}
 \alias{getAlleles,smlSet,rsid-method}
