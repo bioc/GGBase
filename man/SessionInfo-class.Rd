@@ -17,7 +17,6 @@ Objects can be created by calls of the form \code{new("SessionInfo", ...)}.
   }
 }
 \section{Extends}{
-Class \code{"\linkS4class{sessionInfo}"}, directly.
 Class \code{"\linkS4class{oldClass}"}, by class "sessionInfo", distance 2.
 }
 \section{Methods}{
