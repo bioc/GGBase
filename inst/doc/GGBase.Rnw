@@ -83,7 +83,7 @@ see the newSNPloc vignette
 \section{Conclusion}
 
 The concepts discussed above define the bulk of the tools
-supporting the gwSnpScreen method of GGtools.  Consult the
+supporting the \texttt{gwSnpTests} method of GGtools.  Consult the
 vignette of GGtools for more information.
 
 \end{document}
