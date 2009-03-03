@@ -2,6 +2,8 @@
 \docType{class}
 \alias{genesym-class}
 \alias{genesym,character-method}
+\alias{phenoVar-class}
+\alias{phenoVar,character-method}
 \alias{chrnum-class}
 \alias{chrnum,numeric-method}
 \alias{chrnum,character-method}

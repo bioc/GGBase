@@ -87,3 +87,7 @@ setMethod("probeId", "character",  function(x) new("probeId", x))
 
 setClass("snpdepth", contains="numeric")
 snpdepth = function(x) new("snpdepth", x)
+
+setClass("phenoVar", contains="character")
+setGeneric("phenoVar", function(x)standardGeneric("phenoVar"))
+setMethod("phenoVar", "character", function(x)new("phenoVar", as.character(x)))

@@ -14,6 +14,7 @@ exportClasses(
    "filteredMultiGwSnpScreenResult", 
  # casting 
   "chrnum", "rsid", "cnumOrMissing", "genesym", "probeId",
+   "phenoVar",
    "filteredMultiGwSnpScreenResult", "snpdepth",
  # sessionInfo
    "SessionInfo")
@@ -21,6 +22,7 @@ exportClasses(
 exportMethods( "chrnum", "rsid", "genesym", "[",
     "show", "initialize", "smList", "smlEnv", "probeId",
     "snpLocs.Hs", "exprs", "[", "plot_EvG", "snpNames", "getSnpLocs",
+    "phenoVar",
     "plot_EvG2", "combine", "getAlleles", "snps")
 
 export("rsid", "snpdepth", "chrnum", "probeId", "snpsNear")
