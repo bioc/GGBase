@@ -1,5 +1,6 @@
 \name{genesym-class}
 \docType{class}
+\alias{phenoVar}
 \alias{genesym-class}
 \alias{genesym,character-method}
 \alias{phenoVar-class}
