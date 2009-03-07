@@ -26,4 +26,4 @@ exportMethods( "chrnum", "rsid", "genesym", "[",
     "plot_EvG2", "combine", "getAlleles", "snps")
 
 export("rsid", "snpdepth", "chrnum", "probeId", "snpsNear",
-  "smlSummary", "MAFfilter")
+  "smlSummary", "MAFfilter", "featureFilter")

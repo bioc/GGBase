@@ -36,6 +36,10 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
   }
   if (!missing(i)) {
    if (is(i, "chrnum")) {
+#
+# odd use -- does not affect features -- but certainly does not
+# affect samples -- it is an "assay" selection, so first coordinate seems ok
+#
     L = smList(x)
     LL = L[i]
     ee = new.env()
@@ -45,20 +49,26 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
    else if (is(i, "probeId")) {
     e = exprs(x)
     e = e[i,,drop=FALSE]
+    fd = featureData(x)[i,]
     e = assayDataNew("lockedEnvironment", exprs=e)
     x@assayData = e
+    x@featureData=fd
     }
    else if (is(i, "numeric")) {
     e = exprs(x)
     e = e[i,,drop=FALSE]
+    fd = featureData(x)[i,]
     e = assayDataNew("lockedEnvironment", exprs=e)
     x@assayData = e
+    x@featureData=fd
     }
    else if (is(i, "genesym")) {
     e = exprs(x)
     e = e[sym2pid(x, i),,drop=FALSE]
+    fd = featureData(x)[sym2pid(x, i),]
     e = assayDataNew("lockedEnvironment", exprs=e)
     x@assayData = e
+    x@featureData=fd
     }
    else stop(paste("[ method not defined for instance of ", class(i)))
   }
