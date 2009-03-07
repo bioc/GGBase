@@ -8,7 +8,9 @@ snpsNear(sym, radius=1e+05, chrnum)
 }
 \arguments{
   \item{sym}{ instance of genesym class [e.g., use genesym(string) for gene 'string'],
-or of rsid class, or of numeric class}
+or of rsid class, or of numeric class.  An instance of
+\code{\link[GSEABase]{GSEABase-class} can also be supplied if it
+has \code{geneIdType} AnnotationIdentifier.}
   \item{radius}{ number of base-pairs in each direction to look}
   \item{chrnum}{ chrnum instance .. optional}
 }
@@ -36,5 +38,12 @@ ss = smList(hmceuB36.2021)[[1]]
 # following calculation requires new "[" for j an instance of rsid
 clo = ss[ , rsid(snpsNear(rsid("rs6060535"), rad=1500, chrnum(20))) ]
 clo
+# try a gene set
+library(GSEABase)
+s1 = GeneSet(c("CPNE1", "ADA"), geneIdType=SymbolIdentifier())
+s2 = s1
+geneIdType(s2) = AnnotationIdentifier("illuminaHumanv1.db")
+s2
+sapply(snpsNear(s2), length)
 }
 \keyword{ models }

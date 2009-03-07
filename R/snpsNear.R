@@ -1,11 +1,20 @@
-snpsNear = function (sym, radius = 1e+05, chrnum) {
- if (is(sym, "genesym")) {
-    pos = genePosition(sym)
+snpsNear = function (sym, radius = 1e+05, chrnum, ...) {
+ if (is(sym, "GeneSet")) {
+    if (geneIdType(sym)@type == "Annotation") alib = geneIdType(sym)@annotation
+#    else if (geneIdType(sym)@type == "EntrezId") {
+#      alib = "org.Hs.eg.db"
+#      warning("assuming human organism for Entrez Id gene set")
+#    }
+    else stop("only Annotation-type Gene Sets handled at this time")
+    sapply( geneIds(sym), function(x) snpsNear(probeId(x), radius=radius, annlib=alib))
+    }
+ else if (is(sym, "genesym") | is(sym, "probeId")) {
+    pos = genePosition(sym, ...)
     chr = names(pos)
     if (chr %in% c("X", "Y")) 
         chr = ifelse(chr == "X", 23, 24)
     else chr = as.numeric(chr)
-    ll = snpLocs.Hs(chrnum(chr))
+    ll = snpLocs.Hs(GGBase::chrnum(chr))
     inds = which(ll["loc",] >= pos-radius & ll["loc",] <= pos+radius)
     return(paste("rs", ll["rsid",inds], sep=""))
     }
