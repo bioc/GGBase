@@ -99,3 +99,14 @@ setMethod("show", "smlSummary", function(object) {
  print(object[[1]][1:3,])
  cat("\n")
 })
+
+setClass("multiCisTestResult", representation(conditions="list",
+   call="call"), contains="list")
+setMethod("show", "multiCisTestResult", function(object) {
+ cat("GGBase multiCisTestResult container.\n")
+ cat("Call was:\n")
+ print(object@call)
+ cat("There are ", length(object), "results.\n")
+ cat("Conditions raised for", sum(sapply(object@conditions,
+     length)>0), "genes.\n")
+})
