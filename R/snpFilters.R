@@ -1,0 +1,27 @@
+
+smlSummary = function(x) {
+ if (!(is(x, "smlSet"))) stop("works only for smlSet instances")
+ ans = lapply(smList(x), snpMatrix::summary)
+ new("smlSummary", ans)
+}
+
+MAFfilter = function(x, lower=0, upper=1) {
+ if (!(is(x, "smlSet"))) stop("works only for smlSet instances")
+ if (lower <= 0 & upper >= 1) return(x)
+ ss = smlSummary(x)
+ mafs = lapply(ss, "[", "MAF")
+ allrs = lapply(ss, rownames)
+ sml = smList(x)
+ for (i in 1:length(mafs))
+  {
+  curok = which(mafs[[i]] >= lower & mafs[[i]] <= upper)
+  if (length(curok) == 0) stop("limits eliminate all SNP on a chromosome, cannot proceed")
+  kprs = allrs[[i]][curok]
+  if (!all(allrs[[i]] %in% kprs))
+     sml[[i]] = sml[[i]][, curok]
+  }
+ ne = new.env()
+ assign("smList", sml, ne)
+ x@smlEnv = ne
+ x
+}

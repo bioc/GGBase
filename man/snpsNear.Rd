@@ -13,6 +13,7 @@ or of rsid class, or of numeric class.  An instance of
 has \code{geneIdType} AnnotationIdentifier.}
   \item{radius}{ number of base-pairs in each direction to look}
   \item{chrnum}{ chrnum instance .. optional}
+  \item{\dots}{ options not now in use }
  }
 
 \details{

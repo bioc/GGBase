@@ -91,3 +91,11 @@ snpdepth = function(x) new("snpdepth", x)
 setClass("phenoVar", contains="character")
 setGeneric("phenoVar", function(x)standardGeneric("phenoVar"))
 setMethod("phenoVar", "character", function(x)new("phenoVar", as.character(x)))
+
+setClass("smlSummary", contains="list")
+setMethod("show", "smlSummary", function(object) {
+ cat("smList summary of length", length(object), "\n")
+ cat("excerpt:\n")
+ print(object[[1]][1:3,])
+ cat("\n")
+})
