@@ -18,7 +18,7 @@ featureFilter = function(x,
     locl = mget(fn, clocOBJ, ifnotfound=NA)
     locln = lapply(locl, names)
     for (i in 1:length(locln)) {  # kick out hap/qbl references
-       locl[[i]] = locl[[i]][ nchar(locln[[i]]) < 3 ]
+       locl[[i]] = locl[[i]][ which(nchar(locln[[i]]) < 3) ]
     }
     locl = sapply(locl , "[", 1)  # take first qualifying location
     bad = which(is.na(locl))

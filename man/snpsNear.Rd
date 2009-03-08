@@ -23,6 +23,10 @@ simple arithmetic based on output of snpLocs.Hs
 character vector of rsxxxxxx, dbSNP id, according to locations from
 SNPlocs.Hsapiens.dbSNP.20071016 package, as transferred to snpLocs.Hs
 resource in GGBase
+
+note that an attribute 'target' is returned, a named vector
+with components chr and loc describing chromosome and location
+of the target for which nearby SNPs are sought
 }
 %\references{  }
 \author{Vince Carey <stvjc@channing.harvard.edu>}
