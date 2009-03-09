@@ -107,6 +107,6 @@ setMethod("show", "multiCisTestResult", function(object) {
  cat("Call was:\n")
  print(object@call)
  cat("There are ", length(object), "results.\n")
- cat("Conditions raised for", sum(sapply(object@conditions,
-     length)>0), "genes.\n")
+ cat("Conditions raised for", sum(sapply(object@conditions, function(x)
+     !is.na(x$cond))), "genes.\n")
 })
