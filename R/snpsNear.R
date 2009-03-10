@@ -6,7 +6,7 @@ snpsNear = function (sym, radius = 1e+05, chrnum, ...) {
 #      warning("assuming human organism for Entrez Id gene set")
 #    }
     else stop("only Annotation-type Gene Sets handled at this time")
-    sapply( geneIds(sym), function(x) snpsNear(probeId(x), radius=radius, annlib=alib))
+    return(sapply( geneIds(sym), function(x) try(snpsNear(probeId(x), radius=radius, annlib=alib))))
     }
  else if (is(sym, "genesym") | is(sym, "probeId")) {
     pos = genePosition(sym, ...)
