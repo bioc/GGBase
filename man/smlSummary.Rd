@@ -2,6 +2,7 @@
 \Rdversion{1.1}
 \alias{smlSummary}
 \alias{smlSummary-class}
+\alias{show,smlSummary-method}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 class and function to summarize frequency information
