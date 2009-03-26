@@ -1,7 +1,7 @@
 
 smlSummary = function(x) {
  if (!(is(x, "smlSet"))) stop("works only for smlSet instances")
- ans = lapply(smList(x), snpMatrix::summary)
+ ans = lapply(smList(x), snpMatrix::col.summary)
  new("smlSummary", ans)
 }
 
