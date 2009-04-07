@@ -17,8 +17,9 @@ setMethod("exprs", "smlSet", function(object) {
 )
 
 setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
+# j is strictly for samples
   if (!missing(j)) {
-   # do snps
+   # do snp matrices (samples are rows)
     L = smList(x)
     LL = lapply(L, function(x) x[j,,drop=FALSE] )
     ee = new.env()
@@ -69,6 +70,17 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
     e = assayDataNew("lockedEnvironment", exprs=e)
     x@assayData = e
     x@featureData=fd
+    }
+   else if (is(i, "rsid")) {
+    L = smList(x)
+    nc = length(L)
+    for (kk in 1:nc) {
+      snin = colnames(L[[kk]])
+      L[[kk]] = L[[kk]][, intersect(snin, i)]
+      }
+    ee = new.env()
+    assign("smList", L, ee)
+    x@smlEnv = ee
     }
    else stop(paste("[ method not defined for instance of ", class(i)))
   }
