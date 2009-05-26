@@ -13,7 +13,7 @@ featureFilter = function(x,
  cOBJ = get(paste(clsuff(Biobase::annotation(x)), "CHR", sep=""))
  basic = keys(clocOBJ)
  bad = which(!(fn %in% basic))
- fn = fn[-bad]
+ if (length(bad)>0) fn = fn[-bad]
  if ("loc" %in% requires) {
     locl = mget(fn, clocOBJ, ifnotfound=NA)
     locln = lapply(locl, names)
