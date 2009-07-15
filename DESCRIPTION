@@ -7,7 +7,7 @@ Depends: R (>= 2.7.0), methods, Biobase (>= 2.5.3), GSEABase,
 	snpMatrix(>= 1.7.6), RSQLite
 Suggests: GGtools, illuminaHumanv1.db
 LazyLoad: yes
-biocViews: SNPsAndGeneticVariability, Genetics, Bioinformatics
+biocViews: SNP, GeneticVariability, Genetics, Bioinformatics
 Maintainer: Vince Carey <stvjc@channing.harvard.edu>
 Imports: AnnotationDbi
 License: Artistic-2.0
