@@ -226,3 +226,12 @@ setMethod("snps", c("smlSet", "chrnum"),
      smList(x)[[chr]]
 })
   
+
+setAs("smlSet", "ExpressionSet", function(from) {
+ ex = exprs(from)
+ pd = phenoData(from)
+ ans = new("ExpressionSet", exprs=ex, phenoData=pd)
+ annotation(ans) = from@annotation
+ ans
+})
+

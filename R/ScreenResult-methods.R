@@ -60,7 +60,14 @@ setMethod("plot", c("cwSnpScreenResult", "missing"),  # y bound to df request
    rsn = names(allpv)
    locstr = snpLocs.Hs(chrnum(x@chrnum), rsid(rsn)) # may not match all
    availRS = paste("rs", locstr["rsid",], sep="")
-   allpv = allpv[availRS]
+longnsubset = function (x, y) 
+{
+    mm = match(y, names(x))
+    x[mm]
+}
+
+#   allpv = allpv[availRS]
+   allpv = longnsubset(allpv, availRS)
    loc = locstr["loc",]
    if (noSmooth) plotf=plot
      else plotf=smoothScatter

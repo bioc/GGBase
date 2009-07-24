@@ -12,6 +12,7 @@
 \alias{snps}
 \alias{snps,smlSet,chrnum-method}
 \alias{show,smlSet-method}
+\alias{coerce,smlSet,ExpressionSet-method}
 \alias{combine,smlSet,smlSet-method}
 \alias{snpNames}
 \alias{snpNames,smlSet,chrnum-method}
@@ -80,6 +81,8 @@ snpMatrix package }
 data and forms intersection of SNP sets}
     \item{\code{getAlleles(smlSet, rsid)}:}{returns A/B notations for SNP
 determined by rsid}
+    \item{\code{coerce}:}{extracts exprs, phenoData and annotation and
+constructs ExpressionSet}
 	 }
 }
 %\references{ ~put references to the literature/web site here ~ }

@@ -23,7 +23,7 @@ exportMethods( "chrnum", "rsid", "genesym", "[",
     "show", "initialize", "smList", "smlEnv", "probeId",
     "snpLocs.Hs", "exprs", "[", "plot_EvG", "snpNames", "getSnpLocs",
     "phenoVar",
-    "plot_EvG2", "combine", "getAlleles", "snps")
+    "plot_EvG2", "combine", "getAlleles", "snps", "coerce")
 
 export("rsid", "snpdepth", "chrnum", "probeId", "snpsNear",
   "smlSummary", "MAFfilter", "featureFilter")
