@@ -28,7 +28,7 @@ is defined for show method
 \value{
 Instance of smlSummary class, which simply extends list.
 Each list element is a matrix of results provided by
-\code{\link[snpMatrix]{summary,snp.matrix-method}}.
+\code{\link[snpMatrix:snp.matrix-class]{summary,snp.matrix-method}}.
 }
 
 %\references{

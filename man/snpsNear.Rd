@@ -7,9 +7,10 @@
 snpsNear(sym, radius=1e+05, chrnum, ...)
 }
 \arguments{
-  \item{sym}{ instance of genesym class [e.g., use genesym(string) for gene 'string'],
+  \item{sym}{ instance of genesym class [e.g., use genesym(string) for
+    gene 'string'], 
 or of rsid class, or of numeric class.  An instance of
-\code{\link[GSEABase]{GSEABase-class}} can also be supplied if it
+\code{\link[GSEABase:GeneSet-class]{GeneSet-class}} can also be supplied if it
 has \code{geneIdType} AnnotationIdentifier.}
   \item{radius}{ number of base-pairs in each direction to look}
   \item{chrnum}{ chrnum instance .. optional}
