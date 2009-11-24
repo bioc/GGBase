@@ -8,6 +8,7 @@
 \alias{smlEnv,smlSet-method}
 \alias{[,snp.matrix,ANY,rsid,ANY-method}
 \alias{[,smlSet,ANY,ANY,ANY-method}
+\alias{[,smlSet-method}
 \alias{exprs,smlSet-method}
 \alias{snps}
 \alias{snps,smlSet,chrnum-method}
@@ -83,9 +84,32 @@ data and forms intersection of SNP sets}
 determined by rsid}
     \item{\code{coerce}:}{extracts exprs, phenoData and annotation and
 constructs ExpressionSet}
-	 }
+
+
+
+   \item{[}{\code{signature(x = "smlSet", i = "ANY", j = "ANY", drop = "ANY")}:
+Quick methods for subsetting elements of smlSets have been provided.  
+
+If X is an \code{smlSet} instance and G is a vector of class \code{\link{probeId-class}},
+then \code{X[G,]} will reduce the expression data to the probes specified
+in \code{G}.
+
+If X is an \code{smlSet} instance and G is a vector of class \code{\link{chrnum-class}},
+then \code{X[G,]} will reduce the SNP genotype data to the SNPs resident
+on chromosomes enumerated
+in \code{G}.
+
+If X is an \code{smlSet} instance and G is a vector of class \code{\link{rsid-class}},
+then \code{X[G,]} will reduce the SNP genotype data to the SNPs enumerated
+in the dbSNP id 
+in \code{G}.
+ }
+}
+
+
 }
 %\references{ ~put references to the literature/web site here ~ }
+
 \author{ VJ Carey <stvjc@channing.harvard.edu> }
 \note{ We have included a \code{[} method for snp.matrix instances
 that accepts an rsid instance as a column selector. }
