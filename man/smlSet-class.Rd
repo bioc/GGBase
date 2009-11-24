@@ -139,5 +139,8 @@ ss3 = ss2[ rsid(sn), ]   # subset the snps
 dim(smList(ss3)[[1]])
 dim(smList(ss3)[["21"]]) # check names
 ss3
+as(snps(ss3, chrnum(21)), "character")[1:5,1:5] # generic codes
+as(snps(ss3, chrnum(21)), "numeric")[1:5,1:5]  # number copies of B
+as(snps(ss3, chrnum(21)), "matrix")[1:5,1:5]  # raw
 }
 \keyword{classes}
