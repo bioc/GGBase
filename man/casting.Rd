@@ -29,9 +29,13 @@
 \description{	 classes that help establish symbol semantics for
 dispatching }
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("genesym", ...)}.
-and generally just extend character or numeric so that vector operations
-are straightforward
+Objects can be created by calls of the form \code{new("genesym", ...)},
+or by special constructor functions.
+As of GGBase version 3.7.1, you can use \code{genesym(...)},
+\code{chrnum(...)}, \code{probeId(...)}, \code{rsid(...)}.
+These generally just extend character or numeric so that vector operations
+are straightforward, but attach type information so that methods such as \code{[}
+`know' what they are getting.
 
 Currently, \code{genesym} is used to allow HUGO symbols to be
 passed to \code{[}; \code{chrnum} identifies numerals or
