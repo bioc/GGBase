@@ -1,6 +1,7 @@
 \name{smlSet-class}
 \docType{class}
 \alias{smlSet}
+\alias{smlSet.example}
 \alias{smlSet-class}
 \alias{smList,smlSet-method}
 \alias{getAlleles,smlSet,rsid-method}
@@ -121,5 +122,22 @@ GGtools package makes extensive use of these classes and methods.
 }
 \examples{
 showClass("smlSet")
+data(smlSet.example)
+smlSet.example
+# workout on expression components
+dim(exprs(smlSet.example))
+fn = featureNames(smlSet.example)[1:10]
+fn
+ss2 = smlSet.example[ probeId(fn), ] # restrict exprs to set of probes
+dim(exprs(ss2))
+# workout on SNP components
+smList(smlSet.example)
+dim(smList(ss2)[[1]])
+ss2[ chrnum(21), ]  # trivial restriction of SNP to a chromosome
+sn = colnames(smList(ss2)[[1]])[1:20]  # get some dbSNP ids
+ss3 = ss2[ rsid(sn), ]   # subset the snps
+dim(smList(ss3)[[1]])
+dim(smList(ss3)[["21"]]) # check names
+ss3
 }
 \keyword{classes}
