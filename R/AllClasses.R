@@ -41,9 +41,12 @@ setMethod("rsid", "numeric", function(x)new("rsid", as.character(x)))
 # revised Aug 2008
 
 valsml = function(object) {
+ nexsamp = ncol(exprs(object))
  allns = sapply(smList(object), nrow)
  if (!(all(allns==allns[1]))) 
     return("varying numbers of rows in elements of smList")
+ if (!(all(allns==nexsamp)))
+    return("some snp.matrix have nrows != ncol(exprs(smlSet))")
 # if ((sl <- length(smList(object))) != (cl <- length(object@chromInds)))
 #    return(paste("length of chromInds vector [", cl, "] not identical to that of smList(object) [",
 #      sl, "]"))
@@ -55,12 +58,13 @@ valsml = function(object) {
  return(TRUE)
 }
 
+# bump class version to reflect accommodation of new eSet protocolData slot
 setClass("smlSet", contains="eSet", 
    representation(smlEnv="environment", annotation="character",
      organism="character"),
    validity=valsml, prototype=prototype(
        new("VersionedBiobase",
-               versions=c(classVersion("eSet"), smlSet="1.1.1")),
+               versions=c(classVersion("eSet"), smlSet="1.1.2")),
            phenoData = new("AnnotatedDataFrame",
              data=data.frame(),
              varMetadata=data.frame(
@@ -109,4 +113,8 @@ setMethod("show", "multiCisTestResult", function(object) {
  cat("There are ", length(object), "results.\n")
  cat("Conditions raised for", sum(sapply(object@conditions, function(x)
      !is.na(x$cond))), "genes.\n")
+})
+
+setMethod("updateObject", "smlSet", function(object, ..., verbose=FALSE) {
+  make_smlSet(as(object, "ExpressionSet"), smList(object), ...)
 })

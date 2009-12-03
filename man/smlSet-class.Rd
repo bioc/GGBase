@@ -11,6 +11,7 @@
 \alias{[,smlSet,ANY,ANY,ANY-method}
 \alias{[,smlSet-method}
 \alias{exprs,smlSet-method}
+\alias{updateObject,smlSet-method}
 \alias{snps}
 \alias{snps,smlSet,chrnum-method}
 \alias{show,smlSet-method}
@@ -124,6 +125,7 @@ GGtools package makes extensive use of these classes and methods.
 showClass("smlSet")
 data(smlSet.example)
 smlSet.example
+validObject(smlSet.example)
 # workout on expression components
 dim(exprs(smlSet.example))
 fn = featureNames(smlSet.example)[1:10]
