@@ -46,9 +46,8 @@ VJ Carey <stvjc@channing.harvard.edu>
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-library(GGtools)
-if (!exists("hmceuB36.2021")) data(hmceuB36.2021)
-sapply(smList(MAFfilter(hmceuB36.2021, lower=.1)), dim)
+data(smlSet.example)
+sapply(smList(MAFfilter(smlSet.example, lower=.1)), dim)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

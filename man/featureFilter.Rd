@@ -45,11 +45,10 @@ VJ Carey
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-library(GGtools)
-if (!exists("hmceuB36.2021")) data(hmceuB36.2021)
-dim(exprs(hmceuB36.2021))
-ff = featureFilter(hmceuB36.2021)
-dim(exprs(ff))
+data(smlSet.example)
+dim(exprs(smlSet.example))
+fff = featureFilter(smlSet.example)
+dim(exprs(fff))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

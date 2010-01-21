@@ -38,16 +38,15 @@ not been invoked previously  }
 %\seealso{  }
 
 \examples{
-nearc = snpsNear(genesym("CPNE1"), 10000, chrnum(20))
-library(GGtools)
-data(hmceuB36.2021)
-ss = smList(hmceuB36.2021)[[1]]
+nearc = snpsNear(genesym("BACH1"), 10000, chrnum(21))
+data(smlSet.example)
+ss = smList(smlSet.example)[[1]]
 # following calculation requires new "[" for j an instance of rsid
 clo = ss[ , rsid(snpsNear(rsid("rs6060535"), rad=1500, chrnum(20))) ]
 clo
 # try a gene set
 library(GSEABase)
-s1 = GeneSet(c("CPNE1", "ADA"), geneIdType=SymbolIdentifier())
+s1 = GeneSet(c("BACH1", "ATP5O"), geneIdType=SymbolIdentifier())
 s2 = s1
 geneIdType(s2) = AnnotationIdentifier("illuminaHumanv1.db")
 s2

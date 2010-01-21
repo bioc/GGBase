@@ -49,9 +49,8 @@ missing
 %\seealso{  }
 
 \examples{
-library(GGtools)
-data(hmceuB36.2021)
-nn21 = colnames(smList(hmceuB36.2021)[["21"]])
+data(smlSet.example)
+nn21 = colnames(smList(smlSet.example)[["21"]])
 length(nn21)
 ss = snpLocs.Hs(chrnum(21), rsid(nn21))
 dim(ss)

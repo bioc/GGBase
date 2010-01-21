@@ -1,5 +1,4 @@
 %\VignetteIndexEntry{snp location metadata overview}
-%\VignetteDepends{GGtools}
 %\VignetteKeywords{Genetical genomics,SNP,expression}
 %\VignettePackage{GGBase}
 
@@ -54,7 +53,6 @@ derived from the SNPlocs.Hsapiens.dbSNP.* package.
 One class and two methods are supported.
 
 <<lkcl>>=
-require(GGtools)
 getClass("snpLocs")
 data(hsSnpLocs)
 hsSnpLocs

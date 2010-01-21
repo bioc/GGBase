@@ -21,8 +21,7 @@ a second SNP rsid and shows boxplots over the
 cross-tabulation of the allele combinations}
 }}
 \examples{
-library(GGtools)
-data(hmceuB36.2021)
-plot_EvG(genesym("CPNE1"), rsid("rs6060535"), hmceuB36.2021)
+data(smlSet.example)
+plot_EvG(genesym("WBP5"), rsid("rs10483083"), smlSet.example)
 }
 \keyword{methods}

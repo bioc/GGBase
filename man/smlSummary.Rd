@@ -47,9 +47,8 @@ VJCarey <stvjc@channing.harvard.edu>
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-library(GGtools)
-if (!exists("hmceuB36.2021")) data(hmceuB36.2021)
-smlSummary(hmceuB36.2021)
+data(smlSet.example)
+smlSummary(smlSet.example)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
