@@ -107,3 +107,68 @@ setMethod("show", "filteredGwSnpScreenResult", function(object) {
  callNextMethod()
 })
 
+setMethod("plot", c("cwSnpScreenResult", "character"),  # y bound to location package
+  function(x, y="SNPlocs.Hsapiens.dbSNP.20090506", noSmooth=FALSE, npts=500, ...) {
+   if (is(x@.Data[[1]], "snp.tests.glm"))  # for new approach, snpMatrix > 1.7
+         allpv = p.value(x@.Data[[1]])
+   else allpv = p.value(x@.Data[[1]]) #, y)
+   kill = which(is.na(allpv))
+   if (length(kill)>0) allpv = allpv[ -kill ]
+   rsn = names(allpv)
+   loc = snpLocs.Hsapiens(rsn, x@chrnum, y) # may not match all
+#   availRS = paste("rs", locstr["rsid",], sep="")
+longnsubset = function (x, y)
+{
+    mm = match(y, names(x))
+    x[mm]
+}
+
+   allpv = allpv[intersect(names(loc), names(allpv))]
+   loc = loc[intersect(names(loc), names(allpv))]
+#   allpv = longnsubset(allpv, availRS)
+#   loc = locstr["loc",]
+   if (noSmooth) plotf=plot
+     else plotf=smoothScatter
+   if (length(grep("resid", x@testType))>0) main = paste("resid", x@gene)
+   else main=x@gene
+   plotf(loc, -log10(allpv), main=main,
+     xlab=paste("position on chr", x@chrnum),
+     ylab=paste("-log10 p Gaussian LM [", 1, "df]", sep=""), pch=19, cex=.8, ...)
+   if (isCis(x))
+        axis(3, at=genePosition(x@gene, annlib=x@annotation), col="red", lwd=2, label=" ")
+})
+
+
+setGeneric("cwPlot", function(x,y,addloc,noSmooth,npts,...) standardGeneric("cwPlot"))
+setMethod("cwPlot", c("cwSnpScreenResult", "character", "numeric"),  # y bound to location package
+  function(x, y="SNPlocs.Hsapiens.dbSNP.20090506", addloc=NULL, noSmooth=FALSE, npts=500, ...) {
+   if (is(x@.Data[[1]], "snp.tests.glm"))  # for new approach, snpMatrix > 1.7
+         allpv = p.value(x@.Data[[1]])
+   else allpv = p.value(x@.Data[[1]]) #, y)
+   kill = which(is.na(allpv))
+   if (length(kill)>0) allpv = allpv[ -kill ]
+   rsn = names(allpv)
+   loc = snpLocs.Hsapiens(rsn, x@chrnum, y) # may not match all
+#   availRS = paste("rs", locstr["rsid",], sep="")
+longnsubset = function (x, y)
+{
+    mm = match(y, names(x))
+    x[mm]
+}
+
+   if (!is.null(addloc)) loc = c(loc, addloc)
+   allpv = allpv[intersect(names(loc), names(allpv))]
+   loc = loc[intersect(names(loc), names(allpv))]
+#   allpv = longnsubset(allpv, availRS)
+#   loc = locstr["loc",]
+   if (noSmooth) plotf=plot
+     else plotf=smoothScatter
+   if (length(grep("resid", x@testType))>0) main = paste("resid", x@gene)
+   else main=x@gene
+   plotf(loc, -log10(allpv), main=main,
+     xlab=paste("position on chr", x@chrnum),
+     ylab=paste("-log10 p Gaussian LM [", 1, "df]", sep=""), pch=19, cex=.8, ...)
+   if (isCis(x))
+        axis(3, at=genePosition(x@gene, annlib=x@annotation), col="red", lwd=2, label=" ")
+})
+

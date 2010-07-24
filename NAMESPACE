@@ -3,6 +3,8 @@ import(Biobase, AnnotationDbi)
 
 importFrom(graphics, plot)
 
+importClassesFrom(GSEABase, GeneSet)
+
 exportClasses(
  # primary integrative container
   "smlSet", 
@@ -22,8 +24,8 @@ exportClasses(
 exportMethods( "chrnum", "rsid", "genesym", "[",
     "show", "initialize", "smList", "smlEnv", "probeId",
     "snpLocs.Hs", "exprs", "[", "plot_EvG", "snpNames", "getSnpLocs",
-    "phenoVar",
+    "phenoVar", "plot",
     "plot_EvG2", "combine", "getAlleles", "snps", "coerce", "updateObject")
 
 export("rsid", "snpdepth", "chrnum", "probeId", "snpsNear",
-  "smlSummary", "MAFfilter", "featureFilter", "make_smlSet")
+  "smlSummary", "MAFfilter", "featureFilter", "make_smlSet", "snpLocs.Hsapiens", "GTFfilter")

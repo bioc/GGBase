@@ -45,11 +45,12 @@ ss = smList(smlSet.example)[[1]]
 clo = ss[ , rsid(snpsNear(rsid("rs6060535"), rad=1500, chrnum(20))) ]
 clo
 # try a gene set
-library(GSEABase)
-s1 = GeneSet(c("BACH1", "ATP5O"), geneIdType=SymbolIdentifier())
-s2 = s1
-geneIdType(s2) = AnnotationIdentifier("illuminaHumanv1.db")
-s2
-sapply(snpsNear(s2), length)
+if (require(GSEABase)) {
+ s1 = GeneSet(c("BACH1", "ATP5O"), geneIdType=SymbolIdentifier())
+ s2 = s1
+ geneIdType(s2) = AnnotationIdentifier("illuminaHumanv1.db")
+ s2
+ sapply(snpsNear(s2), length)
+ }
 }
 \keyword{ models }
