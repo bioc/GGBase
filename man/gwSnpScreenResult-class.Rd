@@ -12,6 +12,8 @@
 \alias{show,gwSnpScreenResult-method}
 \alias{show,multiGwSnpScreenResult-method}
 \alias{plot,cwSnpScreenResult,ANY-method}
+\alias{plot,cwSnpScreenResult,character-method}
+\alias{plot,cwSnpScreenResult,missing-method}
 \alias{plot,gwSnpScreenResult,ANY-method}
 \alias{plot,multiGwSnpScreenResult,ANY-method}
 \alias{[,cwSnpScreenResult,ANY,ANY,ANY-method}
