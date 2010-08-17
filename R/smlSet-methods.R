@@ -34,6 +34,7 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
     p = x@phenoData
     p = p[j,]
     x@phenoData = p
+    protocolData(x) = protocolData(x)[j,]
   }
   if (!missing(i)) {
    if (is(i, "chrnum")) {
