@@ -17,14 +17,14 @@ make_smlSet(es, sml, organism = "Homo sapiens")
 ExpressionSet instance
 }
   \item{sml}{
-list of snp.matrix instances
+list of SnpMatrix instances
 }
   \item{organism}{
 string naming organism
 }
 }
 \details{
-combines snp.matrix instances with expression data
+combines SnpMatrix instances with expression data
 }
 \value{
 instance of smlSet class

@@ -7,7 +7,7 @@
 \alias{getAlleles,smlSet,rsid-method}
 \alias{getAlleles}
 \alias{smlEnv,smlSet-method}
-\alias{[,snp.matrix,ANY,rsid,ANY-method}
+\alias{[,SnpMatrix,ANY,rsid,ANY-method}
 \alias{[,smlSet,ANY,ANY,ANY-method}
 \alias{[,smlSet-method}
 \alias{exprs,smlSet-method}
@@ -43,7 +43,7 @@ Objects can be created by calls of the form \code{new("smlSet", assayData, pheno
 	 \describe{
     \item{\code{smlEnv}:}{Object of class \code{"environment"} an environment
 with single key \code{smList} pointing to a list of
-package snpMatrix snp.matrix instances }
+package snpMatrix SnpMatrix instances }
     \item{\code{organism}:}{Object of class \code{"character"} informal,
 "Hs" recommended for human }
     \item{\code{assayData}:}{Object of class \code{"AssayData"} intended
@@ -72,13 +72,13 @@ distance 3.
 \section{Methods}{
   \describe{
     \item{smList}{\code{signature(x = "smlSet")}: retrieves the
-actual list of snp.matrix entities }
+actual list of SnpMatrix entities }
     \item{smlEnv}{\code{signature(x = "smlSet")}: retrieves the
-environment holding snp.matrix entities }
+environment holding SnpMatrix entities }
     \item{exprs}{\code{signature(x = "smlSet")}: retrieves the
 matrix of expression values }
     \item{snps}{\code{signature(x = "smlSet", chr = "chrnum")}: retrieves the
-raw matrix of genotype values (snp.matrix instance from
+raw matrix of genotype values (SnpMatrix instance from
 snpMatrix package }
     \item{\code{combine}:}{concatenates expression
 data and forms intersection of SNP sets}
@@ -113,7 +113,7 @@ in \code{G}.
 %\references{ ~put references to the literature/web site here ~ }
 
 \author{ VJ Carey <stvjc@channing.harvard.edu> }
-\note{ We have included a \code{[} method for snp.matrix instances
+\note{ We have included a \code{[} method for SnpMatrix instances
 that accepts an rsid instance as a column selector. }
 
 % ~Make other sections like Warning with \section{Warning }{....} ~

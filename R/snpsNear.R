@@ -41,7 +41,7 @@ snpsNear = function (sym, radius = 1e+05, chrnum, ...) {
  else stop("need genesym or rsid or numeric instance")
 }
 
-setMethod("[", c("snp.matrix", "ANY", "rsid", "ANY"), 
+setMethod("[", c("SnpMatrix", "ANY", "rsid", "ANY"), 
   function (x, i, j, ..., drop = FALSE) 
   {
     cn = colnames(x)

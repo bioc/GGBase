@@ -1,7 +1,7 @@
 nsamp = function(x) ncol(exprs(x))
 
 setMethod("show", "smlSet", function(object) {
- cat("snp.matrix-based genotype set:\n")
+ cat("SnpMatrix-based genotype set:\n")
  cat("number of samples: ", nsamp(object), "\n")
  cat("number of chromosomes present: ", length(smList(object)), "\n")
  cat("annotation: ")

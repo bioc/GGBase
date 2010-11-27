@@ -46,7 +46,7 @@ valsml = function(object) {
  if (!(all(allns==allns[1]))) 
     return("varying numbers of rows in elements of smList")
  if (!(all(allns==nexsamp)))
-    return("some snp.matrix have nrows != ncol(exprs(smlSet))")
+    return("some SnpMatrix instances have nrows != ncol(exprs(smlSet))")
 # if ((sl <- length(smList(object))) != (cl <- length(object@chromInds)))
 #    return(paste("length of chromInds vector [", cl, "] not identical to that of smList(object) [",
 #      sl, "]"))
