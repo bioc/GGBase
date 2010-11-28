@@ -21,7 +21,8 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
   if (!missing(j)) {
    # do snp matrices (samples are rows)
     L = smList(x)
-    LL = lapply(L, function(x) x[j,,drop=FALSE] )
+# for snpMatrix2, omit drop spec
+    LL = lapply(L, function(x) x[j,]) #,drop=FALSE] )
     ee = new.env()
     assign("smList", LL, ee)
     x@smlEnv = ee
