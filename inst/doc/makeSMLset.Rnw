@@ -50,9 +50,9 @@ A typical filename is
 genotypes_chrY_YRI_r23_nr.b36_fwd.txt.gz
 \end{verbatim}
 
-\item use snpMatrix read.HapMap.data to obtain the associated snp.matrix
+\item use snpMatrix read.HapMap.data to obtain the associated SnpMatrix
 and support data frame.  We do this for the 24 main chromosome files.
-We save the snp.matrix for chromosome n to C[nn].rda.
+We save the SnpMatrix for chromosome n to C[nn].rda.
 Be careful with the ordering of filenames -- should match desired ordering
 of chromosomes.
 %An example, after saving the reads to .rda files, is
@@ -118,7 +118,7 @@ C1[[2]][1,]
 %5  4030300       K      1 72515
 %\end{verbatim}
 %
-\item \textbf{Create a list of snp.matrix of genotype data:}
+\item \textbf{Create a list of SnpMatrix of genotype data:}
 
 <<domo,eval=FALSE>>=
 ofi = dir(patt="C.*rda")

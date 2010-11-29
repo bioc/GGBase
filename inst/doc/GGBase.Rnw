@@ -52,10 +52,10 @@ integrative genomics experiments could be represented
 by racExSet instances as defined in package GGtools.
 Genotypes were represented as integers.
 
-For Bioconductor 2.2, we have access to the snpMatrix
+For Bioconductor 2.8, we have access to the snpMatrix2
 package of D. Clayton, and we have introduced the
 smlSet class to represent genetics of gene expression
-studies with lists of snp.matrix instances, along with
+studies with lists of SnpMatrix instances, along with
 ordinary representations of expression data.
 
 \section{Primary class structure, and associated methods}
