@@ -47,12 +47,21 @@
 
 Versions of GGtools prior to 2.3.x have a complicated approach
 to SNP location metadata, involving a specially constructed
-SQLite database.  In the current version we will use a structure
-derived from the SNPlocs.Hsapiens.dbSNP.* package.
+SQLite database.  %In the current version we will use a structure
+%derived from the SNPlocs.Hsapiens.dbSNP.* package.
+In versions of GGBase up to 3.11, some SNP location metadata
+support was provided.  In GGBase 3.11 and beyond, users are responsible
+for managing their own location metadata for SNPs and genes.  This
+can be accomplished using the SNPlocs.Hsapiens.* package and other
+annotation resources.  The GGtools cisProxScores function shows
+some of the possibilities.
+
+This vignette is retained as legacy for those who may want to retrieve
+earlier versions of R/Bioconductor to employ formerly supported facilities.
 
 One class and two methods are supported.
 
-<<lkcl>>=
+<<lkcl,eval=FALSE>>=
 getClass("snpLocs")
 data(hsSnpLocs)
 hsSnpLocs
@@ -60,7 +69,7 @@ hsSnpLocs
 
 The chromosome-specific locations are generated reasonably
 efficiently:
-<<lkc>>=
+<<lkc,eval=FALSE>>=
 snpLocs.Hs(chrnum(20), rsid("rs6060535"))
 @
 

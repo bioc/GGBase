@@ -9,11 +9,11 @@
 setClass("snpLocs", representation(locEnv="environment",
   offsets="numeric", organism="character", versions="character"))
 
-setMethod("show", "snpLocs", function(object) {
- cat("snpLocs instance, organism ", object@organism, "\n")
- cat("based on:\n")
- print(object@versions)
-})
+#setMethod("show", "snpLocs", function(object) {
+# cat("snpLocs instance, organism ", object@organism, "\n")
+# cat("based on:\n")
+# print(object@versions)
+#})
 
 # casting: chrnum
 

@@ -9,7 +9,7 @@ exportClasses(
  # primary integrative container
   "smlSet", # "fsmlSet",
  # primary snp metadata container
-  "snpLocs",
+#  "snpLocs",
  # screening result holders
   "gwSnpScreenResult", 
 #"multiGwSnpScreenResult",
@@ -32,5 +32,6 @@ exportMethods( "chrnum", "rsid", "genesym", "[",
     "phenoVar", "plot",
     "plot_EvG2", "combine", "getAlleles", "snps", "coerce", "updateObject")
 
-export("rsid", "snpdepth", "chrnum", "probeId", "snpsNear",
-  "smlSummary", "MAFfilter", "featureFilter", "make_smlSet", "snpLocs.Hsapiens", "GTFfilter")
+export("rsid", "snpdepth", "chrnum", "probeId", #"snpsNear",
+  "smlSummary", "MAFfilter", "featureFilter", "make_smlSet", #"snpLocs.Hsapiens", 
+"GTFfilter")
