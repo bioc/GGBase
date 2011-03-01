@@ -39,18 +39,18 @@ setMethod("show", "gwSnpScreenResult", function(object) {
      object@psid, "]\n")
 })
 
-setClass("multiGwSnpScreenResult", representation(geneset="GeneSet", call="call",
-   sessionInfo="SessionInfo"),
-   contains="list")
-setMethod("show", "cwSnpScreenResult", function(object) {
- cat("cwSnpScreenResult [chr", object@chrnum, "] for gene ", object@gene, " [probe ",
-     object@psid, "]\n")
-})
+#setClass("multiGwSnpScreenResult", representation(geneset="GeneSet", call="call",
+#   sessionInfo="SessionInfo"),
+#   contains="list")
+#setMethod("show", "cwSnpScreenResult", function(object) {
+# cat("cwSnpScreenResult [chr", object@chrnum, "] for gene ", object@gene, " [probe ",
+#     object@psid, "]\n")
+#})
 
 setClassUnion("cnumOrMissing", c("chrnum", "missing"))
 
-setClass("filteredGwSnpScreenResult", contains="gwSnpScreenResult")
-setClass("filteredMultiGwSnpScreenResult", contains="multiGwSnpScreenResult")
+#setClass("filteredGwSnpScreenResult", contains="gwSnpScreenResult")
+#setClass("filteredMultiGwSnpScreenResult", contains="multiGwSnpScreenResult")
 
 
 setMethod("[", "cwSnpScreenResult", function(x, i, j, ..., drop=FALSE) {
@@ -74,23 +74,23 @@ setMethod("[", "cwSnpScreenResult", function(x, i, j, ..., drop=FALSE) {
  x
 })
 
-setMethod("combine", c("multiGwSnpScreenResult",
-   "multiGwSnpScreenResult"), function(x, y, ...) {
-     d = c(x@.Data, y@.Data)
-     e = union(x@geneset, y@geneset)
-     m = match.call()
-     s = new("SessionInfo", sessionInfo())
-     new("multiGwSnpScreenResult", geneset=e, call=m,
-         sessionInfo=s, d)
-})
-
-setMethod("combine", c("filteredMultiGwSnpScreenResult",
-   "filteredMultiGwSnpScreenResult"), function(x, y, ...) {
-     d = c(x@.Data, y@.Data)
-     e = union(x@geneset, y@geneset)
-     m = match.call()
-     s = new("SessionInfo", sessionInfo())
-     new("filteredMultiGwSnpScreenResult", geneset=e, call=m,
-         sessionInfo=s, d)
-})
+#setMethod("combine", c("multiGwSnpScreenResult",
+#   "multiGwSnpScreenResult"), function(x, y, ...) {
+#     d = c(x@.Data, y@.Data)
+#     e = union(x@geneset, y@geneset)
+#     m = match.call()
+#     s = new("SessionInfo", sessionInfo())
+#     new("multiGwSnpScreenResult", geneset=e, call=m,
+#         sessionInfo=s, d)
+#})
+#
+#setMethod("combine", c("filteredMultiGwSnpScreenResult",
+#   "filteredMultiGwSnpScreenResult"), function(x, y, ...) {
+#     d = c(x@.Data, y@.Data)
+#     e = union(x@geneset, y@geneset)
+#     m = match.call()
+#     s = new("SessionInfo", sessionInfo())
+#     new("filteredMultiGwSnpScreenResult", geneset=e, call=m,
+#         sessionInfo=s, d)
+#})
 

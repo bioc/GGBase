@@ -12,7 +12,7 @@ Objects can be created by calls of the form \code{new("multiCisTestResult", ...)
 \section{Slots}{
 	 \describe{
     \item{\code{.Data}:}{Object of class \code{"list"} -- list of
-results of \code{\link[snpMatrix]{snp.rhs.tests}} }
+results of \code{\link[snpStats]{snp.rhs.tests}} }
     \item{\code{conditions}:}{Object of class \code{"list"} -- list
 of runtime conditions encountered }
     \item{\code{call}:}{Object of class \code{"call"} -- for auditing,

@@ -18,7 +18,7 @@
 \alias{snpLocs.Hs,sid,ANY-method}
 
 \title{ SNP location accessor }
-\description{SNP location accessor
+\description{SNP location accessor -- defunct -- use SNPlocs.Hsapiens packages
 }
 \usage{
 snpLocs.Hs(cnum, rsid)
@@ -43,18 +43,12 @@ missing
 }
 %\references{  }
 \author{Vince Carey <stvjc@channing.harvard.edu>}
-%\note{  }
+\note{GGBase does not include SNP location metadata; this must
+be derived from SNPlocs.Hsapiens.* packages  }
 
 
 %\seealso{  }
 
 \examples{
-data(smlSet.example)
-nn21 = colnames(smList(smlSet.example)[["21"]])
-length(nn21)
-ss = snpLocs.Hs(chrnum(21), rsid(nn21))
-dim(ss)
-# notes that the locations available are not completely
-# congruent with those asserted in HapMap data
 }
 \keyword{ models }

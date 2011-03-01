@@ -40,6 +40,34 @@ setMethod("rsid", "numeric", function(x)new("rsid", as.character(x)))
 # GGtools infrastructure from hm2ceu, Mar 31 2008 (c) VJ Carey
 # revised Aug 2008
 
+
+# bump class version to reflect accommodation of new eSet protocolData slot
+setClass("smlSet", contains="eSet", 
+   representation(smlEnv="environment", annotation="character",
+     organism="character"),
+   prototype=prototype(
+       new("VersionedBiobase",
+               versions=c(classVersion("eSet"), smlSet="1.1.2")),
+           phenoData = new("AnnotatedDataFrame",
+             data=data.frame(),
+             varMetadata=data.frame(
+               labelDescription=character(0))),
+	   annotation=character(0),
+	   organism=character(0),
+#	   smlEnv = {e = new.env(); assign("smList", list(), e); e},  # this does not satisfy validity check
+	   smlEnv = {e = new.env(); nl = list(chr1=matrix(), chr2=matrix()); assign("smList", nl, e); e},
+           chromInds = numeric(0)))
+
+setGeneric("smlEnv", function(x) standardGeneric("smlEnv"))
+setMethod("smlEnv", "smlSet", function(x) x@smlEnv)
+setGeneric("smList", function(x) standardGeneric("smList"))
+setMethod("smList", "smlSet", function(x) x@smlEnv$smList)
+
+# drop in Jan 2011
+setMethod("exprs", "smlSet", function(object) {
+  object@assayData$exprs}
+)
+
 valsml = function(object) {
  nexsamp = ncol(exprs(object))
  allns = sapply(smList(object), nrow)
@@ -58,26 +86,7 @@ valsml = function(object) {
  return(TRUE)
 }
 
-# bump class version to reflect accommodation of new eSet protocolData slot
-setClass("smlSet", contains="eSet", 
-   representation(smlEnv="environment", annotation="character",
-     organism="character"),
-   validity=valsml, prototype=prototype(
-       new("VersionedBiobase",
-               versions=c(classVersion("eSet"), smlSet="1.1.2")),
-           phenoData = new("AnnotatedDataFrame",
-             data=data.frame(),
-             varMetadata=data.frame(
-               labelDescription=character(0))),
-	   annotation=character(0),
-	   organism=character(0),
-	   smlEnv = {e = new.env(); assign("smList", list(), e); e},
-           chromInds = numeric(0)))
-
-setGeneric("smlEnv", function(x) standardGeneric("smlEnv"))
-setMethod("smlEnv", "smlSet", function(x) x@smlEnv)
-setGeneric("smList", function(x) standardGeneric("smList"))
-setMethod("smList", "smlSet", function(x) x@smlEnv$smList)
+setValidity("smlSet", valsml)
 
 # more casting
 
@@ -118,3 +127,19 @@ setMethod("show", "multiCisTestResult", function(object) {
 setMethod("updateObject", "smlSet", function(object, ..., verbose=FALSE) {
   make_smlSet(as(object, "ExpressionSet"), smList(object), ...)
 })
+
+#setClass("fsmlSet", contains="smlSet")
+#
+#setAs("smlSet", "fsmlSet", function(from, to) {
+#  z = smList(from)
+#  fns = paste(substitute(from), "_", names(z), ".ff", sep="")
+#  ffreflist = lapply( 1:length(z), function(w)
+#     ff(initdata=z[[w]]@.Data, dim=dim(z[[w]]), vmode="raw", overwrite=TRUE,
+#          dimnames=NULL, filename=fns[w]))
+#  names(ffreflist) = names(z)
+#  smlEnv = {e = new.env(); assign("smList", ffreflist, e); e}
+#  new(to, smlEnv=smlEnv, annotation=from@annotation, organism=from@organism,
+#        assayData=from@assayData, phenoData=from@phenoData, featureData=from@featureData,
+#        experimentData=from@experimentData, protocolData=from@protocolData)
+#})
+

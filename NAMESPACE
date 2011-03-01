@@ -3,27 +3,32 @@ import(Biobase, AnnotationDbi)
 
 importFrom(graphics, plot)
 
-importClassesFrom(GSEABase, GeneSet)
+#importClassesFrom(GSEABase, GeneSet)
 
 exportClasses(
  # primary integrative container
-  "smlSet", 
+  "smlSet", # "fsmlSet",
  # primary snp metadata container
   "snpLocs",
  # screening result holders
-  "gwSnpScreenResult", "multiGwSnpScreenResult",
-  "cwSnpScreenResult", "filteredGwSnpScreenResult",
-   "filteredMultiGwSnpScreenResult", 
+  "gwSnpScreenResult", 
+#"multiGwSnpScreenResult",
+  "cwSnpScreenResult", 
+#"filteredGwSnpScreenResult",
+#   "filteredMultiGwSnpScreenResult", 
  # casting 
   "chrnum", "rsid", "cnumOrMissing", "genesym", "probeId",
    "phenoVar",
-   "filteredMultiGwSnpScreenResult", "snpdepth",
+#   "filteredMultiGwSnpScreenResult", 
+"snpdepth",
  # sessionInfo
    "SessionInfo", "smlSummary", "multiCisTestResult")
 
 exportMethods( "chrnum", "rsid", "genesym", "[",
     "show", "initialize", "smList", "smlEnv", "probeId",
-    "snpLocs.Hs", "exprs", "[", "plot_EvG", "snpNames", "getSnpLocs",
+#    "snpLocs.Hs", 
+    "exprs", "[", "plot_EvG", "snpNames", 
+#"getSnpLocs",
     "phenoVar", "plot",
     "plot_EvG2", "combine", "getAlleles", "snps", "coerce", "updateObject")
 

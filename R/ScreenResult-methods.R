@@ -93,22 +93,22 @@ longnsubset = function (x, y)
 #   plot(x, y=1, noSmooth=noSmooth)
 #})
 
-setMethod("show", "multiGwSnpScreenResult", function(object) {
- cat("multi genome-wide snp screen result:\n")
- cat("gene set used as response:\n")
- show(object@geneset)
- cat("there are", length(object), "results.\n")
- cat("the call was:\n")
- print(object@call)
-})
-setMethod("show", "filteredMultiGwSnpScreenResult", function(object) {
- cat("filtered ")
- callNextMethod()
-})
-setMethod("show", "filteredGwSnpScreenResult", function(object) {
- cat("filtered ")
- callNextMethod()
-})
+#setMethod("show", "multiGwSnpScreenResult", function(object) {
+# cat("multi genome-wide snp screen result:\n")
+# cat("gene set used as response:\n")
+# show(object@geneset)
+# cat("there are", length(object), "results.\n")
+# cat("the call was:\n")
+# print(object@call)
+#})
+#setMethod("show", "filteredMultiGwSnpScreenResult", function(object) {
+# cat("filtered ")
+# callNextMethod()
+#})
+#setMethod("show", "filteredGwSnpScreenResult", function(object) {
+# cat("filtered ")
+# callNextMethod()
+#})
 
 setMethod("plot", c("cwSnpScreenResult", "character"),  # y bound to location package
   function(x, y="SNPlocs.Hsapiens.dbSNP.20090506", noSmooth=FALSE, npts=500, ...) {

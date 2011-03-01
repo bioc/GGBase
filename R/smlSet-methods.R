@@ -12,9 +12,9 @@ setMethod("show", "smlSet", function(object) {
  cat("Phenodata: "); show(phenoData(object))
 })
 
-setMethod("exprs", "smlSet", function(object) {
-  object@assayData$exprs}
-)
+#setMethod("exprs", "smlSet", function(object) {
+#  object@assayData$exprs}
+#)
 
 setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
 # j is strictly for samples

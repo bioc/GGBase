@@ -1,12 +1,13 @@
 snpsNear = function (sym, radius = 1e+05, chrnum, ...) {
  if (is(sym, "GeneSet")) {
-    if (geneIdType(sym)@type == "Annotation") alib = geneIdType(sym)@annotation
+	stop("GeneSet inputs no longer supported")
+#    if (geneIdType(sym)@type == "Annotation") alib = geneIdType(sym)@annotation
 #    else if (geneIdType(sym)@type == "EntrezId") {
 #      alib = "org.Hs.eg.db"
 #      warning("assuming human organism for Entrez Id gene set")
 #    }
-    else stop("only Annotation-type Gene Sets handled at this time")
-    return(sapply( geneIds(sym), function(x) try(snpsNear(probeId(x), radius=radius, annlib=alib))))
+#    else stop("only Annotation-type Gene Sets handled at this time")
+#    return(sapply( geneIds(sym), function(x) try(snpsNear(probeId(x), radius=radius, annlib=alib))))
     }
  else if (is(sym, "genesym") | is(sym, "probeId")) {
     pos = genePosition(sym, ...)

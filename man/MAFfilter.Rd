@@ -28,7 +28,7 @@ numeric upper bound on minor allele frequency for keeping a SNP
 }
 }
 \details{
-uses \code{\link[snpMatrix2]{SnpMatrix-class}} summary method from snpMatrix2
+uses \code{\link[snpStats]{SnpMatrix-class}} summary method from snpStats
 }
 \value{
 revised instance of \code{\link{smlSet-class}}

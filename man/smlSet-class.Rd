@@ -27,11 +27,11 @@
 \alias{smlEnv}
 
 \title{Documentation on
-  S4 class "smlSet" an eSet-derived container for snpMatrix lists,
+  S4 class "smlSet" an eSet-derived container for SnpMatrix lists,
  allowing efficient combination of SNP chip genotyping with microarray
  expression data, and allied classes }
 \description{Documentation on
-  S4 class "smlSet" an eSet-derived container for snpMatrix lists,
+  S4 class "smlSet" an eSet-derived container for SnpMatrix lists,
  allowing efficient combination of SNP chip genotyping with microarray
  expression data, and allied classes }
 \section{Objects from the Class}{
@@ -43,7 +43,7 @@ Objects can be created by calls of the form \code{new("smlSet", assayData, pheno
 	 \describe{
     \item{\code{smlEnv}:}{Object of class \code{"environment"} an environment
 with single key \code{smList} pointing to a list of
-package snpMatrix SnpMatrix instances }
+package snpStats SnpMatrix instances }
     \item{\code{organism}:}{Object of class \code{"character"} informal,
 "Hs" recommended for human }
     \item{\code{assayData}:}{Object of class \code{"AssayData"} intended
@@ -79,7 +79,7 @@ environment holding SnpMatrix entities }
 matrix of expression values }
     \item{snps}{\code{signature(x = "smlSet", chr = "chrnum")}: retrieves the
 raw matrix of genotype values (SnpMatrix instance from
-snpMatrix package }
+snpStats package }
     \item{\code{combine}:}{concatenates expression
 data and forms intersection of SNP sets}
     \item{\code{getAlleles(smlSet, rsid)}:}{returns A/B notations for SNP
