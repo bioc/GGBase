@@ -50,7 +50,7 @@ A typical filename is
 genotypes_chrY_YRI_r23_nr.b36_fwd.txt.gz
 \end{verbatim}
 
-\item use snpMatrix read.HapMap.data to obtain the associated SnpMatrix
+\item use snpStats read.HapMap.data to obtain the associated SnpMatrix
 and support data frame.  We do this for the 24 main chromosome files.
 We save the SnpMatrix for chromosome n to C[nn].rda.
 Be careful with the ordering of filenames -- should match desired ordering
