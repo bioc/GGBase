@@ -9,7 +9,8 @@ create an smlSet instance from components
 create an smlSet instance from components
 }
 \usage{
-make_smlSet(es, sml, organism = "Homo sapiens")
+make_smlSet(es, sml, organism = "Homo sapiens",
+  harmonizeSamples = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,6 +23,10 @@ list of SnpMatrix instances
   \item{organism}{
 string naming organism
 }
+  \item{harmonizeSamples}{
+  logical telling whether to intersect samples from expression
+  and SNP data when sample sets do not coincide
+  }
 }
 \details{
 combines SnpMatrix instances with expression data
