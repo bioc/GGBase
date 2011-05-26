@@ -98,8 +98,11 @@ setMethod("getAlleles", c("smlSet", "rsid"), function (x, rs)
     hits = lapply(allrs, function(z) which(z == rs))
     kpi = sapply(hits, function(z) length(z) > 0)
     if (!(any(kpi))) stop("rs number not found in columns of smlSet")
-    ans = list(chr = names(kpi[kpi]), col = hits[[which(kpi)]])
-    as(smList(x)[[ans$chr]][, ans$col], "character")
+    meta = list(chr = names(kpi[kpi]), col = hits[[which(kpi)]])
+    ans = as(smList(x)[[meta$chr]][, meta$col], "character")
+    if (any(ans == "Uncertain"))
+    ans = as(smList(x)[[meta$chr]][, meta$col], "numeric")
+    ans
 })
 
 
@@ -129,9 +132,16 @@ setMethod("plot_EvG", c("genesym", "rsid", "smlSet"),
   if (length(pid) > 1) warning(paste("multiple probes for", gsym, "using first"))
   pid = pid[1]
   ex = exprs(sms)[pid,]
-  gt = factor(getAlleles(sms, rsid))
-  plot(ex~gt, ylab=gsym, xlab=rsid, ...)
-  points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
+  thealleles = getAlleles(sms, rsid)
+  gt = thealleles
+  if (!is(thealleles[1], "numeric")) gt = factor(thealleles)
+  if (is.factor(gt)) {
+         plot(ex~gt, ylab=gsym, xlab=rsid, ...)
+         points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
+         } else {
+         plot(ex~gt, ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,2), ...)
+       }
+  NULL
 })
 setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
  function(gsym, rsid, sms, ...) {
@@ -144,9 +154,16 @@ setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
 #  if (length(pid) > 1) warning(paste("multiple probes for", gsym, "using first"))
   pid = pid[1]
   ex = exprs(sms)[pid,]
-  gt = factor(getAlleles(sms, rsid))
-  plot(ex~gt, ylab=gsym, xlab=rsid, ...)
-  points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
+  thealleles = getAlleles(sms, rsid)
+  gt = thealleles
+  if (!is(thealleles[1], "numeric")) gt = factor(thealleles)
+  if (is.factor(gt)) {
+         plot(ex~gt, ylab=gsym, xlab=rsid, ...)
+         points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
+         } else {
+         plot(ex~gt, ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,2), ...)
+       }
+  NULL
 })
 
 setMethod("plot_EvG2", c("genesym", "rsid", "rsid", "smlSet"),
@@ -160,9 +177,12 @@ setMethod("plot_EvG2", c("genesym", "rsid", "rsid", "smlSet"),
   if (length(pid) > 1) warning(paste("multiple probes for", gsym, "using first"))
   pid = pid[1]
   ex = exprs(sms)[pid,]
-  gt1 = factor(getAlleles(sms, rsid1))
-  gt2 = factor(getAlleles(sms, rsid2))
-  gtt = factor(paste(as.character(gt1), as.character(gt2)))
+  gt1 = getAlleles(sms, rsid1)
+  gt2 = getAlleles(sms, rsid2)
+  if (is.character(gt1)) gt1 = factor(gt1)
+  if (is.character(gt2)) gt2 = factor(gt2)
+  if (is.numeric(gt1)) gtt = c(gt1,gt2)
+  if (is.factor(gt1)) gtt = factor(paste(as.character(gt1), as.character(gt2)))
   plot(ex~gtt, ylab=gsym, xlab=paste("\n", rsid1, rsid2), ...)
   points(jitter(as.numeric(gtt),.4), ex, col="gray", pch=19)
 })
