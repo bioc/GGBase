@@ -80,7 +80,7 @@ SNPlocs package.
 
 <<doco,eval=FALSE>>=
 humanSNPlocs = list()
-library(SNPlocs.Hsapiens.dbSNP.20071016)
+library(SNPlocs.Hsapiens.dbSNP.20090506)
 if (file.exists("humanSNPlocs.rda")) 
   load("humanSNPlocs.rda") else {
   for (i in c(as.character(1:22), "X", "Y")) {
@@ -121,7 +121,7 @@ for (i in names(humanSNPlocs))
 hsSnpLocs = new("snpLocs", locEnv=el, offsets=offs,
  organism="Hs", versions=c(
    org.Hs.eg.db=getv("org.Hs.eg.db"),
-   SNPlocs.Hsapiens.dbSNP.20071016 = getv("SNPlocs.Hsapiens.dbSNP.20071016")))
+   SNPlocs.Hsapiens.dbSNP.20090506 = getv("SNPlocs.Hsapiens.dbSNP.20090506")))
 @
 
 This object will be saved in GGBase. 
