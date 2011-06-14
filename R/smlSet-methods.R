@@ -141,7 +141,7 @@ setMethod("plot_EvG", c("genesym", "rsid", "smlSet"),
          } else {
          plot(ex~gt, ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,2), ...)
        }
-  NULL
+  invisible(NULL)
 })
 setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
  function(gsym, rsid, sms, ...) {
@@ -163,7 +163,7 @@ setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
          } else {
          plot(ex~gt, ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,2), ...)
        }
-  NULL
+  invisible(NULL)
 })
 
 setMethod("plot_EvG2", c("genesym", "rsid", "rsid", "smlSet"),
