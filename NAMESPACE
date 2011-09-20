@@ -34,4 +34,4 @@ exportMethods( "chrnum", "rsid", "genesym", "[",
 
 export("rsid", "snpdepth", "chrnum", "probeId", #"snpsNear",
   "smlSummary", "MAFfilter", "featureFilter", "make_smlSet", #"snpLocs.Hsapiens", 
-"GTFfilter")
+"GTFfilter", "getSS")
