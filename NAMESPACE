@@ -2,8 +2,6 @@
 import(Biobase, AnnotationDbi)
 
 importFrom(graphics, plot)
-importFrom(genefilter, nsFilter)
-exportMethods(nsFilter)
 
 #importClassesFrom(GSEABase, GeneSet)
 
