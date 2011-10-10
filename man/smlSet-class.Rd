@@ -4,6 +4,7 @@
 \alias{smlSet.example}
 \alias{smlSet-class}
 \alias{smList,smlSet-method}
+\alias{nsFilter,smlSet-method}
 \alias{getAlleles,smlSet,rsid-method}
 \alias{getAlleles}
 \alias{smlEnv,smlSet-method}
@@ -86,9 +87,8 @@ data and forms intersection of SNP sets}
 determined by rsid}
     \item{\code{coerce}:}{extracts exprs, phenoData and annotation and
 constructs ExpressionSet}
-
-
-
+    \item{\code{nsFilter}:}{apply \code{\link[genefilter]{nsFilter}}
+ to expression component and rebind the genotype data after filtering}
    \item{[}{\code{signature(x = "smlSet", i = "ANY", j = "ANY", drop = "ANY")}:
 Quick methods for subsetting elements of smlSets have been provided.  
 
