@@ -40,10 +40,14 @@ function (eset, require.entrez = TRUE, require.GOBP = FALSE,
     var.filter = TRUE, filterByQuantile = TRUE, feature.exclude = "^AFFX",
     ...) {
  ex = as(eset, "ExpressionSet")
- ex = nsFilter(ex, require.entrez, require.GOBP,
+ tmp = nsFilter(ex, require.entrez, require.GOBP,
       require.GOCC, require.GOMF, require.CytoBand,
          remove.dupEntrez, var.func, var.cutoff, var.filter, filterByQuantile,
-        feature.exclude, ...)$eset
- make_smlSet(ex, smList(eset))
+        feature.exclude, ...)
+ ex = tmp$eset
+ ans = make_smlSet(ex, smList(eset))
+ experimentData(ans)@other = c(experimentData(ans)@other,
+   nsfiltinfo = tmp[-1])
+ ans
 })
 
