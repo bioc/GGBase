@@ -1,7 +1,9 @@
 
-import(Biobase, AnnotationDbi)
+import(methods, Biobase, AnnotationDbi)
 
 importFrom(graphics, plot)
+
+importFrom(BiocGenerics, updateObject)
 
 #importClassesFrom(GSEABase, GeneSet)
 
