@@ -40,11 +40,13 @@ function (eset, require.entrez = TRUE, require.GOBP = FALSE,
     var.filter = TRUE, filterByQuantile = TRUE, feature.exclude = "^AFFX",
     ...) {
  ex = as(eset, "ExpressionSet")
+ origfn = featureNames(ex)
  tmp = nsFilter(ex, require.entrez, require.GOBP,
       require.GOCC, require.GOMF, require.CytoBand,
          remove.dupEntrez, var.func, var.cutoff, var.filter, filterByQuantile,
         feature.exclude, ...)
  ex = tmp$eset
+ ex = ex[ intersect(origfn, featureNames(ex)), ] # new defense for require.entrez=FALSE
  ans = make_smlSet(ex, smList(eset))
  experimentData(ans)@other = c(experimentData(ans)@other,
    nsfiltinfo = tmp[-1])

@@ -143,3 +143,24 @@ setMethod("updateObject", "smlSet", function(object, ..., verbose=FALSE) {
 #        experimentData=from@experimentData, protocolData=from@protocolData)
 #})
 
+#setClass("rangedSmlSet", representation(snplocs="GRangesList",
+#    probelocs="GRangesList"), contains="smlSet")
+#
+##setMethod("initialize", "rangedSmlSet", function(.Object, ...) {
+## .Object <- callNextMethod()
+## .Object@snplocs = GRangesList()
+## .Object@probelocs = GRangesList()
+## .Object
+##})
+#
+#setMethod("show", "rangedSmlSet", function(object) {
+# callNextMethod()
+# cat("rangeLists for SNP and probe locations available.\n")
+#})
+# 
+#setGeneric("probeLocs<-", function(object, value)standardGeneric("probeLocs<-"))
+#setMethod("probeLocs<-", c("smlSet", "GRangesList"), function(object, value) {
+#   new("rangedSmlSet", snplocs=GRangesList(), probelocs=GRangesList(),
+#       object) 
+#})
+ 
