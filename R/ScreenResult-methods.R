@@ -48,67 +48,9 @@ genePosition = function (tok, genomeWide=FALSE, eglib="org.Hs.eg.db", annlib=NUL
     return(invisible(NULL))
 }
 
-setMethod("plot", c("cwSnpScreenResult", "missing"),  # y bound to df request
-  function(x, y=1, noSmooth=FALSE, npts=500, ...) {
-   if (missing(y)) y = 1
-   else if (!(y %in% c(1,2))) stop("df arg must be either 1 or 2")
-#   if (is(x@.Data[[1]], "snp.tests.glm"))  # for new approach, snpMatrix2 > 1.1
-#         allpv = p.value(x@.Data[[1]])
-#   else allpv = p.value(x@.Data[[1]]) #, y)
-   allpv = p.value(x@.Data[[1]])
-   rsn = x@.Data[[1]]@snp.names
-   names(allpv) = rsn    # check -- there are redundant aspects of this code
-   kill = which(is.na(allpv))
-   if (length(kill)>0) allpv = allpv[ -kill ]
-   rsn = names(allpv)
-   locstr = snpLocs.Hs(chrnum(x@chrnum), rsid(rsn)) # may not match all
-   availRS = paste("rs", locstr["rsid",], sep="")
-longnsubset = function (x, y) 
-{
-    mm = match(y, names(x))
-    x[mm]
-}
-
-#   allpv = allpv[availRS]
-   allpv = longnsubset(allpv, availRS)
-   loc = locstr["loc",]
-   if (noSmooth) plotf=plot
-     else plotf=smoothScatter
-   if (length(grep("resid", x@testType))>0) main = paste("resid", x@gene)
-   else main=x@gene
-   plotf(loc, -log10(allpv), main=main,
-     xlab=paste("position on chr", x@chrnum),
-     ylab=paste("-log10 p Gaussian LM [", y, "df]", sep=""), pch=19, cex=.8, ...)
-   if (isCis(x)) 
-        axis(3, at=genePosition(x@gene, annlib=x@annotation), col="red", lwd=2, label=" ")
-})
-
-#setMethod("plot", c("cwSnpScreenResult", "missing"),
-#  function(x, y, noSmooth=FALSE, npts=500, ...) {
-#   plot(x, y=1)
-#})
-
-#setMethod("plot", c("cwSnpScreenResult", "logical"),
-#  function(x, y, noSmooth=FALSE, npts=500, ...) {
-#   plot(x, y=1, noSmooth=noSmooth)
-#})
-
-#setMethod("show", "multiGwSnpScreenResult", function(object) {
-# cat("multi genome-wide snp screen result:\n")
-# cat("gene set used as response:\n")
-# show(object@geneset)
-# cat("there are", length(object), "results.\n")
-# cat("the call was:\n")
-# print(object@call)
-#})
-#setMethod("show", "filteredMultiGwSnpScreenResult", function(object) {
-# cat("filtered ")
-# callNextMethod()
-#})
-#setMethod("show", "filteredGwSnpScreenResult", function(object) {
-# cat("filtered ")
-# callNextMethod()
-#})
+setMethod("plot", c("cwSnpScreenResult", "missing"),  # force y bound to location package
+   function(x, y, noSmooth=FALSE, npts=500, ...) plot(x, "SNPlocs.Hsapiens.dbSNP.20090506",
+     noSmooth, npts, ...))
 
 setMethod("plot", c("cwSnpScreenResult", "character"),  # y bound to location package
   function(x, y="SNPlocs.Hsapiens.dbSNP.20090506", noSmooth=FALSE, npts=500, ...) {
@@ -121,6 +63,10 @@ setMethod("plot", c("cwSnpScreenResult", "character"),  # y bound to location pa
    kill = which(is.na(allpv))
    if (length(kill)>0) allpv = allpv[ -kill ]
    rsn = names(allpv)
+   SNY = do.call(":::", list(y, "SEQNAMES"))
+   if (!(x@chrnum %in% SNY))  x@chrnum = chrnum(paste("chr", x@chrnum, sep=""))
+   if (!(x@chrnum %in% SNY))  x@chrnum = chrnum(gsub("chr", "ch", x@chrnum))
+   if (!(x@chrnum %in% SNY))  stop("attempts to harmonize @chrnum of cwSnpScreenResult object with SEQNAMES of y failed")
    loc = snpLocs.Hsapiens(rsn, x@chrnum, y) # may not match all
 #   availRS = paste("rs", locstr["rsid",], sep="")
 longnsubset = function (x, y)

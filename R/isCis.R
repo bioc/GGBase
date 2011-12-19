@@ -13,6 +13,7 @@ isCis = function(x) {
  if (!is(x, "cwSnpScreenResult")) stop("only applies to cwSnpScreenResult")
  require(x@annotation, character.only=TRUE, quietly=TRUE)
  anm = gsub(".db$", "", x@annotation)
- ploc = lookUp(x@psid, anm, "CHR")[[1]]
- ploc == as.character(x@chrnum)
+ ploc = get(x@psid, get(paste(anm, "CHR", sep="")))
+ (ploc == as.character(x@chrnum) || paste("chr", x@chrnum, sep="") == ploc ||
+    gsub("chr", "", x@chrnum) == ploc )
 }
