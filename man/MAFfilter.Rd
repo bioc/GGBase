@@ -1,58 +1,67 @@
 \name{MAFfilter}
-\Rdversion{1.1}
 \alias{MAFfilter}
 \alias{GTFfilter}
+\alias{dropMonomorphies}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-restrict SNP in an smlSet to range of minor allele frequencies (MAF) or genotype
-frequencies (GTF)
+Filter genotype contents of an smlSet according to
+certain SNP allele frequency features.
 }
 \description{
-restrict SNP in an smlSet to range of minor allele frequencies (MAF) or genotype
-frequencies
+Filter genotype contents of an smlSet according to
+certain SNP allele frequency features.
 }
 \usage{
 MAFfilter(x, lower = 0, upper = 1)
+
 GTFfilter(x, lower = 0)
+
+dropMonomorphies(sms)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-smlSet instance
+\code{\link{smlSet-class}} instance
+}
+  \item{sms}{
+\code{\link{smlSet-class}} instance
 }
   \item{lower}{
-numeric lower bound on minor allele frequency or genotype frequency for keeping a SNP
+lower bound on MAF or GTF to allow retention of associated locus
 }
   \item{upper}{
-numeric upper bound on minor allele frequency for keeping a SNP
+upper bound on MAF or GTF to allow retention of associated locus
 }
 }
 \details{
-uses \code{\link[snpStats]{SnpMatrix-class}} summary method from snpStats
+uses \code{\link[snpStats]{col.summary}} to compute MAF or GTF.  
+\code{dropMonomorphies} also uses col.summary.
 }
 \value{
-revised instance of \code{\link{smlSet-class}}
+\code{\link{smlSet-class}} instance
 }
-
 %\references{
-%%% ~put references to the literature/web site here ~
+%% ~put references to the literature/web site here ~
 %}
 \author{
 VJ Carey <stvjc@channing.harvard.edu>
 }
 %\note{
-%%%  ~~further notes~~
+%%  ~~further notes~~
 %}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 %\seealso{
-%%% ~~objects to See Also as \code{\link{help}}, ~~~
+%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-data(smlSet.example)
-sapply(smList(MAFfilter(smlSet.example, lower=.1)), dim)
-sapply(smList(GTFfilter(smlSet.example, lower=.1)), dim)
+if (file.exists(system.file("parts/20.rda", package="GGtools"))) {
+ c20 = getSS("GGtools", "20")
+ c20
+ c20f = MAFfilter(c20, lower=.05)
+ c20f
+ }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

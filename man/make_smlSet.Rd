@@ -1,47 +1,64 @@
 \name{make_smlSet}
-\Rdversion{1.1}
 \alias{make_smlSet}
+\alias{getSS}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-create an smlSet instance from components
+construct an smlSet instance from existing resources
 }
 \description{
-create an smlSet instance from components
+construct an smlSet instance from existing resources, either
+using ExpressionSet and SnpMatrix instances, or a suitably
+structured package
 }
 \usage{
-make_smlSet(es, sml, organism = "Homo sapiens",
-  harmonizeSamples = FALSE)
+make_smlSet(es, sml, organism = "Homo sapiens", harmonizeSamples = FALSE)
+
+getSS(packname, chrs, renameChrs, probesToKeep=NULL, wrapperEndo=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{es}{
-ExpressionSet instance
+instance of \code{\link[Biobase]{ExpressionSet-class}}
 }
   \item{sml}{
-list of SnpMatrix instances
+named list of \code{\link[snpStats]{SnpMatrix-class}} instances
 }
   \item{organism}{
-string naming organism
+conventional token for species
 }
   \item{harmonizeSamples}{
-  logical telling whether to intersect samples from expression
-  and SNP data when sample sets do not coincide
-  }
+logical indicating whether steps should be taken to be sure that
+the components represent identical sets of samples.  can be time
+consuming so defaults to FALSE, in which case the user must be sure
+that the genotype and expression components are compatible in terms
+of sample content
+}
+  \item{packname}{string naming the installed package from
+which expression and genotype data will be acquired}
+  \item{chrs}{character vector naming the prefixes of genotype files
+to be used in the resulting smlSet instance; see notes below}
+  \item{renameChrs}{character vector of same length as \code{chrs} specifying
+one-to-one renaming operation for genotype components in smlSet}
+  \item{probesToKeep}{character vector identifying probes to be retained
+in the constructed smlSet}
+  \item{wrapperEndo}{function that accepts and returns an smlSet instance,
+allowing any sort of transformation of contents acquired with \code{getSS}}
 }
 \details{
-combines SnpMatrix instances with expression data
+Packages that work with \code{getSS} can be created out of existing
+\code{smlSet} instances using \code{\link{externalize}}.
 }
 \value{
-instance of smlSet class
+Instance of \code{\link{smlSet-class}}.
 }
 %\references{
-%%% ~put references to the literature/web site here ~
+%% ~put references to the literature/web site here ~
 %}
 \author{
 VJ Carey <stvjc@channing.harvard.edu>
 }
 %\note{
-%%%  ~~further notes~~
+%%  ~~further notes~~
 %}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -50,13 +67,10 @@ VJ Carey <stvjc@channing.harvard.edu>
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-data(smlSet.example) # here we just show the mechanics from a working smlSet
-es = as(smlSet.example, "ExpressionSet")
-sl = smList(smlSet.example)
-mm = make_smlSet(es, sl)
-validObject(mm)
-mm
+if ("GGtools" \%in\% installed.packages()[,1]) {
+ s20 = getSS("GGtools", "20", renameChrs="chr20")
+ s20
+ make_smlSet( as(s20, "ExpressionSet"), smList(s20) )
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+}
 \keyword{ models }

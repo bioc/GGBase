@@ -1,148 +1,98 @@
 \name{smlSet-class}
+\Rdversion{1.1}
 \docType{class}
-\alias{smlSet}
-\alias{smlSet.example}
 \alias{smlSet-class}
-\alias{smList,smlSet-method}
-\alias{nsFilter,smlSet-method}
-\alias{getAlleles,smlSet,rsid-method}
-\alias{getAlleles}
-\alias{smlEnv,smlSet-method}
-\alias{[,SnpMatrix,ANY,rsid,ANY-method}
 \alias{[,smlSet,ANY,ANY,ANY-method}
-\alias{[,smlSet-method}
-\alias{exprs,smlSet-method}
-\alias{updateObject,smlSet-method}
-\alias{snps}
-\alias{snps,smlSet,chrnum-method}
-\alias{show,smlSet-method}
-\alias{coerce,smlSet,ExpressionSet-method}
 \alias{combine,smlSet,smlSet-method}
-\alias{snpNames}
-\alias{snpNames,smlSet,chrnum-method}
-\alias{snpNames,smlSet,missing-method}
-%Undocumented code objects:
-
-
+\alias{exprs,smlSet-method}
+\alias{nsFilter,smlSet-method}
+\alias{smList,smlSet-method}
 \alias{smList}
-\alias{smlEnv}
+\alias{permEx,smlSet-method}
+\alias{permEx}
 
-\title{Documentation on
-  S4 class "smlSet" an eSet-derived container for SnpMatrix lists,
- allowing efficient combination of SNP chip genotyping with microarray
- expression data, and allied classes }
-\description{Documentation on
-  S4 class "smlSet" an eSet-derived container for SnpMatrix lists,
- allowing efficient combination of SNP chip genotyping with microarray
- expression data, and allied classes }
+\title{Class \code{"smlSet"}}
+\description{
+Integrative container for expression plus genotype data.  Genotypes
+are stored in an efficient format defined in the snpStats package.
+}
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("smlSet", assayData, phenoData, featureData, experimentData, annotation, ...)}.
- These objects respond to interrogation on samples, expression values,
-   SNP values, and other metadata.
+Objects can be created by calls of the form \code{new("smlSet", assayData, phenoData, featureData, experimentData, annotation, protocolData, ...)}.
+The \code{make\_smlSet} function can also be used
+to build smlSet instances.
 }
 \section{Slots}{
-	 \describe{
-    \item{\code{smlEnv}:}{Object of class \code{"environment"} an environment
-with single key \code{smList} pointing to a list of
-package snpStats SnpMatrix instances }
-    \item{\code{organism}:}{Object of class \code{"character"} informal,
-"Hs" recommended for human }
-    \item{\code{assayData}:}{Object of class \code{"AssayData"} intended
-to hold expression data coordinated with the smlEnv data }
-    \item{\code{phenoData}:}{Object of class \code{"AnnotatedDataFrame"} 
-   standard sample-level data container from eSet design }
-    \item{\code{featureData}:}{Object of class \code{"AnnotatedDataFrame"} 
- standard feature-level metadata container, implied usage is for documenting
-the expresion data elements }
-    \item{\code{experimentData}:}{Object of class \code{"MIAME"} standard
-metadata container from Biobase eSet design }
-    \item{\code{annotation}:}{Object of class \code{"character"} vector
-giving the Bioconductor annotation package
-(.db type) for decoding expression feature identifiers. }
-    \item{\code{.__classVersion__}:}{Object of class \code{"Versions"} class
-version tracking metadata }
+  \describe{
+    \item{\code{smlEnv}:}{Object of class \code{"environment"} that has
+a key \code{smList} element, to which a list of
+\code{\link[snpStats]{SnpMatrix-class}} instances is bound.}
+    \item{\code{annotation}:}{Object of class \code{"character"}, describes
+featureNames component in terms of the name of the
+annotation package that can be used to decode expression probe names. }
+    \item{\code{organism}:}{Object of class \code{"character"}, a conventional
+string. }
+    \item{\code{assayData}:}{Object of class \code{"AssayData"},
+manages the expression data.  See \code{\link[Biobase]{AssayData-class}}.  }
+    \item{\code{phenoData}:}{Object of class \code{"AnnotatedDataFrame"} ,
+manages sample level data. See \code{\link[Biobase]{AnnotatedDataFrame-class}}.}
+    \item{\code{featureData}:}{Object of class \code{"AnnotatedDataFrame"},
+manages metadata on expression probes.  }
+    \item{\code{experimentData}:}{Object of class \code{"MIAxE"}, manages
+metadata on experiment as a whole.  See \code{\link[Biobase]{MIAxE-class}}.  }
+    \item{\code{protocolData}:}{Object of class \code{"AnnotatedDataFrame"},
+additional storage for experimental protocol description.
+See \code{\link[Biobase]{eSet-class}}.  }
+    \item{\code{.__classVersion__}:}{Object of class \code{"Versions"};
+internal management of class version.  }
   }
 }
 \section{Extends}{
-Class \code{\link[Biobase:class.eSet]{eSet}}, directly.
-Class \code{\link[Biobase:class.VersionedBiobase]{VersionedBiobase}}, 
-by class "eSet", distance 2.
-Class \code{\link[Biobase:class.Versioned]{Versioned}}, by class "eSet", 
-distance 3.
+Class \code{"\linkS4class{eSet}"}, directly.
+Class \code{"\linkS4class{VersionedBiobase}"}, by class "eSet", distance 2.
+Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 }
 \section{Methods}{
   \describe{
-    \item{smList}{\code{signature(x = "smlSet")}: retrieves the
-actual list of SnpMatrix entities }
-    \item{smlEnv}{\code{signature(x = "smlSet")}: retrieves the
-environment holding SnpMatrix entities }
-    \item{exprs}{\code{signature(x = "smlSet")}: retrieves the
-matrix of expression values }
-    \item{snps}{\code{signature(x = "smlSet", chr = "chrnum")}: retrieves the
-raw matrix of genotype values (SnpMatrix instance from
-snpStats package }
-    \item{\code{combine}:}{concatenates expression
-data and forms intersection of SNP sets}
-    \item{\code{getAlleles(smlSet, rsid)}:}{returns A/B notations for SNP
-determined by rsid}
-    \item{\code{coerce}:}{extracts exprs, phenoData and annotation and
-constructs ExpressionSet}
-    \item{\code{nsFilter}:}{apply \code{\link[genefilter]{nsFilter}}
- to expression component and rebind the genotype data after filtering}
-   \item{[}{\code{signature(x = "smlSet", i = "ANY", j = "ANY", drop = "ANY")}:
-Quick methods for subsetting elements of smlSets have been provided.  
-
-If X is an \code{smlSet} instance and G is a vector of class \code{\link{probeId-class}},
-then \code{X[G,]} will reduce the expression data to the probes specified
-in \code{G}.
-
-If X is an \code{smlSet} instance and G is a vector of class \code{\link{chrnum-class}},
-then \code{X[G,]} will reduce the SNP genotype data to the SNPs resident
-on chromosomes enumerated
-in \code{G}.
-
-If X is an \code{smlSet} instance and G is a vector of class \code{\link{rsid-class}},
-then \code{X[G,]} will reduce the SNP genotype data to the SNPs enumerated
-in the dbSNP id 
-in \code{G}.
- }
+    \item{[}{\code{signature(x = "smlSet", i = "ANY", j = "ANY", drop = "ANY")}: 
+will restrict the content of the smlSet instance according to features
+of the arguments supplied.  If \code{x} is numeric or a \code{\link{probeId-class}},
+the expression content will be restricted.  If \code{y} is numeric or
+character, samples will be restricted accordingly. }
+    \item{combine}{\code{signature(x = "smlSet", y = "smlSet")}: This method
+attempts to amalgamate two smlSet instances in the appropriate way --
+assuming that samples are disjoint. }
+    \item{nsFilter}{\code{signature(eset = "smlSet")}: executes genefilter's
+method (see \code{\link[genefilter]{nsFilter,ExpressionSet-method}}) on the
+expression content, and then propagates the additional genotype and
+sample level content unchanged. }
+    \item{smList}{\code{signature(x = "smlSet")}: retrieves the list
+of SnpMatrix instances defining the genotype content. }
+    \item{exprs}{\code{signature(x = "smlSet")}: retrieves the matrix
+of expression values }
+    \item{permEx}{\code{signature(sms = "smlSet")}: uses \code{sample()}
+to generate a permutation of sample indices so that expression data
+are permuted against genotype data, but original unpermuted sample
+identifiers are preserved; this is necessitated by the rematching
+behavior of \code{\link[snpStats]{snp.rhs.tests}}}.
+	 }
 }
-
-
+%\references{
+%%  ~~put references to the literature/web site here~~
+%}
+\author{
+VJ Carey <stvjc@channing.harvard.edu>
 }
-%\references{ ~put references to the literature/web site here ~ }
+%\note{
+%%  ~~further notes~~
+%}
 
-\author{ VJ Carey <stvjc@channing.harvard.edu> }
-\note{ We have included a \code{[} method for SnpMatrix instances
-that accepts an rsid instance as a column selector. }
+%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-% ~Make other sections like Warning with \section{Warning }{....} ~
-%
-\seealso{
-GGtools package makes extensive use of these classes and methods.
-}
+%\seealso{
+%%  ~~objects to See Also as \code{\link{~~fun~~}}, ~~~
+%%  ~~or \code{\linkS4class{CLASSNAME}} for links to other classes ~~~
+%}
 \examples{
 showClass("smlSet")
-data(smlSet.example)
-smlSet.example
-validObject(smlSet.example)
-# workout on expression components
-dim(exprs(smlSet.example))
-fn = featureNames(smlSet.example)[1:10]
-fn
-ss2 = smlSet.example[ probeId(fn), ] # restrict exprs to set of probes
-dim(exprs(ss2))
-# workout on SNP components
-smList(smlSet.example)
-dim(smList(ss2)[[1]])
-ss2[ chrnum(21), ]  # trivial restriction of SNP to a chromosome
-sn = colnames(smList(ss2)[[1]])[1:20]  # get some dbSNP ids
-ss3 = ss2[ rsid(sn), ]   # subset the snps
-dim(smList(ss3)[[1]])
-dim(smList(ss3)[["21"]]) # check names
-ss3
-as(snps(ss3, chrnum(21)), "character")[1:5,1:5] # generic codes
-as(snps(ss3, chrnum(21)), "numeric")[1:5,1:5]  # number copies of B
-as(snps(ss3, chrnum(21)), "matrix")[1:5,1:5]  # raw
 }
 \keyword{classes}
