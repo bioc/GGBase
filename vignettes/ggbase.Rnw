@@ -1,0 +1,120 @@
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+
+%\VignetteIndexEntry{GGBase -- infrastructure for GGtools, genetics of gene expression}
+%\VignetteDepends{GGBase}
+%\VignetteKeywords{genetics of expression, infrastructure}
+%\VignettePackage{GGBase}
+
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+
+\title{GGBase: infrastructure for genetics of gene expression}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+The GGBase package defines infrastructure for analysis of data
+on the genetics of gene expression.  This document is primarily
+of concern to developers; for information on conducting analyses
+in genetics of expression, please see the vignette for the GGtools package.
+
+\section{Primary class structure, and associated methods}
+
+\texttt{smlSet} is used to denote ``SNP matrix list'' integrative
+container for expression plus genotype data.  The \texttt{SnpMatrix}
+class is defined in Clayton's \textit{snpStats} package.
+<<lkc>>=
+library(GGBase)
+getClass("smlSet")
+showMethods(class="smlSet", where="package:GGBase")
+@
+Genotype data are stored in a list in the \texttt{smlEnv} environment
+to diminish copying as functions are called on the \texttt{smlSet} instance.
+
+\section{Example data structure}
+
+Expression data were published by the Wellcome Trust GENEVAR project
+in 2007.  Genotype data are from HapMap phase II.
+<<lkd>>=
+if ("GGtools" %in% installed.packages()[,1]) {
+ s20 = getSS("GGtools", "20")
+ s20
+}
+@
+
+\section{Visualizing a specific gene-SNP relationship}
+
+The SNP rs6060535 was reported as an eQTL for
+CPNE1 by Cheung et al in a Nature paper of 2005.
+<<lkf,fig=TRUE>>=
+if (exists("s20")) {
+ plot_EvG(genesym("CPNE1"), rsid("rs6060535"), s20)
+}
+@
+
+\section{Genotype representations}
+
+The \texttt{SnpMatrix} class of the \textit{snpStats} package
+is used to represent genotypes.  Imputed genotypes and their uncertainties
+can be represented in this scheme, but the example does not depict this.
+
+<<lkgt,keep.source=TRUE>>=
+if (exists("s20")) {
+# raw bytes
+ as(smList(s20)[[1]], "matrix")[1:5,1:5]
+# generic calls
+ as(smList(s20)[[1]], "character")[1:5,1:5]
+# risk allele (alphabetically later nucleotide) counts
+ as(smList(s20)[[1]], "numeric")[1:5,1:5]
+}
+@
+
+\section{Reducing memory footprint of integrative data structures}
+
+When millions of genotypes are recorded, it can be cumbersome to
+work with all simultaneously in memory, and it is seldom scientifically
+relevant to do so.  Thus a packaging protocol has been established
+in conjunction with the \texttt{getSS} function to allow chromosome-at-a-time
+loading of genotype data in conjunction with expression data.
+
+To deploy the packaging protocol, use the \texttt{externalize} function on
+a ``one-time'' full smlSet representation of the data, or mimic the behavior
+of this function by creating a new package folder structure and populating the
+inst/parts with rda files representing a partition (usually by chromosome)
+of the genotype SnpMatrix instances.
+
+\end{document}
