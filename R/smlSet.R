@@ -54,6 +54,18 @@ setMethod("show", "smlSet", function(object) {
  cat("Phenodata: "); show(phenoData(object))
 })
 
+sym2pid = function(sms, sym) {
+#
+# should deprecate this whole concept!
+#
+  if (!is(sym, "genesym")) stop("sym2pid invoked without genesym instance")
+  an = sms@annotation
+  require(an, character.only=TRUE, quietly=TRUE)
+  rmap = revmap(get(paste(gsub(".db$", "", an), "SYMBOL", sep="")))
+  pid = get(sym, rmap)
+  if (length(pid) > 1) {warning("multiple probes for this gene; taking first")}
+  pid[1]
+}
 
 setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
 # j is strictly for samples
