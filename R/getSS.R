@@ -4,8 +4,8 @@ getSS = function( packname, chrs, renameChrs=NULL, probesToKeep=NULL,
  if (!is.null(renameChrs) && (length(chrs) != length(renameChrs)))
    stop("renameChrs must have same length as chrs in call to getSS")
  #require(packname, character.only=TRUE)
- if (length(grep(packname, installed.packages()[,1])) < 1) stop(
-		paste(packname, "not available."))
+ if (is.na(match(packname, installed.packages()[,1]))) stop(
+		paste(packname, "not installed."))
  ex = get(load(system.file(package=packname, "data/eset.rda")))
  if (!is.null(probesToKeep)) ex = ex[probesToKeep,]
  partsfol = system.file("parts", package=packname)
