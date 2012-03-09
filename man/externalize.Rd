@@ -1,5 +1,6 @@
 \name{externalize}
 \alias{externalize}
+\alias{allsnps}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 create a package with a decomposed smlSet instance from
@@ -14,6 +15,8 @@ a unified smlSet instance, to reduce memory footprints
 externalize(smlSet, packname, 
    author = "Replace Me <auth@a.b.com>", 
    maintainer = "Replace Me <repl@a.b.com>")
+
+allsnps(packname)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -48,9 +51,9 @@ creates folder structure and metadata for an installable R package
 \author{
 VJ Carey <stvjc@channing.harvard.edu>
 }
-%\note{
-%%  ~~further notes~~
-%}
+\note{
+allsnps() gives the list of vectors of snpnames in use in the package
+}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
