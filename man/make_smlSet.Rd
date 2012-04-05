@@ -13,7 +13,8 @@ structured package
 \usage{
 make_smlSet(es, sml, organism = "Homo sapiens", harmonizeSamples = FALSE)
 
-getSS(packname, chrs, renameChrs, probesToKeep=NULL, wrapperEndo=NULL)
+getSS(packname, chrs, renameChrs, probesToKeep=NULL, exFilter=function(x)x,
+   wrapperEndo=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -40,9 +41,12 @@ to be used in the resulting smlSet instance; see notes below}
   \item{renameChrs}{character vector of same length as \code{chrs} specifying
 one-to-one renaming operation for genotype components in smlSet}
   \item{probesToKeep}{character vector identifying probes to be retained
-in the constructed smlSet}
+in the constructed smlSet -- to be deprecated in favor of \code{exFilter}}
+  \item{exFilter}{function that should accept and return \code{ExpressionSet},
+will be executed just after \code{probesToKeep} filter if present}
   \item{wrapperEndo}{function that accepts and returns an smlSet instance,
-allowing any sort of transformation of contents acquired with \code{getSS}}
+allowing any sort of transformation of contents acquired with \code{getSS},
+executed after all assembly and filtering completed.}
 }
 \details{
 Packages that work with \code{getSS} can be created out of existing
