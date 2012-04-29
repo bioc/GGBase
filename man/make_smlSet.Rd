@@ -14,7 +14,7 @@ structured package
 make_smlSet(es, sml, organism = "Homo sapiens", harmonizeSamples = FALSE)
 
 getSS(packname, chrs, renameChrs, probesToKeep=NULL, exFilter=function(x)x,
-   wrapperEndo=NULL)
+   wrapperEndo=NULL, checkValid=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -47,6 +47,8 @@ will be executed just after \code{probesToKeep} filter if present}
   \item{wrapperEndo}{function that accepts and returns an smlSet instance,
 allowing any sort of transformation of contents acquired with \code{getSS},
 executed after all assembly and filtering completed.}
+ \item{checkValid}{logical, if TRUE, function will fail if
+   created smlSet instance does not pass validObject()}
 }
 \details{
 Packages that work with \code{getSS} can be created out of existing
