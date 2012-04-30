@@ -143,6 +143,9 @@ setMethod("[", "smlSet", function (x, i, j, ..., drop = FALSE) {
 setMethod("combine", c("smlSet", "smlSet"), function(x, y, ...) {
  sx = smList(x)
  sy = smList(y)
+ prodx = protocolData(x)
+ prody = protocolData(y)
+ prodxy = combine(prodx, prody)
  rsx = colnames(sx[[1]])
  rsy = colnames(sy[[1]])
  comm = intersect(rsx, rsy)
@@ -166,6 +169,7 @@ setMethod("combine", c("smlSet", "smlSet"), function(x, y, ...) {
  pdat = rbind(pdx[,cn,drop=FALSE], pdy[,cn,drop=FALSE])
  pd = new("AnnotatedDataFrame", data=pdat)
  phenoData(cx) = pd
+ protocolData(cx) = prodxy
  cx
 })
 
