@@ -32,7 +32,7 @@ MAFfilter = function(x, lower=0, upper=1) {
  sml = smList(x)
  for (i in 1:length(mafs))
   {
-  curok = which(mafs[[i]] >= lower & mafs[[i]] <= upper)
+  curok = which(mafs[[i]] > lower & mafs[[i]] <= upper)
   if (length(curok) == 0) stop("limits eliminate all SNP on a chromosome, cannot proceed")
   kprs = allrs[[i]][curok]
   if (!all(allrs[[i]] %in% kprs))
