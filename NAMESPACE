@@ -61,6 +61,6 @@ exportMethods(genesym, rsid, probeId, plot_EvG, permEx)
 export(getSS, make_smlSet, combine, dropMonomorphies,
  nsFilter, MAFfilter, GTFfilter, clipPCs, regressOut, combine,
  smList, exprs, externalize, plot_EvG, genesym, rsid, probeId,
- permEx, allsnps)
+ permEx, allsnps, featureNames, featureData)
 
 exportClasses(smlSet, probeId, rsid)
