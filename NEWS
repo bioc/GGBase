@@ -1,8 +1,8 @@
-CHANGES IN GGBase 3.19.6
+
+CHANGES IN GGBase 3.20.0
 ------------------------
 
-USER-VISIBLE CHANGES
-   o MAFfilter now treats lower, upper as a left-open interval, i.e.,
-retains x if lower < x <= upper; previously was closed at both ends
+   o  MAFfilter now treats lower, upper as a left-open interval, i.e.,
+      retains x if lower < x <= upper; previously was closed at both ends
 
 
