@@ -22,7 +22,7 @@ importFrom(Biobase, assayDataNew, assayData, annotation)
 
 importFrom(graphics, points)
 
-importFrom(methods, "@<-", as, callNextMethod, is, new, validObject)
+importFrom(methods, as, callNextMethod, is, new, validObject)
 
 importFrom(snpStats, col.summary)
 
