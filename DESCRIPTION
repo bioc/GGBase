@@ -10,7 +10,7 @@ Imports: limma, genefilter, Biobase, BiocGenerics,
 Maintainer: VJ Carey <stvjc@channing.harvard.edu>
 License: Artistic-2.0
 LazyLoad: yes
-BiocViews: Genetics, Infrastructure
+biocViews: Genetics, Infrastructure
 Collate: oldcode.R casting.R smlSet.R filters.R       plot_EvG.R
 	externalize.R   getSS.R make_smlSet.R permEx.R
 
