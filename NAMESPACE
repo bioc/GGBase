@@ -33,7 +33,7 @@ importFrom(stats, IQR, model.matrix)
 ##
 
 importFrom(Biobase, classVersion)
-importMethodsFrom(AnnotationDbi, get)
+importMethodsFrom(AnnotationDbi, get, revmap)
 importClassesFrom(Biobase, 
 	Versioned, VersionedBiobase)
 
@@ -45,3 +45,5 @@ export(getSS, make_smlSet, combine, dropMonomorphies,
  permEx, allsnps, featureNames, featureData)
 
 exportClasses(smlSet, probeId, rsid)
+
+importFrom(digest, digest)

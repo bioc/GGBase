@@ -42,7 +42,8 @@ setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
          plot(ex~gt, ylab=gsym, xlab=rsid, ...)
          points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
          } else {
-         plot(ex~gt, ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,2), ...)
+         plot(ex~cut(gt, c(-.1, .5, 1.5, 2.1)), ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,2), ...)
+         points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
        }
   invisible(NULL)
 })

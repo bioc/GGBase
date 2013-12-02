@@ -152,7 +152,7 @@ setMethod("combine", c("smlSet", "smlSet"), function(x, y, ...) {
  sx = lapply(sx, function(x) x[, comm])
  sy = lapply(sy, function(x) x[, comm])
  fulls = list()
- for (i in 1:length(sx)) fulls[[i]] = snpStats::rbind2(sx[[i]], sy[[i]])
+ for (i in 1:length(sx)) fulls[[i]] = rbind2(sx[[i]], sy[[i]])
  names(fulls) = names(sx)
  ex = cbind(exprs(x), exprs(y))
  nad = assayDataNew("lockedEnvironment", exprs=ex)

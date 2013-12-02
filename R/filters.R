@@ -115,3 +115,30 @@ regressOut = function(sms, rhs, ...) {
  sms
 }
 
+dropDupSNPs = function(sms, use.digest=TRUE, ...) {
+ #require(digest)
+ insml = smList(sms)
+ if (length(insml)>1) stop("sms must have only one chromosome")
+ sm = insml[[1]]
+ if (use.digest) {
+   cat("digesting...")
+   dd = apply(sm@.Data,2,digest)
+   }
+ else {
+   cat("coercing...")
+   cgt = as(sm, "character")
+   cat("pasting...")
+   dd = apply(cgt,2,function(x)paste(x, collapse=":"))
+   }
+ cat("done.\n")
+ dup = duplicated(dd)
+ if (!any(dup)) return(sms)
+ sm = sm[,-which(dup)]
+ insml[[1]] = sm
+ ne = new.env()
+ assign("smList", insml, ne)
+ sms@smlEnv = ne
+ sms
+}
+ 
+ 

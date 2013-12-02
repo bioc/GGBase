@@ -12,7 +12,7 @@
  nsamp = ncol(ex)
  pinds = sample(1:nsamp, size=nsamp, replace=FALSE)
  ini = colnames(ex)
- pex = ex[,pinds]
+ pex = ex[,pinds,drop=FALSE]
  colnames(pex) = ini  # this ensures that sample names are in the
                       # original order
  sms@assayData = assayDataNew("lockedEnvironment", exprs=pex)
