@@ -26,14 +26,14 @@ setMethod("plot_EvG", c("genesym", "rsid", "smlSet"),
 })
 setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
  function(gsym, rsid, sms, ...) {
-#  an = sms@annotation
-#  require(an, character.only=TRUE, quietly=TRUE)
-#  rmap = revmap(get(paste(gsub(".db$", "", an), "SYMBOL", sep="")))
-  pid = gsym # get(gsym, rmap)
+  pid = gsym
+  an = sms@annotation
+  require(an, character.only=TRUE, quietly=TRUE)
+  themap = get(paste(gsub(".db$", "", an), "SYMBOL", sep=""))
+  gsym = get(pid, themap)[1]
 #  if (length(pid) == 0) stop(paste("can't resolve", gsym, "in",
 #    an))
 #  if (length(pid) > 1) warning(paste("multiple probes for", gsym, "using first"))
-  pid = pid[1]
   ex = exprs(sms)[pid,]
   thealleles = getAlleles(sms, rsid)
   gt = thealleles

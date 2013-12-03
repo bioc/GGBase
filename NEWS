@@ -1,4 +1,10 @@
 
+CHANGES IN GGBase 3.25.1
+------------------------
+
+   o  plot_EvG will, for probeId() first argument, attempt to translate to
+      gene symbol for y axis labeling
+
 CHANGES IN GGBase 3.20.0
 ------------------------
 
