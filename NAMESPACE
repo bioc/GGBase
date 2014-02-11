@@ -18,7 +18,7 @@ importMethodsFrom(Matrix, diag, print, t, which)
 
 importMethodsFrom(methods, coerce, show)
 
-importFrom(Biobase, assayDataNew, assayData, annotation)
+importFrom(Biobase, assayDataNew, assayData, annotation, rowMin)
 
 importFrom(graphics, points)
 

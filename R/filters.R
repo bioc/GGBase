@@ -23,7 +23,7 @@ dropMonomorphies = function(sms) {
  sms
 }
 
-MAFfilter = function(x, lower=0, upper=1) {
+MAFfilter.legacy = function(x, lower=0, upper=1) {
  if (!(is(x, "smlSet"))) stop("works only for smlSet instances")
  if (lower <= 0 & upper >= 1) return(x)
  ss = smlSummary(x)
@@ -44,7 +44,30 @@ MAFfilter = function(x, lower=0, upper=1) {
  x
 }
 
-GTFfilter = function(x, lower=0) {
+MAFfilter = function (x, lower = 0, upper = 1)
+{
+    if (!(is(x, "smlSet")))
+        stop("works only for smlSet instances")
+    if (lower <= 0 & upper >= 1)
+        return(x)
+    sml <- x@smlEnv$smList
+    maf = snpStats::col.summary(sml[[1]])[,"MAF",drop=FALSE]
+    allrs = rownames(maf)
+    curok = which(maf > lower & maf <= upper)
+    rm(maf)
+    if (length(curok) == 0)
+            stop("limits eliminate all SNP on a chromosome, cannot proceed")
+    if (length(curok) != length(allrs))
+            x@smlEnv$smList[[1]] = x@smlEnv$smList[[1]][, curok]
+    rm(allrs)
+#    ne = new.env()
+#    assign("smList", sml, ne)
+#    x@smlEnv = ne
+    x
+}
+
+
+GTFfilter.legacy = function(x, lower=0) {
  if (!(is(x, "smlSet"))) stop("works only for smlSet instances")
  if (lower <= 0 ) return(x)
  ss = smlSummary(x)
@@ -64,6 +87,23 @@ GTFfilter = function(x, lower=0) {
  x@smlEnv = ne
  x
 }
+
+GTFfilter = function (x, lower = 0)
+{
+    if (!(is(x, "smlSet")))
+        stop("works only for smlSet instances")
+    if (lower <= 0)
+        return(x)
+    mingtf = rowMin(data.matrix(snpStats::col.summary(x@smlEnv$smList[[1]])[, c("P.AA", "P.AB", "P.BB")]))
+
+    curok = which(mingtf >= lower)
+    if (length(curok) == 0)  
+            stop("limits eliminate all SNP on a chromosome, cannot proceed")
+    if (!(length(curok) == length(mingtf)))
+            x@smlEnv$smList[[1]] = x@smlEnv$smList[[1]][, curok]
+    x
+}
+
 
 setMethod("nsFilter", "smlSet",
 function (eset, require.entrez = TRUE, require.GOBP = FALSE,
