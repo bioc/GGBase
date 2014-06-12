@@ -135,7 +135,7 @@ clipPCs = function (smlSet, inds2drop, center=TRUE)
     if (!is(smlSet, "smlSet"))
         stop("requires smlSet instance")
     if (0 %in% inds2drop) {
-       warning("0 in inds2drop, so refraining from clipping; smlSet unchanged")
+       message("0 in inds2drop, so refraining from clipping; smlSet unchanged")
        return(smlSet)
        }
     ex = t(exprs(smlSet))

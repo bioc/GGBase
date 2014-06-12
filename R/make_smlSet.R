@@ -7,7 +7,7 @@ make_smlSet.legacy = function(es, sml, organism="Homo sapiens", harmonizeSamples
   esn = sampleNames(es)
   ssn = rownames(sml[[1]]) # assumed common along list
   if (!all(esn %in% ssn) || !all(ssn %in% esn)) {
-   warning("harmonizeSamples TRUE and sampleNames for es not coincident with rownames(sml[[1]]); harmonizing...")
+   message("harmonizeSamples TRUE and sampleNames for es not coincident with rownames(sml[[1]]); harmonizing...[not a warning any more]")
    sn = intersect(esn, ssn)
    es = es[,sn]
    ns = names(sml)
@@ -34,7 +34,7 @@ make_smlSet = function (es, sml, organism = "Homo sapiens", harmonizeSamples = F
         esn = sampleNames(es)
         ssn = rownames(sml[[1]])
         if (!all(esn %in% ssn) || !all(ssn %in% esn)) {
-            warning("harmonizeSamples TRUE and sampleNames for es not coincident with rownames(sml[[1]]); harmonizing...")
+            message("harmonizeSamples TRUE and sampleNames for es not coincident with rownames(sml[[1]]); harmonizing...[not a warning]")
             sn = intersect(esn, ssn)
             es = es[, sn]
             ns = names(sml)
