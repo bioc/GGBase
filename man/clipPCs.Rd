@@ -23,8 +23,9 @@ instance of \code{\linkS4class{smlSet}}
 instance of \code{\linkS4class{smlSet}}
 }
   \item{inds2drop}{
-vector of PCs to be eliminated by setting the associated diagonal elements in the
-SVD to zero before recomposing the matrix of expression values
+Vector of PCs to be eliminated by setting the associated diagonal elements in the
+SVD to zero before recomposing the matrix of expression values.  If the value 0
+is present in inds2drop, the smlSet is returned unchanged, with a warning.
 }
   \item{center}{
 logical, passed to \code{\link[stats]{prcomp}}
