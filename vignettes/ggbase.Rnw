@@ -85,8 +85,7 @@ CPNE1 by Cheung et al in a Nature paper of 2005.
 <<lkf,fig=TRUE>>=
 if (exists("s20")) {
  plot_EvG(genesym("CPNE1"), rsid("rs6060535"), s20)
-}
-else plot(1) # pdf must exist....
+} else plot(1) # pdf must exist....
 @
 
 \section{Genotype representations}
