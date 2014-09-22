@@ -209,12 +209,12 @@ setMethod("clipPCs",
 
 setMethod("clipPCs", 
   c("SummarizedExperiment", "numeric", "logical"), function(x, inds2drop, center=TRUE){
-   .clipPCs.SE(smlSet=x, inds2drop, center)
+   .clipPCs.SE(se=x, inds2drop, center)
 })
 
 setMethod("clipPCs", 
   c("SummarizedExperiment", "numeric", "missing"), function(x, inds2drop, center=TRUE){
-   .clipPCs.SE(smlSet=x, inds2drop, TRUE)
+   .clipPCs.SE(se=x, inds2drop, TRUE)
 })
 
 setMethod("clipPCs", 
