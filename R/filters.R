@@ -125,7 +125,10 @@ function (eset, require.entrez = TRUE, require.GOBP = FALSE,
  ans
 })
 
-clipPCs = function (smlSet, inds2drop, center=TRUE)
+
+
+
+.clipPCs = function (smlSet, inds2drop, center=TRUE)
 {
 #
 # returns smlSet with transformed expressions --
@@ -139,11 +142,7 @@ clipPCs = function (smlSet, inds2drop, center=TRUE)
        return(smlSet)
        }
     ex = t(exprs(smlSet))
-    ex = scale(ex, center=center, scale = FALSE)
-    ss = svd(ex)
-    d = ss$d
-    d[inds2drop] = 0
-    recon = t(ss$u %*% diag(d) %*% t(ss$v))
+    recon = reconstruct( ex, inds2drop, center )
     rownames(recon) = featureNames(smlSet)
     colnames(recon) = sampleNames(smlSet)
     ne = assayDataNew("lockedEnvironment", exprs = recon)
@@ -152,10 +151,22 @@ clipPCs = function (smlSet, inds2drop, center=TRUE)
 }
 
 regressOut = function(sms, rhs, ...) {
- mm = model.matrix(rhs, data=pData(sms))
- f = limma::lmFit(exprs(sms), mm, ...)
- r = exprs(sms) - (f$coef %*% t(f$design))
- sms@assayData = assayDataNew("lockedEnvironment", exprs=r)
+ if (is(sms, "smlSet")) {
+    mm = model.matrix(rhs, data=pData(sms))
+    ex = exprs(sms)
+    }
+ else if (is(sms, "SummarizedExperiment")) {
+    mm = model.matrix(rhs, data=colData(sms))
+    message("using assay() to extract 'expression' matrix from SummarizedExperiment")
+    ex = assay(sms)
+    }
+ else stop("only works for ExpressionSet or SummarizedExperiment")
+ f = limma::lmFit(ex, mm, ...)
+ r = ex - (f$coef %*% t(f$design))
+ if (is(sms, "smlSet"))
+     sms@assayData = assayDataNew("lockedEnvironment", exprs=r)
+ else if (is(sms, "SummarizedExperiment"))
+     assay(sms) = r
  sms
 }
 
@@ -184,5 +195,50 @@ dropDupSNPs = function(sms, use.digest=TRUE, ...) {
  sms@smlEnv = ne
  sms
 }
+# 
+# 
+#
+setGeneric("clipPCs", 
+ function(x, inds2drop, center=TRUE) standardGeneric("clipPCs"))
+
  
- 
+setMethod("clipPCs", 
+  c("smlSet", "numeric", "logical"), function(x, inds2drop, center=TRUE){
+   .clipPCs(smlSet=x, inds2drop, center)
+})
+
+setMethod("clipPCs", 
+  c("SummarizedExperiment", "numeric", "logical"), function(x, inds2drop, center=TRUE){
+   .clipPCs.SE(smlSet=x, inds2drop, center)
+})
+
+setMethod("clipPCs", 
+  c("SummarizedExperiment", "numeric", "missing"), function(x, inds2drop, center=TRUE){
+   .clipPCs.SE(smlSet=x, inds2drop, TRUE)
+})
+
+setMethod("clipPCs", 
+  c("smlSet", "numeric", "missing"), function(x, inds2drop, center=TRUE){
+   .clipPCs(smlSet=x, inds2drop, TRUE)
+  })
+
+
+reconstruct = function(ex, inds2drop, center=TRUE) {
+    ex = scale(ex, center=center, scale = FALSE)
+    ss = svd(ex)
+    d = ss$d
+    d[inds2drop] = 0
+    t(ss$u %*% diag(d) %*% t(ss$v))
+}
+
+.clipPCs.SE = function(se, inds2drop, center=TRUE) {
+     assn = names(assays(se))
+     message(paste("clipping PCs", 
+          paste0(selectSome(inds2drop),collapse=","), "from", assn[1], collapse=""))
+     ex = t(assays(se)[[1]])
+     recon = reconstruct(ex, inds2drop, center)
+     assays(se)[[1]] = recon
+     exptData(se)$PCsClipped = inds2drop
+     se
+     }
+

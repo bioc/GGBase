@@ -18,6 +18,9 @@ importMethodsFrom(Matrix, diag, print, t, which)
 
 importMethodsFrom(methods, coerce, show)
 
+importMethodsFrom(GenomicRanges, assays, "assays<-",
+   exptData, "exptData<-", colData, assay)
+
 importFrom(Biobase, assayDataNew, assayData, annotation, rowMin)
 
 importFrom(graphics, points)
@@ -36,8 +39,9 @@ importFrom(Biobase, classVersion)
 importMethodsFrom(AnnotationDbi, get, revmap)
 importClassesFrom(Biobase, 
 	Versioned, VersionedBiobase)
+importClassesFrom(GenomicRanges, SummarizedExperiment)
 
-exportMethods(genesym, rsid, probeId, plot_EvG, permEx)
+exportMethods(genesym, rsid, probeId, plot_EvG, permEx, clipPCs)
 
 export(getSS, make_smlSet, combine, dropMonomorphies,
  nsFilter, MAFfilter, GTFfilter, clipPCs, regressOut, combine,

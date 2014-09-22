@@ -1,5 +1,9 @@
 \name{clipPCs}
 \alias{clipPCs}
+\alias{clipPCs,SummarizedExperiment,numeric,logical-method}
+\alias{clipPCs,smlSet,numeric,logical-method}
+\alias{clipPCs,SummarizedExperiment,numeric,missing-method}
+\alias{clipPCs,smlSet,numeric,missing-method}
 \alias{regressOut}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -7,20 +11,22 @@ transformations of expression data in smlSet instances
 }
 \description{
 transformations of expression data in smlSet instances
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+or assay data in SummarizedExperiment
 }
 \usage{
-clipPCs(smlSet, inds2drop, center = TRUE)
+clipPCs(x, inds2drop, center = TRUE)
 
 regressOut(sms, rhs, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{smlSet}{
+  \item{x}{
 instance of \code{\linkS4class{smlSet}}
+or \code{\link[GenomicRanges]{SummarizedExperiment}}
 }
   \item{sms}{
 instance of \code{\linkS4class{smlSet}}
+or \code{\link[GenomicRanges]{SummarizedExperiment}}
 }
   \item{inds2drop}{
 Vector of PCs to be eliminated by setting the associated diagonal elements in the
@@ -31,7 +37,8 @@ is present in inds2drop, the smlSet is returned unchanged, with a message.
 logical, passed to \code{\link[stats]{prcomp}}
 }
   \item{rhs}{formula fragment (no dependent variable) used to form residuals
-in a reexpression of the expression matrix}
+in a reexpression of the expression matrix; variable bindings
+found in pData of an ExpressionSet or colData of a SummarizedExperiment}
   \item{\dots}{arguments passed to \code{\link[limma]{lmFit}}}
 }
 \details{

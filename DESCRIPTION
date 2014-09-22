@@ -1,12 +1,12 @@
 Package: GGBase
 Title: GGBase infrastructure for genetics of gene expression package GGtools
-Version: 3.27.3
+Version: 3.27.5
 Author: VJ Carey <stvjc@channing.harvard.edu>
 Description: infrastructure
 Suggests: 
 Depends: R (>= 2.14), methods, snpStats
 Imports: limma, genefilter, Biobase, BiocGenerics,
-	Matrix, AnnotationDbi, digest
+	Matrix, AnnotationDbi, digest, GenomicRanges
 Suggests: GGtools, illuminaHumanv1.db
 Maintainer: VJ Carey <stvjc@channing.harvard.edu>
 License: Artistic-2.0
