@@ -21,7 +21,7 @@ importMethodsFrom(methods, coerce, show)
 importMethodsFrom(GenomicRanges, assays, "assays<-",
    exptData, "exptData<-", colData, assay)
 
-importFrom(Biobase, assayDataNew, assayData, annotation, rowMin)
+importFrom(Biobase, assayDataNew, assayData, annotation, rowMin, selectSome)
 
 importFrom(graphics, points)
 
