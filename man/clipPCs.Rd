@@ -1,8 +1,10 @@
 \name{clipPCs}
 \alias{clipPCs}
 \alias{clipPCs,SummarizedExperiment,numeric,logical-method}
+\alias{clipPCs,RangedSummarizedExperiment,numeric,logical-method}
 \alias{clipPCs,smlSet,numeric,logical-method}
 \alias{clipPCs,SummarizedExperiment,numeric,missing-method}
+\alias{clipPCs,RangedSummarizedExperiment,numeric,missing-method}
 \alias{clipPCs,smlSet,numeric,missing-method}
 \alias{regressOut}
 %- Also NEED an '\alias' for EACH other topic documented here.
@@ -22,11 +24,11 @@ regressOut(sms, rhs, ...)
 \arguments{
   \item{x}{
 instance of \code{\linkS4class{smlSet}}
-or \code{\link[GenomicRanges]{SummarizedExperiment}}
+or \code{\link[SummarizedExperiment]{RangedSummarizedExperiment}}
 }
   \item{sms}{
 instance of \code{\linkS4class{smlSet}}
-or \code{\link[GenomicRanges]{SummarizedExperiment}}
+or \code{\link[SummarizedExperiment]{RangedSummarizedExperiment}}
 }
   \item{inds2drop}{
 Vector of PCs to be eliminated by setting the associated diagonal elements in the

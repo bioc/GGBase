@@ -155,7 +155,8 @@ regressOut = function(sms, rhs, ...) {
     mm = model.matrix(rhs, data=pData(sms))
     ex = exprs(sms)
     }
- else if (is(sms, "SummarizedExperiment")) {
+ else if (is(sms, "SummarizedExperiment") ||
+          is(sms, "RangedSummarizedExperiment")) {
     mm = model.matrix(rhs, data=colData(sms))
     message("using assay() to extract 'expression' matrix from SummarizedExperiment")
     ex = assay(sms)
@@ -165,7 +166,8 @@ regressOut = function(sms, rhs, ...) {
  r = ex - (f$coef %*% t(f$design))
  if (is(sms, "smlSet"))
      sms@assayData = assayDataNew("lockedEnvironment", exprs=r)
- else if (is(sms, "SummarizedExperiment"))
+ else if (is(sms, "SummarizedExperiment") ||
+          is(sms, "RangedSummarizedExperiment"))
      assay(sms) = r
  sms
 }
@@ -213,7 +215,17 @@ setMethod("clipPCs",
 })
 
 setMethod("clipPCs", 
+  c("RangedSummarizedExperiment", "numeric", "logical"), function(x, inds2drop, center=TRUE){
+   .clipPCs.SE(se=x, inds2drop, center)
+})
+
+setMethod("clipPCs", 
   c("SummarizedExperiment", "numeric", "missing"), function(x, inds2drop, center=TRUE){
+   .clipPCs.SE(se=x, inds2drop, TRUE)
+})
+
+setMethod("clipPCs", 
+  c("RangedSummarizedExperiment", "numeric", "missing"), function(x, inds2drop, center=TRUE){
    .clipPCs.SE(se=x, inds2drop, TRUE)
 })
 
@@ -238,7 +250,7 @@ reconstruct = function(ex, inds2drop, center=TRUE) {
      ex = t(assays(se)[[1]])
      recon = reconstruct(ex, inds2drop, center)
      assays(se)[[1]] = recon
-     exptData(se)$PCsClipped = inds2drop
+     metadata(se)$PCsClipped = inds2drop
      se
      }
 
