@@ -18,7 +18,7 @@ setMethod("plot_EvG", c("genesym", "rsid", "smlSet"),
   if (!is(thealleles[1], "numeric")) gt = factor(thealleles)
   if (is.factor(gt)) {
          plot(ex~gt, ylab=gsym, xlab=rsid, xlim=c(0,4), ...)
-         points(jitter(as.numeric(gt),.4)+1, ex, col="gray", pch=19)
+         points(jitter(as.numeric(gt),.4)+0, ex, col="gray", pch=19)
          } else {
          plot(ex~gt, ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,2), ...)
        }
@@ -43,7 +43,7 @@ setMethod("plot_EvG", c("probeId", "rsid", "smlSet"),
          points(jitter(as.numeric(gt),.4), ex, col="gray", pch=19)
          } else {
          plot(ex~cut(gt, c(-.1, .5, 1.5, 2.1)), ylab=gsym, xlab=paste("expected num. B alleles,", rsid), xlim=c(0,4), ...)
-         points(jitter(as.numeric(gt),.4)+1, ex, col="gray", pch=19)
+         points(jitter(as.numeric(gt),.4)+0, ex, col="gray", pch=19)
        }
   invisible(NULL)
 })
