@@ -161,7 +161,7 @@ regressOut = function(sms, rhs, ...) {
     message("using assay() to extract 'expression' matrix from SummarizedExperiment")
     ex = assay(sms)
     }
- else stop("only works for ExpressionSet or SummarizedExperiment")
+ else stop("only works for smlSet, ExpressionSet or SummarizedExperiment")
  f = limma::lmFit(ex, mm, ...)
  r = ex - (f$coef %*% t(f$design))
  if (is(sms, "smlSet"))
