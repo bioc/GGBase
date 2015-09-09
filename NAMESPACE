@@ -24,7 +24,8 @@ importFrom(graphics, points)
 
 importFrom(snpStats, col.summary)
 
-importFrom(stats, IQR, model.matrix)
+#importFrom(stats, IQR, model.matrix)
+importFrom(stats, model.matrix)
 
 ##
 ## added manually

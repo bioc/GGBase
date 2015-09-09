@@ -1,6 +1,6 @@
 Package: GGBase
 Title: GGBase infrastructure for genetics of gene expression package GGtools
-Version: 3.31.2
+Version: 3.31.3
 Author: VJ Carey <stvjc@channing.harvard.edu>
 Description: infrastructure
 Suggests: 
