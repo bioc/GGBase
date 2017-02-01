@@ -37,8 +37,8 @@ Class \code{"\linkS4class{characterORMIAME}"}, by class "character", distance 2.
 Class \code{"\linkS4class{atomicVector}"}, by class "character", distance 2.
 Class \code{"\linkS4class{index}"}, by class "character", distance 2.
 %Class \code{"\linkS4class{atomic}"}, by class "character", distance 2.
-%Class \code{"\linkS4class{characterORNULL}"}, by class "character", distance 2.
-%Class \code{"\linkS4class{vectorORfactor}"}, by class "character", distance 3.
+%Class \code{"\linkS4class{character_OR_NULL}"}, by class "character", distance 2.
+%Class \code{"\linkS4class{vector_OR_factor}"}, by class "character", distance 3.
 }
 \section{Methods}{
 No methods defined with class "probeId" or "genesym" in the signature.
