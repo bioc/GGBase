@@ -16,7 +16,7 @@ importMethodsFrom(Biobase, "annotation<-", experimentData,
 
 importMethodsFrom(genefilter, nsFilter, plot)
 
-importMethodsFrom(Matrix, diag, print, t, which)
+importMethodsFrom(Matrix, diag, print, t) #, which)
 
 importFrom(Biobase, assayDataNew, assayData, annotation, rowMin, selectSome)
 

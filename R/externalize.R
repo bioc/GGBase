@@ -29,7 +29,6 @@ externalize = function(smlSet, packname, author="Replace Me <auth@a.b.com>",
 allsnps = function (packname) 
 {
     allf = dir(system.file("parts", package = packname), full.names = TRUE)
-    require(snpStats)
     nl = lapply(allf, function(x) colnames(get(load(x))))
     names(nl) = gsub(".rda", "", basename(allf))
     nl
