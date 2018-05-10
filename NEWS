@@ -1,3 +1,9 @@
+CHANGES IN GGBase 3.43.1
+------------------------
+   o  man page links modernized
+   o  vignette to Rmd
+   o  Warning added to vignette indicating that gQTLBase/gQTLstats are more modern 
+
 CHANGES IN GGBase 3.27.5
 ------------------------
    o  clipPCs and regressOut now work for SummarizedExperiment instances

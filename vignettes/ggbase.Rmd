@@ -17,6 +17,12 @@ output:
     toc: yes 
 ---
 
+# NOTA BENE: IF STARTING ANEW, USE gQTLBase/gQTLstats
+
+This package was published in the dawn of eQTL analysis.  It 
+uses somewhat idiosyncratic data structures.  gQTL* packages
+are more up to date.
+
 # Introduction
 
 The GGBase package defines infrastructure for analysis of data
