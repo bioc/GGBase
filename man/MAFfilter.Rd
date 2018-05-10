@@ -34,7 +34,7 @@ upper bound on MAF or GTF to allow retention of associated locus
 }
 }
 \details{
-uses \code{\link[snpStats]{col.summary}} to compute MAF or GTF.  
+uses \code{\link{col.summary}} to compute MAF or GTF.  
 \code{dropMonomorphies} also uses col.summary.
 }
 \value{

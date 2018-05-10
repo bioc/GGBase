@@ -19,10 +19,10 @@ getSS(packname, chrs, renameChrs, probesToKeep=NULL, exFilter=function(x)x,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{es}{
-instance of \code{\link[Biobase]{ExpressionSet-class}}
+instance of \code{\link{ExpressionSet-class}}
 }
   \item{sml}{
-named list of \code{\link[snpStats]{SnpMatrix-class}} instances
+named list of \code{\link{SnpMatrix-class}} instances
 }
   \item{organism}{
 conventional token for species

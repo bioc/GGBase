@@ -24,11 +24,11 @@ regressOut(sms, rhs, ...)
 \arguments{
   \item{x}{
 instance of \code{\linkS4class{smlSet}}
-or \code{\link[SummarizedExperiment]{RangedSummarizedExperiment}}
+or \code{\link{RangedSummarizedExperiment}}
 }
   \item{sms}{
 instance of \code{\linkS4class{smlSet}}
-or \code{\link[SummarizedExperiment]{RangedSummarizedExperiment}}
+or \code{\link{RangedSummarizedExperiment}}
 }
   \item{inds2drop}{
 Vector of PCs to be eliminated by setting the associated diagonal elements in the
@@ -36,12 +36,12 @@ SVD to zero before recomposing the matrix of expression values.  If the value 0
 is present in inds2drop, the smlSet is returned unchanged, with a message.
 }
   \item{center}{
-logical, passed to \code{\link[stats]{prcomp}}
+logical, passed to \code{\link{prcomp}}
 }
   \item{rhs}{formula fragment (no dependent variable) used to form residuals
 in a reexpression of the expression matrix; variable bindings
 found in pData of an ExpressionSet or colData of a SummarizedExperiment}
-  \item{\dots}{arguments passed to \code{\link[limma]{lmFit}}}
+  \item{\dots}{arguments passed to \code{\link{lmFit}}}
 }
 \details{
 \code{clipPCs} is an operation on the n x p transposed matrix X of expression data.
@@ -50,7 +50,7 @@ corresponding to \code{inds2drop} are set to zero yielding the diagonal matrix E
 then Y = UEV^t is computed and transposed to replace the expression data.
 
 \code{regressOut} obtains residuals after genewise regression of expression on
-the design matrix specified by the \code{rhs}; \code{\link[limma]{lmFit}} is used to
+the design matrix specified by the \code{rhs}; \code{\link{lmFit}} is used to
 compute coefficients, linear predictions and residuals.
 }
 \value{
