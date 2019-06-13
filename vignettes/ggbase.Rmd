@@ -7,9 +7,6 @@ vignette: >
   %\VignetteIndexEntry{GGBase -- infrastructure for GGtools, genetics of gene expression}
   %\VignetteEncoding{UTF-8}
 output:
-  BiocStyle::pdf_document:
-    toc: yes 
-    number_sections: yes 
   BiocStyle::html_document:
     highlight: pygments
     number_sections: yes 
