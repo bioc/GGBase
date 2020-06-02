@@ -32,7 +32,7 @@ Class \code{"\linkS4class{character}"}, from data part.
 Class \code{"\linkS4class{vector}"}, by class "character", distance 2.
 Class \code{"\linkS4class{data.frameRowLabels}"}, by class "character", distance 2.
 Class \code{"\linkS4class{SuperClassMethod}"}, by class "character", distance 2.
-Class \code{"\linkS4class{characterORconnection}"}, by class "character", distance 2.
+Class \code{"\linkS4class{character_OR_connection}"}, by class "character", distance 2.
 Class \code{"\linkS4class{characterORMIAME}"}, by class "character", distance 2.
 Class \code{"\linkS4class{atomicVector}"}, by class "character", distance 2.
 Class \code{"\linkS4class{index}"}, by class "character", distance 2.

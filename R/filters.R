@@ -168,7 +168,7 @@ regressOut = function(sms, rhs, ...) {
      sms@assayData = assayDataNew("lockedEnvironment", exprs=r)
  else if (is(sms, "SummarizedExperiment") ||
           is(sms, "RangedSummarizedExperiment"))
-     assay(sms,withDimnames=FALSE) = r
+     assay(sms, withDimnames=FALSE) = r
  sms
 }
 
@@ -244,12 +244,12 @@ reconstruct = function(ex, inds2drop, center=TRUE) {
 }
 
 .clipPCs.SE = function(se, inds2drop, center=TRUE) {
-     assn = names(assays(se))
+     assn = assayNames(se)
      message(paste("clipping PCs", 
           paste0(selectSome(inds2drop),collapse=","), "from", assn[1], collapse=""))
      ex = t(assays(se)[[1]])
      recon = reconstruct(ex, inds2drop, center)
-     assays(se,withDimnames=FALSE)[[1]] = recon
+     assays(se, withDimnames=FALSE)[[1]] = recon
      metadata(se)$PCsClipped = inds2drop
      se
      }
