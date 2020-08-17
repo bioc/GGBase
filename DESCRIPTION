@@ -1,6 +1,6 @@
 Package: GGBase
 Title: GGBase infrastructure for genetics of gene expression package GGtools
-Version: 3.51.1
+Version: 3.51.2
 Author: VJ Carey <stvjc@channing.harvard.edu>
 Description: infrastructure
 Suggests: 
@@ -15,5 +15,6 @@ LazyLoad: yes
 VignetteBuilder: knitr
 biocViews: Genetics, Infrastructure
 Collate: casting.R smlSet.R filters.R       plot_EvG.R
-	externalize.R   getSS.R make_smlSet.R permEx.R
+	externalize.R   getSS.R make_smlSet.R permEx.R zzz.R
+PackageStatus: Deprecated
 
